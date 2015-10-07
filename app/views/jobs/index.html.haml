@@ -8,6 +8,7 @@
       %th Company Location
       %th Category
       %th Posted On
+      %th via
   %tbody
     - @jobs.each do |job|
       %tr
@@ -15,4 +16,7 @@
         %td= link_to job.title, job_path(job)
         %td= job.location
         %td= job.category.name
+        %td= job.posted
         %td= job.source
+
+= paginate(@jobs)

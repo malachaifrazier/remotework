@@ -1,9 +1,9 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.all
+    @jobs = Job.all.order('posted desc').page(params[:page] || 1).per(30)
   end
 
   def show
-    @job = Job.find(params[:id])
+    @job = Job.friendly.find(params[:id])
   end
 end

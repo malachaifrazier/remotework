@@ -45,10 +45,13 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 ### Added for this project ###
 
-gem 'puma'
+gem 'puma'                                          # Multithreaded server
 gem 'rspec'
 gem 'haml'
 gem 'bootstrap-sass'
-gem 'feedjira'
-gem 'foreigner'
-gem 'nokogiri'
+gem 'feedjira'                                      # RSS Reader for scrape tasks
+gem 'foreigner'                                     # Ref Integrity
+gem 'nokogiri'                                      # XML/HTML Scraper
+gem "ruby-readability", :require => 'readability'   # Cleans up job description text on Stack Overflow
+gem 'kaminari'                                      # Pagination
+gem 'friendly_id'                                   # slugs
