@@ -1,0 +1,18 @@
+%h1 MONDAY'S JOBS JOBS JOBS!!!
+
+%table.table
+  %thead
+    %tr
+      %th Company
+      %th Title
+      %th Company Location
+      %th Category
+      %th Posted On
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td= job.company
+        %td= link_to job.title, job_path(job)
+        %td= job.location
+        %td= job.category.name
+        %td= job.source
