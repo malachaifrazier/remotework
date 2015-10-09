@@ -7,7 +7,7 @@ class AuthenticJobsScraperJob < ActiveJob::Base
 
   def perform(*args)
     # TODO
-    Job.delete_all
+    # Job.delete_all
 
     CATEGORIES.keys.each do |category|
       url = "http://www.authenticjobs.com/rss/custom.php?terms=&type=1,2,3,4,5,6,7&cats=#{category}&onlyremote=1&location="

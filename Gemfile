@@ -49,9 +49,11 @@ gem 'puma'                                          # Multithreaded server
 gem 'rspec'
 gem 'haml'
 gem 'bootstrap-sass'
+gem 'jasny-bootstrap-rails'                         # for the responsive side menu
 gem 'feedjira'                                      # RSS Reader for scrape tasks
 gem 'foreigner'                                     # Ref Integrity
 gem 'nokogiri'                                      # XML/HTML Scraper
 gem "ruby-readability", :require => 'readability'   # Cleans up job description text on Stack Overflow
 gem 'kaminari'                                      # Pagination
 gem 'friendly_id'                                   # slugs
+gem 'acts-as-taggable-on'                           # tags

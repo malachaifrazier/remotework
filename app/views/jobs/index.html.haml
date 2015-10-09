@@ -1,22 +1,55 @@
-%h1 MONDAY'S JOBS JOBS JOBS!!!
+-# For big screens
+-# Sidebar
+%nav.navmenu.navmenu-inverse.navmenu-fixed-left.offcanvas-xs
+  .navmenu-brand
+    = link_to "JOBSJOBJOBS", root_path, class: "navbar-brand"
+    %ul.nav.navmenu-nav
+      %li.active= link_to "Home", "/"
+      %li= link_to "About", "#about"
+      %li= link_to "Contact", "#contact"
 
-%table.table
-  %thead
-    %tr
-      %th Company
-      %th Title
-      %th Company Location
-      %th Category
-      %th Posted On
-      %th via
-  %tbody
-    - @jobs.each do |job|
-      %tr
-        %td= job.company
-        %td= link_to job.title, job_path(job)
-        %td= job.location
-        %td= job.category.name
-        %td= job.posted
-        %td= job.source
+-# For small screens
+-# Header
+%nav.navbar.navbar-fixed-top.navbar-inverse.visible-xs
+  %button.navbar-toggle{type: "button", data: {toggle: "collapse", target: "#navmenu"}}
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
+  .navbar-header
+    = link_to "JOBSJOBJOBS", root_path, class: "navbar-brand"
+-# Sidebar
+%nav.navmenu.navmenu-default.navmenu-fixed-left.offcanvas#navmenu
+  .navmenu-brand
+    = link_to "JOBSJOBJOBS", root_path, class: "navbar-brand"
+    %ul.nav.navmenu-nav
+      %li.active= link_to "Home", "/"
+      %li= link_to "About", "#about"
+      %li= link_to "Contact", "#contact"
 
-= paginate(@jobs)
+.container
+  .row
+    .col-md-8.col-sm-3.col-xs-12.col-sm-offset-4.col-md-offset-1
+      %table.table.table-responsive
+        %thead
+          %tr
+            %th Company
+            %th Title
+            %th Company HQ
+            %th Posted On
+            %th via
+        %tbody
+          - @jobs.each do |job|
+            %tr
+              %td= job.company
+              %td= link_to job.title, job_path(job)
+              %td= job.location
+              %td= job.posted
+              %td= job.source
+      = paginate(@jobs)
+
+:javascript
+  $(document).ready(function () {
+    $('[data-toggle="offcanvas"]').click(function () {
+      $('.row-offcanvas').toggleClass('active')
+    });
+  });

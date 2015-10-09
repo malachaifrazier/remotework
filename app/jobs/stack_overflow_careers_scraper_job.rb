@@ -6,7 +6,7 @@ class StackOverflowCareersScraperJob < ActiveJob::Base
   # TODO BREAK DOWN BY TYPE/CATS?
   def perform(*args)
     # TODO
-    Job.delete_all
+    # Job.delete_all
 
     url = "http://careers.stackoverflow.com/jobs/feed?allowsremote=True"
     feed = Feedjira::Feed.fetch_and_parse url

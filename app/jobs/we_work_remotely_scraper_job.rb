@@ -5,7 +5,7 @@ class WeWorkRemotelyScraperJob < ActiveJob::Base
 
   def perform(*args)
     # TODO
-    Job.delete_all
+    # Job.delete_all
 
     url = "https://weworkremotely.com/jobs.rss"
     feed = Feedjira::Feed.fetch_and_parse url
