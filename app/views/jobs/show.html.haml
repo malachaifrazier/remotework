@@ -1,3 +1,6 @@
-%h1= @job.title
-%h2= @job.company
-%p= @job.description.html_safe
+.container
+  .row
+    .col-xs-12
+      %h1= @job.title
+      %h2= @job.company
+      %p= @job.description.html_safe

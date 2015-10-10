@@ -5,6 +5,10 @@ class Job < ActiveRecord::Base
 
   belongs_to :category
 
+  def self.skip_description_scrape?
+    false
+  end
+
   def name_for_slug
     "#{self.company} #{self.title}"
   end

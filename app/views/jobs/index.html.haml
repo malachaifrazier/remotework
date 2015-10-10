@@ -1,50 +1,29 @@
--# For big screens
--# Sidebar
-%nav.navmenu.navmenu-inverse.navmenu-fixed-left.offcanvas-xs
-  .navmenu-brand
-    = link_to "JOBSJOBJOBS", root_path, class: "navbar-brand"
-    %ul.nav.navmenu-nav
-      %li.active= link_to "Home", "/"
-      %li= link_to "About", "#about"
-      %li= link_to "Contact", "#contact"
-
--# For small screens
--# Header
-%nav.navbar.navbar-fixed-top.navbar-inverse.visible-xs
-  %button.navbar-toggle{type: "button", data: {toggle: "collapse", target: "#navmenu"}}
-    %span.icon-bar
-    %span.icon-bar
-    %span.icon-bar
-  .navbar-header
-    = link_to "JOBSJOBJOBS", root_path, class: "navbar-brand"
--# Sidebar
-%nav.navmenu.navmenu-default.navmenu-fixed-left.offcanvas#navmenu
-  .navmenu-brand
-    = link_to "JOBSJOBJOBS", root_path, class: "navbar-brand"
-    %ul.nav.navmenu-nav
-      %li.active= link_to "Home", "/"
-      %li= link_to "About", "#about"
-      %li= link_to "Contact", "#contact"
 
 .container
   .row
-    .col-md-8.col-sm-3.col-xs-12.col-sm-offset-4.col-md-offset-1
-      %table.table.table-responsive
-        %thead
-          %tr
-            %th Company
-            %th Title
-            %th Company HQ
-            %th Posted On
-            %th via
-        %tbody
-          - @jobs.each do |job|
-            %tr
-              %td= job.company
-              %td= link_to job.title, job_path(job)
-              %td= job.location
-              %td= job.posted
-              %td= job.source
+    .col-md-9.col-sm-3.col-xs-12
+      -# %table.table.table-responsive
+      -#   %thead
+      -#     %tr
+      -#       %th Company
+      -#       %th Title
+      -#       %th Company HQ
+      -#       %th Posted On
+      -#       %th via
+      -#   %tbody
+      -#     - @jobs.each do |job|
+      -#       %tr
+      -#         %td.company= job.company
+      -#         %td= link_to job.title, job_path(job)
+      -#         %td= job.location
+      -#         %td= job.posted
+      -#         %td= job.source
+      %ul
+        - @jobs.each do |job|
+          %li
+            %div.job
+              %h2= link_to job.title, job_path(job)
+              %h3= job.company
       = paginate(@jobs)
 
 :javascript

@@ -6,22 +6,18 @@
  * Style tweaks
  * --------------------------------------------------
  */
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
-body {
-  padding-top: 70px;
-}
 
-
-@media (min-width: 992px) {
-  body {
-    padding-left: 300px;
-  }
-  .navbar-fixed-top {
-    .container {
-      max-width: 600px;
+body.jobs {
+  ul {
+    list-style-type: none;
+    margin-bottom: 15px;
+    h2 {
+      font-family: 'Radley', serif;
+      font-size: 20px;
+    }
+    h3 {
+      font-size: 14px;
+      margin: 10px 0;
     }
   }
 }

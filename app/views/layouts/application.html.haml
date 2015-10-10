@@ -10,5 +10,33 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-%body
+%body{ class: "#{controller.controller_name}" }
+  -# For big screens
+  -# Sidebar
+  %nav.navmenu.navmenu-inverse.navmenu-fixed-left.offcanvas-xs
+    = link_to "JOBSJOBJOBS", root_path, class: "navmenu-brand"
+    %ul.nav.navmenu-nav
+      %li.active= link_to "Everything", "#everything"
+      %li= link_to "Develop", "#develop"
+      %li= link_to "Design", "#design"
+      %li= link_to "Manage", "#manage"
+
+  -# For small screens
+  -# Header
+  %nav.navbar.navbar-fixed-top.navbar-inverse.visible-xs
+    %button.navbar-toggle{type: "button", data: {toggle: "collapse", target: "#navmenu"}}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    .navbar-header
+      = link_to "JOBSJOBJOBS", root_path, class: "navbar-brand"
+  -# Sidebar
+  %nav.navmenu.navmenu-default.navmenu-fixed-left.offcanvas#navmenu
+    = link_to "JOBSJOBJOBS", root_path, class: "navmenu-brand"
+    %ul.nav.navmenu-nav
+      %li.active= link_to "Everything", "#everything"
+      %li= link_to "Develop", "#develop"
+      %li= link_to "Design", "#design"
+      %li= link_to "Manage", "#manage"
+
   = yield
