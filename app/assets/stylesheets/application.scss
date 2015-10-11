@@ -14,12 +14,14 @@
  *= require_self
  */
 
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
 @import url(https://fonts.googleapis.com/css?family=Radley:400,400italic);
 
+@import "colors";
 @import "bootstrap-customization";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 @import "jasny-bootstrap.min";
 
 .navmenu {
@@ -27,7 +29,7 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: $lato;
 }
 
 html,
@@ -35,7 +37,6 @@ body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
-  padding-top: 70px;
   a {
     color: $link-color;
   }
@@ -45,5 +46,61 @@ body {
 @media (min-width: 768px) {
   body {
     padding-left: 200px;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    padding-top: 60px;
+  }
+}
+
+.navigation {
+  img.logo {
+    margin-left: -8px;
+    text-align: center;
+    width: 185px;
+  }
+  img.horizontal-logo {
+    height: 40px;
+    margin-top: -9px;
+    text-align: center;
+  }
+}
+
+
+.navmenu.navmenu-inverse {
+  background-color: $navmenu-inverse-bg;
+  border-color: $navmenu-inverse-border;
+  color: $navmenu-inverse-color;
+  a {
+    color: $navmenu-inverse-link-color;
+    &:hover {
+      background-color: $navmenu-inverse-link-hover-bg;
+      color: $navmenu-inverse-link-hover-color;
+    }
+    &:active {
+      background-color: $navmenu-inverse-link-active-color;
+      color: $navmenu-inverse-link-active-bg;
+    }
+    &:disabled {
+      background-color: $navmenu-inverse-link-disabled-bg;
+      color: $navmenu-inverse-link-disabled-color;
+    }
+    .brand {
+      color: $navmenu-inverse-brand-color;
+      &:hover {
+        background-color: $navmenu-inverse-brand-hover-bg;
+        color: $navmenu-inverse-brand-hover-color;
+      }
+    }
+    .toggle {
+      border-color: $navmenu-inverse-toggle-border-color;
+      &:hover {
+        background-color: $navmenu-inverse-toggle-hover-bg;
+      }
+      .icon-bar {
+        background-color: $navmenu-inverse-toggle-icon-bar-bg
+      }
+    }
   }
 }

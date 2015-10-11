@@ -3,7 +3,7 @@ class Job::Github < Job
     ["https://jobs.github.com/positions.atom"]
   end
 
-  def self.factory(entry)
+  def self.factory(entry, feed, opts={})
     link = entry.links.first.gsub(/^http:/, 'https:')
     entry_title = entry.title.split(' at ')
     title = entry_title.shift
@@ -11,12 +11,12 @@ class Job::Github < Job
 
     # GitHub lies about its posting date and puts them in the future
     # sometimes. =_=
-    posted = Time.zone.now
+    posted_at = entry.updated > Time.zone.now ? Time.zone.now : entry.updated
     if title && location && remote?(location)
       return Job.new(title: title.strip,
-                     posted: posted,
+                     posted_at: posted_at,
                      company: company.strip,
-                     category: Category.web,                  # TODO
+                     category: self.guess_category_from_title(title),
                      location: location.strip,
                      description: entry.content,
                      company_url: '',
@@ -26,6 +26,6 @@ class Job::Github < Job
   end
 
   def self.remote?(location)
-    ['Anywhere','Remote','United States','Telecommute'].include?(location)
+    ['anywhere','remote','united states','telecommute'].include?(location.downcase)
   end
 end

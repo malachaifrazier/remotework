@@ -1,0 +1,21 @@
+%ul
+  - jobs.each do |job|
+    %li
+      .job
+        .row
+          .col-sm-10
+            %h2= link_to job.title, job_path(job)
+          .col-sm-2
+            .hidden-xs
+              .pull-right.category= job.category.name
+            .visible-xs
+              .category= job.category.name
+        .row
+          .col-xs-9
+            %h3= job.company
+          .col-xs-3
+            .hidden-xs
+              %p.pull-right.when-posted= when_posted(job)
+            .visible-xs.when-posted
+              %p= when_posted(job)
+= paginate(jobs)

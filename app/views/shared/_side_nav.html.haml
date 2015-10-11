@@ -1,0 +1,13 @@
+= link_to root_path, class: "navmenu-brand" do
+  = image_tag 'remotely-awesome-logo-white.png', class: 'logo'
+%ul.nav.navmenu-nav
+  %li.everything
+    = link_to "Recent", "#everything", class: 'category-link', data: {src: "#{jobs_path}"}
+  %li.development
+    = link_to "Develop", "#development", class: 'category-link', data: {src: "#{category_path('Development')}"}
+  %li.design
+    = link_to "Design", "#design", class: 'category-link', data: {src: "#{category_path('Design')}"}
+  %li.management
+    = link_to "Manage", "#management", class: 'category-link', data: {src: "#{category_path('Management')}"}
+  %li.other
+    = link_to "Other", "#other", class: 'category-link', data: {src: "#{category_path('Design')}"}

@@ -11,10 +11,10 @@ class RssIngestionJob < ActiveJob::Base
       klass.feed_urls.each do |feed_url|
         feed = Feedjira::Feed.fetch_and_parse feed_url
         feed.entries.each do |entry|
-          job = klass.factory(entry)
+          job = klass.factory(entry, feed)
           if job
             job.description = fetch_description(job.original_post_url) unless klass.skip_description_scrape?
-            job.save!
+            job.save! unless Job.probable_duplicate(job).exists?
           end
         end
       end

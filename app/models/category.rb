@@ -1,18 +1,19 @@
 class Category < ActiveRecord::Base
-
-  def self.web
-    self.find_by(name: 'Web Development')
-  end
-
-  def self.mobile
-    self.find_by(name: 'Mobile Development')
+  has_many :jobs
+  
+  def self.development
+    @@development ||= self.find_by(name: 'Development')
   end
 
   def self.design
-    self.find_by(name: 'Design')
+    @@design ||= self.find_by(name: 'Design')
   end
 
   def self.management
-    self.find_by(name: 'Management')
+    @@management ||= self.find_by(name: 'Management')
+  end
+
+  def self.other
+    @@other ||= self.find_by(name: 'Other')
   end
 end

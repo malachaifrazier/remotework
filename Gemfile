@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "1.9.3", :engine => "jruby", :engine_version => "1.7.11"
+ruby "2.2.2"
 
 
 ### Standard Rails Stuff ###
@@ -8,7 +8,11 @@ ruby "1.9.3", :engine => "jruby", :engine_version => "1.7.11"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.0'
 # gem 'activerecord-jdbc-adapter'
-gem 'activerecord-jdbcpostgresql-adapter'
+
+# for when we were trying JRuby, which isn't working right now. (v_v)
+#gem 'activerecord-jdbcpostgresql-adapter'
+gem 'pg'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

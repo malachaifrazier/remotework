@@ -6,18 +6,5 @@
  * Style tweaks
  * --------------------------------------------------
  */
-
-body.jobs {
-  ul {
-    list-style-type: none;
-    margin-bottom: 15px;
-    h2 {
-      font-family: 'Radley', serif;
-      font-size: 20px;
-    }
-    h3 {
-      font-size: 14px;
-      margin: 10px 0;
-    }
-  }
-}
+@import "colors";
+@import "fonts";
