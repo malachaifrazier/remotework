@@ -7,10 +7,11 @@
       .panel
         .job-list
 
+
 :coffeescript
   $ ->
     $('[data-toggle="offcanvas"]').click ()->
       $('.row-offcanvas').toggleClass('active')
     $('[data-toggle="tooltip"]').tooltip();
-    jobs = new RemoteWork.Jobs("#{categories_path}")
+    jobs = new RemoteWork.Jobs("#{jobs_path}", "#{categories_path}")
     jobs.initialize()

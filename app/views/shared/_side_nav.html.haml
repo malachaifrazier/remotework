@@ -2,12 +2,12 @@
   = image_tag 'remotely-awesome-logo-white.png', class: 'logo'
 %ul.nav.navmenu-nav
   %li.everything
-    = link_to "Recent", "#everything", class: 'category-link', data: {src: "#{jobs_path}"}
+    = link_to "Recent", jobs_path, class: 'category-link', remote: true
   %li.development
-    = link_to "Develop", "#development", class: 'category-link', data: {src: "#{category_path('Development')}"}
+    = link_to "Develop", category_path('Development'), class: 'category-link', remote: true
   %li.design
-    = link_to "Design", "#design", class: 'category-link', data: {src: "#{category_path('Design')}"}
+    = link_to "Design", category_path('Design'), class: 'category-link', remote: true
   %li.management
-    = link_to "Manage", "#management", class: 'category-link', data: {src: "#{category_path('Management')}"}
+    = link_to "Manage", category_path('Management'), class: 'category-link', remote: true
   %li.other
-    = link_to "Other", "#other", class: 'category-link', data: {src: "#{category_path('Design')}"}
+    = link_to "Other", category_path('Other'), class: 'category-link', remote: true
