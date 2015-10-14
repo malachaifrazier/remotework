@@ -15,6 +15,10 @@ class Job::WeWorkRemotely < Job
       URLS.keys
     end
 
+    def skip_description_scrape?
+      true
+    end
+    
     def factory(entry, feed, opts={})
       entry_title = entry.title.split(':')
       company = entry_title.shift

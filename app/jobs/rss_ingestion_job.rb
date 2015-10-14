@@ -9,6 +9,7 @@ class RssIngestionJob < ActiveJob::Base
 
     klasses.each do |klass|
       klass.feed_urls.each do |feed_url|
+        klass.delete_all if opts[:purge_source]
         feed = Feedjira::Feed.fetch_and_parse feed_url
         feed.entries.each do |entry|
           job = klass.factory(entry, feed)

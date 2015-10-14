@@ -1,6 +1,14 @@
 .container
   .row
-    .col-xs-12
-      %h1= @job.title
-      %h2= @job.company
-      %p= @job.description.html_safe
+    .col-md-10.col-sm-10.col-xs-12
+      = link_to "Back to Job List", :back
+      .panel
+        #content
+          .job-heading
+            %h1.job-title= @job.title
+            %h2.job-company= @job.company
+          .job-description
+            = @job.description.squeeze(' ').html_safe
+          .apply
+            = link_to "Apply on #{@job.source}", @job.original_post_url, class: "btn btn-primary btn-lg", target: '_blank'
+      = link_to "Back to Job List", :back

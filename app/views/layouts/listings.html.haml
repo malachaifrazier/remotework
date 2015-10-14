@@ -10,5 +10,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-%body{ class: "#{controller.controller_name} #{controller.action_name}" }
+%body{ class: "job-listings #{controller.controller_name} #{controller.action_name} " }
+  .navigation= render partial: 'shared/nav'
   = yield
+
+:coffeescript
+  $ ->
+    $('[data-toggle="offcanvas"]').click ()->
+      $('.row-offcanvas').toggleClass('active')
+    $('[data-toggle="tooltip"]').tooltip();
