@@ -13,7 +13,7 @@ class Job::Github < Job
     # sometimes. =_=
     posted_at = entry.updated > Time.zone.now ? Time.zone.now : entry.updated
     if title && location && remote?(location)
-      return Job.new(title: title.strip,
+      job = self.new(title: title.strip,
                      posted_at: posted_at,
                      company: company.strip,
                      category: self.guess_category_from_title(title),
@@ -22,6 +22,8 @@ class Job::Github < Job
                      company_url: '',
                      original_post_url: link,
                      source: "Github Jobs")
+      job.rebuild_tags!
+      return job
     end
   end
 

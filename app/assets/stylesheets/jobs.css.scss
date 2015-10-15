@@ -48,23 +48,25 @@ body.job-listings {
     margin-bottom: 15px;
     padding-left: 0;
     li {
-      margin-bottom: 10px;
+      margin-bottom: 25px;
       h2 {
         font-family: $radley;
-        font-size: 20px;
+        font-size: 18px;
         margin: 5px 0;
       }
       h3 {
         color: $charcoal;
         font-size: 14px;
-        margin: 0 0 10px;
+        margin: -5px 0 0;
       }
       p.when-posted {
-        margin: 0 0 10px;
+        margin: -5px 0 0;
       }
       .category {
-        color: $beige;
-        line-height: 32px;
+        a {
+          color: $beige;
+          line-height: 32px;
+        }
       }
     }
   }
@@ -88,6 +90,7 @@ body.jobs.show {
       line-height: 14px;
     }
     h1.job-title {
+      font-size: 28px;
       margin-bottom: 5px;
     }
     h2.job-company {
@@ -95,7 +98,8 @@ body.jobs.show {
     }
     .job-heading {
       border-bottom:1px solid $beige;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
     }
     .job-description {
       font-size: 18px;

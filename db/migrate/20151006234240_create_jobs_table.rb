@@ -1,7 +1,5 @@
 class CreateJobsTable < ActiveRecord::Migration
   def change
-    enable_extension 'uuid-ossp'
-
     create_table :categories do |t|
       t.timestamps
       t.string      :name
@@ -12,7 +10,7 @@ class CreateJobsTable < ActiveRecord::Migration
     Category.create!(name: 'Design')
     Category.create!(name: 'Management')
 
-    create_table :jobs, id: :uuid do |t|
+    create_table :jobs do |t|
       t.timestamps
       t.references  :category
       t.string      :title,             null: false
@@ -23,7 +21,8 @@ class CreateJobsTable < ActiveRecord::Migration
       t.string      :company_url
       t.string      :original_post_url
       t.string      :source
-      t.foreign_key :categories
     end
+
+    add_foreign_key :jobs, :categories
   end
 end

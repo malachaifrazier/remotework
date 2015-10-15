@@ -1,7 +1,7 @@
 class Job < ActiveRecord::Base
   include FriendlyId
   friendly_id :name_for_slug, use: :slugged
-  acts_as_taggable
+  acts_as_taggable_on :languages, :libraries, :tools, :skills
 
   belongs_to :category
 
@@ -29,6 +29,14 @@ class Job < ActiveRecord::Base
 
   def name_for_slug
     "#{self.company} #{self.title}"
+  end
+
+  def rebuild_tags!(other=nil)
+    tags = TagBuilder.new(self.title, self.description).tags
+    self.language_list = tags[:language]
+    self.library_list = tags[:library]
+    self.tool_list = tags[:tools]
+    self.skill_list = tags[:skills]
   end
 
   def self.guess_category_from_title(title)

@@ -18,14 +18,14 @@ class Job::WeWorkRemotely < Job
     def skip_description_scrape?
       true
     end
-    
+
     def factory(entry, feed, opts={})
       entry_title = entry.title.split(':')
       company = entry_title.shift
       title = entry_title.join(' ')
       location = entry.summary.match(/^.*?<strong>Headquarters:<\/strong>(.*?)</m)[1]
       if company && title && location
-        return Job.new(title: title.strip,
+        job = self.new(title: title.strip,
                        posted_at: entry.published,
                        company: company.strip,
                        category: determine_category(feed),
@@ -34,6 +34,8 @@ class Job::WeWorkRemotely < Job
                        company_url: '',
                        original_post_url: entry.entry_id,
                        source: "We Work Remotely")
+        job.rebuild_tags!
+        return job
       end
     end
 

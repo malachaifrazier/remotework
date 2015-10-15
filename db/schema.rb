@@ -15,19 +15,18 @@ ActiveRecord::Schema.define(version: 20151010154618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",       limit: 255
+    t.string   "name"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",           limit: 255, null: false
-    t.integer  "sluggable_id",               null: false
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope",          limit: 255
+    t.string   "scope"
     t.datetime "created_at"
   end
 
@@ -36,28 +35,28 @@ ActiveRecord::Schema.define(version: 20151010154618) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "jobs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+  create_table "jobs", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.string   "title",             limit: 255, null: false
-    t.datetime "posted_at",                     null: false
-    t.string   "company",           limit: 255, null: false
-    t.string   "location",          limit: 255, null: false
-    t.text     "description",                   null: false
-    t.string   "company_url",       limit: 255
-    t.string   "original_post_url", limit: 255
-    t.string   "source",            limit: 255
-    t.string   "slug",              limit: 255
-    t.string   "type",              limit: 255
+    t.string   "title",             null: false
+    t.datetime "posted_at",         null: false
+    t.string   "company",           null: false
+    t.string   "location",          null: false
+    t.text     "description",       null: false
+    t.string   "company_url"
+    t.string   "original_post_url"
+    t.string   "source"
+    t.string   "slug"
+    t.string   "type"
   end
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
-    t.string   "taggable_type", limit: 255
+    t.string   "taggable_type"
     t.integer  "tagger_id"
-    t.string   "tagger_type",   limit: 255
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
@@ -66,12 +65,11 @@ ActiveRecord::Schema.define(version: 20151010154618) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name",           limit: 255
-    t.integer "taggings_count",             default: 0
+    t.string  "name"
+    t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  add_foreign_key "jobs", "categories", name: "jobs_category_id_fk"
-  add_foreign_key "jobs", "categories", name: "jobs_category_id_fk"
+  add_foreign_key "jobs", "categories"
 end
