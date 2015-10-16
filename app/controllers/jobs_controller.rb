@@ -1,6 +1,8 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.all.order('posted_at desc').page(params[:page] || 1).per(30)
+    @tags = (params[:tags] || '').split('+')
+    @category = params[:category]
+    @jobs = Job.for_tags(@tags).for_category(@category).includes(:taggings).order('posted_at DESC').page(params[:page] || 1)
     render 'index', layout: 'listings'
   end
 

@@ -7,9 +7,9 @@
             %h2= link_to job.title, job_path(job)
           .col-sm-2
             .hidden-xs
-              .pull-right.category= link_to job.category.name, category_path(job.category.name)
+              .pull-right.category= link_to job.category.capitalize, category_path(job.category)
             .visible-xs
-              .category= link_to job.category.name, category_path(job.category.name)
+              .category= link_to job.category.capitalize, category_path(job.category)
         .row
           .col-xs-8
             %h3= job.company
@@ -20,14 +20,6 @@
               %p= when_posted(job)
         .row
           .col-xs-12
-            -# TODO REFACTOR ME I'M HIDEOUS
-            - job.language_list.first(4).each do |tag|
-              %span.label.label-warning= tag.to_s
-            - job.library_list.first(4).each do |tag|
-              %span.label.label-primary= tag.to_s
-            - job.tool_list.first(3).each do |tag|
-              %span.label.label-success= tag.to_s
-            - job.skill_list.first(3).each do |tag|
-              %span.label.label-info= tag.to_s
+            = render partial: 'shared/tags', locals: { job: job }
 
 = paginate(jobs)

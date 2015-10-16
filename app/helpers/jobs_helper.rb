@@ -6,8 +6,8 @@ module JobsHelper
   end
 
   def active_tab_class(tab, params)
-    return 'active' if tab == params[:id]
-    return 'active' if tab == 'Everything' && params[:id].nil?
+    return 'active' if tab == params[:category]
+    return 'active' if tab == 'everything' && params[:category].nil?
     ''
   end
 end

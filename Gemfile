@@ -54,6 +54,7 @@ gem 'rspec'
 gem 'haml'
 gem 'bootstrap-sass'
 gem 'jasny-bootstrap-rails'                         # for the responsive side menu
+gem 'font-awesome-rails'                            # fontawesome web fonts
 gem 'feedjira'                                      # RSS Reader for scrape tasks
 gem 'nokogiri'                                      # XML/HTML Scraper
 gem "ruby-readability", :require => 'readability'   # Cleans up job description text on Stack Overflow

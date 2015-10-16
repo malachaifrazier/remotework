@@ -1,14 +1,14 @@
 class Job::Authentic < Job
   CATEGORIES =
-    { '1' => Category.other,
-      '2' => Category.development,
-      '3' => Category.design,
-      '4' => Category.development,
-      '5' => Category.development,
-      '6' => Category.management,
-      '7' => Category.design,
-      '8' => Category.other,
-      '9' => Category.other }
+    { '1' => 'other',
+      '2' => 'development',
+      '3' => 'design',
+      '4' => 'development',
+      '5' => 'development',
+      '6' => 'management',
+      '7' => 'design',
+      '8' => 'other',
+      '9' => 'other' }
 
   class << self
     def feed_urls

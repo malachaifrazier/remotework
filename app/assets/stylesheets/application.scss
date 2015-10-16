@@ -42,8 +42,6 @@ body {
   }
 }
 
-
-
 .navigation {
   img.logo {
     margin-left: -8px;
@@ -57,6 +55,31 @@ body {
   }
 }
 
+.label-tag {
+  margin-right: 2px;
+  a {
+    color: $white
+  }
+  &.label-language-tag {
+    background-color: $orange;
+  }
+  &.label-library-tag {
+    background-color: $charcoal;
+  }
+  &.label-tool-tag {
+    background-color: $ash;
+  }
+  &.label-skill-tag {
+    background-color: $aqua;
+  }
+  &.label-category-tag {
+    border: 1px solid $charcoal;
+    color: $charcoal;
+    a {
+      color: $charcoal;
+    }
+  }
+}
 
 .navmenu.navmenu-inverse {
   background-color: $navmenu-inverse-bg;
@@ -92,5 +115,13 @@ body {
         background-color: $navmenu-inverse-toggle-icon-bar-bg
       }
     }
+  }
+}
+
+.tag-filter {
+  font-size: 16px;
+  margin-bottom: 8px;
+  i {
+    margin-left: 3px;
   }
 }

@@ -7,16 +7,7 @@
           .job-heading
             %h1.job-title= @job.title
             %h2.job-company= @job.company
-            .tags
-              -# TODO REFACTOR ME I'M HIDEOUS
-              - @job.language_list.first(4).each do |tag|
-                %span.label.label-warning= tag.to_s
-              - @job.library_list.first(4).each do |tag|
-                %span.label.label-primary= tag.to_s
-              - @job.tool_list.first(3).each do |tag|
-                %span.label.label-success= tag.to_s
-              - @job.skill_list.first(3).each do |tag|
-                %span.label.label-info= tag.to_s
+            = render partial: 'shared/tags', locals: { job: @job }
           .job-description
             = @job.description.squeeze(' ').html_safe
           .apply

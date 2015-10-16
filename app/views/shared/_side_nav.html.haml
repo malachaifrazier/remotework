@@ -1,13 +1,13 @@
 = link_to root_path, class: "navmenu-brand" do
   = image_tag 'remotely-awesome-logo-white.png', class: 'logo'
 %ul.nav.navmenu-nav
-  %li{ class: active_tab_class('Everything', params) }
+  %li{ class: active_tab_class('everything', params) }
     = link_to "Recent", jobs_path, class: 'category-link'
-  %li{ class: active_tab_class('Development', params) }
-    = link_to "Develop", category_path('Development'), class: 'category-link'
-  %li{ class: active_tab_class('Design', params) }
-    = link_to "Design", category_path('Design'), class: 'category-link'
-  %li{ class: active_tab_class('Management', params) }
-    = link_to "Manage", category_path('Management'), class: 'category-link'
-  %li{ class: active_tab_class('Other', params) }
-    = link_to "Other", category_path('Other'), class: 'category-link'
+  %li{ class: active_tab_class('development', params) }
+    = link_to "Develop", category_path('development'), class: 'category-link'
+  %li{ class: active_tab_class('design', params) }
+    = link_to "Design", category_path('design'), class: 'category-link'
+  %li{ class: active_tab_class('management', params) }
+    = link_to "Manage", category_path('management'), class: 'category-link'
+  %li{ class: active_tab_class('other', params) }
+    = link_to "Other", category_path('other'), class: 'category-link'

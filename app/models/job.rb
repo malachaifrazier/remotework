@@ -3,7 +3,10 @@ class Job < ActiveRecord::Base
   friendly_id :name_for_slug, use: :slugged
   acts_as_taggable_on :languages, :libraries, :tools, :skills
 
-  belongs_to :category
+  validates_presence_of :category
+  validates_presence_of :title
+  validates_presence_of :company
+  validates_presence_of :description
 
   scope :probable_duplicate, ->(other_job) {
     at = other_job.posted_at
@@ -19,8 +22,13 @@ class Job < ActiveRecord::Base
   }
 
   scope :for_category, ->(category) {
-    return where('1=1') if category.nil?
+    return where('1=1') if category.blank?
     where(category: category)
+  }
+
+  scope :for_tags, ->(tags) {
+    return where('1=1') if tags.blank?
+    tagged_with(tags)
   }
 
   def self.skip_description_scrape?
@@ -46,10 +54,10 @@ class Job < ActiveRecord::Base
     # Likewise you *probably* want "Public Relations Management" to be in other, not
     # management.
     all_keywords = [
-      [ ['devops','sales','payroll','counsel','public relations','accountant','controller','tax','system administrator','writer','database'], Category.other ],
-      [ ['manager','director','scrum','vp'], Category.management ],
-      [ ['engineer','engineers','developer','developers','architect','programmer','programmers','dev'], Category.development ],
-      [ ['designer','ux','ui','creative'], Category.design ]
+      [ ['devops','sales','payroll','counsel','public relations','accountant','controller','tax','system administrator','writer','database'], 'other' ],
+      [ ['manager','director','scrum','vp'], 'management' ],
+      [ ['engineer','engineers','developer','developers','architect','programmer','programmers','dev'], 'development' ],
+      [ ['designer','ux','ui','creative'], 'design' ]
     ]
 
     all_keywords.each do |keyword_map|
@@ -58,6 +66,6 @@ class Job < ActiveRecord::Base
       clean_title_words = title.downcase.gsub(/[^a-z\s\-]/, '').gsub('-',' ').split(' ')
       return category if ! (clean_title_words & keywords).empty?
     end
-    Category.other
+    'other'
   end
 end

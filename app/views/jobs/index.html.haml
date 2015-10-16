@@ -4,6 +4,10 @@
       .heading
         %h3 Howdy!
         %h2 <b>Remotely Awesome Jobs</b>   curates the best remote tech jobs across the web.
-      .panel
-        .navigation= render partial: 'shared/nav'
-        = render partial: 'shared/jobs_list', locals: { jobs: @jobs }
+      .navigation= render partial: 'shared/nav'
+      .panel.panel-default
+        - if @category.present? || @tags.present?
+          .panel-heading
+            = render partial: 'tag_filter', locals: { category: @category, tags: @tags }
+        .panel-body
+          = render partial: 'shared/jobs_list', locals: { jobs: @jobs }

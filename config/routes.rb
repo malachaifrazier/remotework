@@ -4,14 +4,9 @@ Rails.application.routes.draw do
 
   root 'jobs#index'
 
-  resources :jobs do
-    collection do
-      resources :tags
-    end
-    collection do
-      resources :categories do
-        resources :tags
-      end
-    end
-  end
+  get '/jobs/'                              => 'jobs#index', as: :jobs
+  get '/jobs/:id'                           => 'jobs#show',  as: :job
+  get '/jobs/tags/:tags'                    => 'jobs#index', as: :tag
+  get '/jobs/category/:category'            => 'jobs#index', as: :category
+  get '/jobs/category/:category/tags/:tags' => 'jobs#index', as: :category_tag
 end

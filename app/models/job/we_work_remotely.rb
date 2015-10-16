@@ -1,13 +1,13 @@
 class Job::WeWorkRemotely < Job
   URLS = {
-    "https://weworkremotely.com/categories/1-design/jobs.rss" => Category.design,
-    "https://weworkremotely.com/categories/2-programming/jobs.rss" => Category.development,
-    "https://weworkremotely.com/categories/3-business-exec-management/jobs.rss" => Category.management,
-    "https://weworkremotely.com/categories/4-remote/jobs.rss" => Category.other,
-    "https://weworkremotely.com/categories/5-copywriting/jobs.rss" => Category.other,
-    "https://weworkremotely.com/categories/6-devops-sysadmin/jobs.rss" => Category.other,
-    "https://weworkremotely.com/categories/7-customer-support/jobs.rss" => Category.other,
-    "https://weworkremotely.com/categories/9-marketing/jobs.rss"  => Category.other
+    "https://weworkremotely.com/categories/1-design/jobs.rss" => 'design',
+    "https://weworkremotely.com/categories/2-programming/jobs.rss" => 'development',
+    "https://weworkremotely.com/categories/3-business-exec-management/jobs.rss" => 'management',
+    "https://weworkremotely.com/categories/4-remote/jobs.rss" => 'other',
+    "https://weworkremotely.com/categories/5-copywriting/jobs.rss" => 'other',
+    "https://weworkremotely.com/categories/6-devops-sysadmin/jobs.rss" => 'other',
+    "https://weworkremotely.com/categories/7-customer-support/jobs.rss" => 'other',
+    "https://weworkremotely.com/categories/9-marketing/jobs.rss"  => 'other'
   }
 
   class << self
