@@ -1,0 +1,42 @@
+.tag-filter.form-inline
+  - if category.present?
+    %span.label.label-tag.label-category-tag
+      = category
+      - if tags.present?
+        = link_to tag_path(tags.join('+')) do
+          = fa_icon 'times-circle'
+  - if tags.present?
+    - tags.each do |tag|
+      %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag"}
+        = tag.to_s
+        = link_to(filter_tag_path(tag.to_s), method: :delete) do
+          = fa_icon 'times-circle'
+  = link_to "#{fa_icon 'plus'}".html_safe, nil, id: 'add-tag'
+  %span.hidden#add-tag-field-wrapper
+    = form_tag filter_tags_path do
+      = text_field_tag :tag_name, nil, class: 'form-control input-xs', id: 'add-tag-field', placeholder: "Add a tag".html_safe
+      .hidden
+        = submit_tag
+  
+:coffeescript  
+  $ ->
+    $('#add-tag').on 'click', (e)->
+      e.preventDefault()
+      $('#add-tag').addClass 'hidden'
+      $('#add-tag-field-wrapper').removeClass 'hidden'
+
+    tags = new Bloodhound(
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag')
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+      local: #{tag_autocomplete_options(tags)}
+    ) 
+    tags.initialize()
+      
+    $('#add-tag-field').typeahead({
+      minlength: 3,
+      highlight: true
+      },{
+      displayKey: 'tag'
+      source: tags.ttAdapter()
+      }
+    )

@@ -11,10 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016004209) do
+ActiveRecord::Schema.define(version: 20151016110402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
+
+  create_table "alerts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.uuid     "email_address_id",                null: false
+    t.text     "tags",             default: [],                array: true
+    t.string   "category"
+    t.datetime "last_sent_at"
+    t.boolean  "active",           default: true, null: false
+    t.string   "frequency",                       null: false
+  end
+
+  add_index "alerts", ["email_address_id"], name: "index_alerts_on_email_address_id", using: :btree
+
+  create_table "alerts_jobs", id: false, force: :cascade do |t|
+    t.uuid    "alert_id", null: false
+    t.integer "job_id",   null: false
+  end
+
+  add_index "alerts_jobs", ["alert_id"], name: "index_alerts_jobs_on_alert_id", using: :btree
+  add_index "alerts_jobs", ["job_id"], name: "index_alerts_jobs_on_job_id", using: :btree
+
+  create_table "email_addresses", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",            null: false
+    t.datetime "validated_at"
+    t.datetime "unsubscribed_at"
+    t.text     "validation_token"
+    t.text     "login_token"
+  end
+
+  add_index "email_addresses", ["email"], name: "index_email_addresses_on_email", unique: true, using: :btree
+  add_index "email_addresses", ["unsubscribed_at"], name: "index_email_addresses_on_unsubscribed_at", using: :btree
+  add_index "email_addresses", ["validated_at"], name: "index_email_addresses_on_validated_at", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -66,4 +102,7 @@ ActiveRecord::Schema.define(version: 20151016004209) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  add_foreign_key "alerts", "email_addresses"
+  add_foreign_key "alerts_jobs", "alerts"
+  add_foreign_key "alerts_jobs", "jobs"
 end

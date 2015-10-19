@@ -85,6 +85,10 @@ class TagBuilder
     { library: library, language: language, tools: tools, skills: skills }
   end
 
+  def self.tag_list
+    (LANGUAGE_TAGS + LIBRARY_TAGS + TOOL_TAGS + SKILL_TAGS).sort
+  end
+
   def self.tag_type(tag)
     return 'library' if LIBRARY_TAGS.include?(tag)
     return 'language' if LANGUAGE_TAGS.include?(tag)

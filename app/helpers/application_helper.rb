@@ -29,4 +29,18 @@ module ApplicationHelper
       end
     end
   end
+
+  def alert_enroll_path(opts={})
+    url = ['/alerts']
+    if opts[:category].present?
+      url << 'category'
+      url << opts[:category]
+    end
+    if opts[:tags].present?
+      url << 'tags'
+      url << opts[:tags].join('+')
+    end
+    url << opts[:action] if opts[:action].present?
+    url.join('/')
+  end
 end

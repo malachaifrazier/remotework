@@ -9,7 +9,6 @@
 @import "colors";
 @import "fonts";
 
-
 @media (min-width: 768px) {
   body.job-listings {
     padding-left: 200px;
@@ -80,11 +79,10 @@ body.job-listings {
   }
 }
 
-
 body.jobs.show {
   background-color: $beige;
   color: $charcoal;
-  padding: 20px 0;
+  padding: 75px 0;
   .panel {
     margin-bottom: 5px;
     padding: 0 20px 40px;
@@ -92,7 +90,7 @@ body.jobs.show {
       font-family: $radley;
     }
     h2 {
-      color: $orange;
+      color: $ash;
       font-family: $radley;
       font-size: 24px;
       line-height: 14px;
@@ -110,11 +108,14 @@ body.jobs.show {
       padding-bottom: 5px;
     }
     .job-description {
-      font-size: 18px;
-      line-height: 26px;
+      font-size: 16px;
+      line-height: 24px;
       h2 {
         margin-left: -5px;
       }
+    }
+    .apply {
+      margin-top: 40px;
     }
   }
 };

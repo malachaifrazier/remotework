@@ -1,0 +1,49 @@
+.navigation
+  %nav.navbar.navbar-fixed-top.navbar-inverse
+    = render partial: 'shared/top_nav'
+.container
+  .row
+    .col-md-10.col-sm-10.col-xs-12
+      #content
+        %h1 #{fa_icon 'envelope-square'} Sign up for Email Alerts
+        .panel.panel-default
+          - if @category.present? || @tags.present?
+            .panel-heading
+              .row
+                .col-xs-12
+                  %span.filter-label Filters
+              .row
+                .col-md-10.col-sm-9.col-xs-12
+                  = render partial: 'shared/tag_filter', locals: { category: @category, tags: @tags }
+          .panel-body
+            %h2 Be the first to know!
+            %p
+              Looking for a perfect remote job? We can send along any postings that match your search criteria above. And have no
+              fear, we will NEVER spam your inbox, and you can shut them off at any time (hopefully because you found a great new
+              company to work for!)
+            = form_for @alert do |f|                
+              .alert.alert-danger.hidden.invalid-email
+                Please enter a valid e-mail address.
+              .alert.alert-danger.hidden.invalid-email= flash[:error]
+              .form-group.email-address 
+                = f.label :frequency
+                = f.select :frequency, options_for_select([['Daily','daily'],['Weekly','weekly']]), {}, class: 'form-control'
+                = f.hidden_field :category
+                - @alert.tags.each do |tag|
+                  = f.hidden_field :tags, multiple: true, value: tag
+              = fields_for @email_address do |e|
+                .form-group.email-address
+                  = e.label :email, class: 'control-label'
+                  = e.text_field :email, class: 'form-control'
+              %button.btn.btn-lg.btn-primary#submit
+                #{fa_icon 'paper-plane'} Send Me Jobs!
+
+:coffeescript
+  $ ->
+    $('#submit').on 'click', (e)->
+      email = $('input#email_address_email').val()
+      if !/^[a-zA-Z0-9+._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(email)
+        $('.email-address').addClass 'has-error has-feedback'
+        $('.invalid-email').removeClass 'hidden'
+      else
+        $('form').submit()

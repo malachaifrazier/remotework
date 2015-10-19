@@ -21,7 +21,7 @@
 @import "bootstrap-customization";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "vendor/bootstrap-typeahead";
 @import "jasny-bootstrap.min";
 
 .navmenu {
@@ -29,6 +29,7 @@
 }
 
 body {
+  background-color: $beige;
   font-family: $lato;
 }
 
@@ -123,5 +124,21 @@ body {
   margin-bottom: 8px;
   i {
     margin-left: 3px;
+  }
+  .label-tag {
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  a#add-tag {
+    color: $aqua;
+    font-size: 13px;
+  }
+  form {
+    display: inline;
+  }
+  input {
+    color: $charcoal;
+    height: 27px;
   }
 }

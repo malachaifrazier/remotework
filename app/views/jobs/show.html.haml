@@ -1,7 +1,9 @@
+.navigation
+  %nav.navbar.navbar-fixed-top.navbar-inverse
+    = render partial: 'shared/top_nav'
 .container
   .row
     .col-md-10.col-sm-10.col-xs-12
-      = link_to "Back to Job List", :back
       .panel
         #content
           .job-heading
@@ -11,5 +13,5 @@
           .job-description
             = @job.description.squeeze(' ').html_safe
           .apply
-            = link_to "Apply on #{@job.source}", @job.original_post_url, class: "btn btn-primary btn-lg", target: '_blank'
-      = link_to "Back to Job List", :back
+            = link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, :back, class: 'btn btn-default btn-lg'
+            = link_to "Apply on #{@job.source} #{fa_icon 'chevron-right'}".html_safe, @job.original_post_url, class: "btn btn-primary btn-lg", target: '_blank'

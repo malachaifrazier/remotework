@@ -1,0 +1,43 @@
+.navigation
+  %nav.navbar.navbar-fixed-top.navbar-inverse
+    = render partial: 'shared/top_nav'
+.container
+  .row
+    .col-md-10.col-sm-10.col-xs-12
+      #content
+        %h1 Your Email Alerts
+        .panel.panel-default
+          .panel-body
+            .text-center
+              .envelope= fa_icon 'envelope-square'
+            - if @email_address.alerts.empty?
+              .text-center
+                There are currently no e-mail alerts for <b>#{@email_address.email}</b>.
+            - else
+              %p
+                These are the alerts that are active for <b>#{@email_address.email}</b>.
+              %table.table
+                %tbody
+                  - @email_address.alerts.each do |alert|
+                    %tr
+                      %td
+                        - if alert.category.present?
+                          %span.label.label-tag.label-category-tag
+                            = alert.category
+                        - if alert.tags.present?
+                          - alert.tags.each do |tag|
+                            %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag"}
+                              = tag.to_s
+                      %td= alert.frequency.capitalize
+                      %td= link_to "#{fa_icon 'times-circle'} Delete".html_safe, alert_path(alert), method: :delete, class: 'btn btn-xs btn-danger delete-alert', data: { alert: alert.id }
+
+:coffeescript
+  $ ->
+    $('.delete-alert').on 'click', (e)->
+      e.preventDefault()
+      $clicked = $(e.target)
+      bootbox.confirm "Delete this alert?", (result)->
+        if result
+          $clicked.unbind "click"
+          $clicked.get(0).click()
+      false

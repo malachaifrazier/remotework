@@ -60,4 +60,8 @@ gem 'nokogiri'                                      # XML/HTML Scraper
 gem "ruby-readability", :require => 'readability'   # Cleans up job description text on Stack Overflow
 gem 'kaminari'                                      # Pagination
 gem 'friendly_id'                                   # slugs
-gem 'acts-as-taggable-on'                           # tags
+gem 'acts-as-taggable-on'                           # tags... this one kinda sucks actually. :(
+gem 'validates_email_format_of'                     # e-mail address validation
+gem 'uniquify'                                      # to generate tokens
+gem 'bootstrap-typeahead-rails'                     # completion of tag names
+gem 'bootbox-rails'                                 # prettier modals.

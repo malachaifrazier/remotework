@@ -6,13 +6,7 @@
 -# For small screens
 -# Header
 %nav.navbar.navbar-fixed-top.navbar-inverse.visible-xs
-  %button.navbar-toggle{type: "button", data: {toggle: "collapse", target: "#navmenu"}}
-    %span.icon-bar
-    %span.icon-bar
-    %span.icon-bar
-  .navbar-header
-    = link_to root_path, class: "navbar-brand" do
-      = image_tag 'remotely-awesome-logo-white-horizontal.png', class: 'horizontal-logo'
+  = render partial: 'shared/top_nav'
 -# Sidebar
 %nav.navmenu.navmenu-inverse.navmenu-fixed-left.offcanvas#navmenu
   = render partial: 'shared/side_nav'

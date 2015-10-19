@@ -16,4 +16,7 @@
 #= require turbolinks
 #= require bootstrap-sprockets
 #= require jasny-bootstrap.min
+#= require bootstrap-typeahead-rails
+#= require bootbox
 #= require_tree .
+

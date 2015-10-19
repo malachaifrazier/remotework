@@ -1,0 +1,39 @@
+@import "colors";
+@import "fonts";
+
+body.alerts {
+  color: $charcoal;
+  padding-top: 50px;
+  h1 {
+    font-family: $radley;
+    font-size: 24px;
+  }
+  .panel {
+    .panel-body {
+      padding: 20px;
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    p {
+      font-size: 16px;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input[type=text], select {
+      color: $charcoal;
+    }
+    button {
+      margin: 30p;
+      width: 100%;
+    }
+  }
+  .filter-label {
+    color: $charcoal;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+}
