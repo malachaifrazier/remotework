@@ -10,12 +10,11 @@
           .panel-body
             .text-center
               .envelope= fa_icon 'envelope-square'
-            - if @email_address.alerts.empty?
-              .text-center
-                There are currently no e-mail alerts for <b>#{@email_address.email}</b>.
-            - else
-              %p
-                These are the alerts that are active for <b>#{@email_address.email}</b>.
+              = render partial: 'shared/flash'
+              - if @email_address.alerts.empty?
+                %h2 There are currently no e-mail alerts for <b>#{@email_address.email}</b>.
+              - else
+                %h2 These are the alerts that are active for <b>#{@email_address.email}</b>.
               %table.table
                 %tbody
                   - @email_address.alerts.each do |alert|

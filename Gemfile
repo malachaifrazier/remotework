@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby "2.2.2"
 
-
 ### Standard Rails Stuff ###
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -4,7 +4,7 @@ class AlertsController < ApplicationController
 
   def new
     @category = params[:category]
-    @tags = (params[:tags] || []).split('+')
+    @tags = (params[:tags] || '').split('+')
     @email_address = EmailAddress.new
     @alert = Alert.new(category: @category, tags: @tags)
   end

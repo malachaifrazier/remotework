@@ -16,7 +16,9 @@
                 .col-md-10.col-sm-9.col-xs-12
                   = render partial: 'shared/tag_filter', locals: { category: @category, tags: @tags }
           .panel-body
-            %h2 Be the first to know!
+            .text-center
+              .envelope= fa_icon 'envelope-square'
+              %h2 Be the first to know!
             %p
               Looking for a perfect remote job? We can send along any postings that match your search criteria above. And have no
               fear, we will NEVER spam your inbox, and you can shut them off at any time (hopefully because you found a great new

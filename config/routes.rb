@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get    '/alerts/category/:category/new'            => 'alerts#new'
   get    '/alerts/category/:category/tags/:tags/new' => 'alerts#new'
 
-  resources :email_addresses
+  resources :email_addresses do
+    get :validate # REST be damned. Email clients can't do POSTs. :(
+  end
   resources :filter_tags
 end
