@@ -31,6 +31,10 @@ class Job < ActiveRecord::Base
     tagged_with(tags)
   }
 
+  scope :unsent_daily, ->() { where(sent_daily_alerts_at: nil) }
+
+  scope :next_up_for_tweet, -> { where("posted_at > ?", 7.days.ago).order('last_tweeted_at DESC') }
+
   def self.skip_description_scrape?
     false
   end

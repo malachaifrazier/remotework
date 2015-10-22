@@ -1,0 +1,18 @@
+%h2 We found some jobs for you!
+%p
+  A while ago you signed up to get job alerts for us. Lucky
+  you, we found some posts that match your criteria:
+%table
+  - @jobs.each do |job|
+    %tr
+      %td
+        %p
+          %strong= link_to job.title, job_url(job), style: 'color: #ED6A1C;'
+          %br
+          = job.company
+
+%p
+  Don't want or need these job alerts anymore? No worries,
+  you can just #{link_to "click here", email_address_url(id: @token)}
+  to adjust your alert preferences!
+  

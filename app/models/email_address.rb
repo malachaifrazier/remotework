@@ -22,6 +22,7 @@ class EmailAddress < ActiveRecord::Base
 
   def unsubscribe!
     self.touch(:unsubscribed_at)
+    self.alerts.update_all(active: false)
   end
 
   def validate!

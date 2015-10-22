@@ -4,6 +4,7 @@
       .heading
         %h3 Howdy!
         %h2 <b>Remotely Awesome Jobs</b>   curates the best remote tech jobs across the web.
+        = render partial: 'shared/flash'
       .navigation= render partial: 'shared/nav'
       .panel.panel-default
         - if @category.present? || @tags.present?

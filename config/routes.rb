@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get    '/alerts/category/:category/new'            => 'alerts#new'
   get    '/alerts/category/:category/tags/:tags/new' => 'alerts#new'
 
+  get    '/unsubscribe/:token'                       => 'email_addresses#unsubscribe', as: :unsubscribe
+
   resources :email_addresses do
     get :validate # REST be damned. Email clients can't do POSTs. :(
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016110402) do
+ActiveRecord::Schema.define(version: 20151022022231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,17 +69,20 @@ ActiveRecord::Schema.define(version: 20151016110402) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.string   "title",             null: false
-    t.datetime "posted_at",         null: false
-    t.string   "company",           null: false
-    t.string   "location",          null: false
-    t.text     "description",       null: false
+    t.string   "title",                 null: false
+    t.datetime "posted_at",             null: false
+    t.string   "company",               null: false
+    t.string   "location",              null: false
+    t.text     "description",           null: false
     t.string   "company_url"
     t.string   "original_post_url"
     t.string   "source"
     t.string   "slug"
     t.string   "type"
     t.string   "category"
+    t.datetime "sent_daily_alerts_at"
+    t.datetime "sent_weekly_alerts_at"
+    t.datetime "last_tweeted_at"
   end
 
   create_table "taggings", force: :cascade do |t|

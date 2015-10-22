@@ -64,3 +64,4 @@ gem 'validates_email_format_of'                     # e-mail address validation
 gem 'uniquify'                                      # to generate tokens
 gem 'bootstrap-typeahead-rails'                     # completion of tag names
 gem 'bootbox-rails'                                 # prettier modals.
+gem 'twitter'                                       # to tweet the jobs.
