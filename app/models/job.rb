@@ -2,7 +2,6 @@ class Job < ActiveRecord::Base
   include FriendlyId
   friendly_id :name_for_slug, use: :slugged
 
-  validates_presence_of :category
   validates_presence_of :title
   validates_presence_of :company
   validates_presence_of :description
@@ -18,11 +17,6 @@ class Job < ActiveRecord::Base
         )
     SQL
     where(sql, other_job.title, other_job.company, at, at, at, at)
-  }
-
-  scope :for_category, ->(category) {
-    return where('1=1') if category.blank?
-    where(category: category)
   }
 
   scope :for_tags, ->(tags) {
@@ -43,8 +37,8 @@ class Job < ActiveRecord::Base
     "#{self.company} #{self.title}"
   end
 
-  def rebuild_tags!(other=nil)
-    tags = TagBuilder.new(self.title, self.description).tags
+  def rebuild_tags!(category, other=nil)
+    tags = TagBuilder.new(category, self.title, self.description).tags
     self.tags = tags[:all]
   end
 

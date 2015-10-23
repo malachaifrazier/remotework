@@ -1,15 +1,9 @@
 .tag-filter.form-inline
-  - if category.present?
-    %span.label.label-tag.label-category-tag
-      = category
-      - if tags.present?
-        = link_to tag_path(tags.join('+')) do
-          = fa_icon 'times-circle'
   - if tags.present?
     - tags.each do |tag|
       %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag"}
         = tag.to_s
-        = link_to(filter_tag_path(tag.to_s, category: category), method: :delete) do
+        = link_to(filter_tag_path(tag.to_s), method: :delete) do
           = fa_icon 'times-circle'
   = link_to "#{fa_icon 'plus'}".html_safe, nil, id: 'add-tag'
   %span.hidden#add-tag-field-wrapper

@@ -20,9 +20,6 @@
                   - @email_address.alerts.each do |alert|
                     %tr
                       %td
-                        - if alert.category.present?
-                          %span.label.label-tag.label-category-tag
-                            = alert.category
                         - if alert.tags.present?
                           - alert.tags.each do |tag|
                             %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag"}

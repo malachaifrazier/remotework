@@ -1,4 +1,9 @@
+# A lot of this *could* be moved into the database to make it more 
+# configurable, but that's probably overkill for now.
+#
 class TagBuilder
+  CATEGORY_TAGS = %w[development design management other]
+
   LANGUAGE_TAGS = %w[java javascript coffeescript ecmascript c# ruby python golang php c++ typescript actionscript objective-c swift css sass
                    scss less sql groovy haskell c clojure scala erlang vb lisp r fortran pascal delphi kotlin ceylon html bash f# ocaml perl
                    xml json elixir lua assembly-language matlab cobol d ada dart rust smalltalk tcl ios]
@@ -70,10 +75,11 @@ class TagBuilder
     'restful' => 'rest',
   }
 
-  def initialize(title, description, other='')
+  def initialize(category, title, description, other='')
     @title = replace_synonyms(title.downcase).split(/[\s,\/]+/)
     @description = replace_synonyms(clean_input(description)).split(/[\s,\/]+/)
     @other = replace_synonyms(other.downcase).split(/[\s,\/]+/)
+    @category = category
   end
 
   def tags
@@ -82,15 +88,16 @@ class TagBuilder
     language =  ((@other & LANGUAGE_TAGS) + (@title & LANGUAGE_TAGS) + (@description & LANGUAGE_TAGS)).uniq
     tools =     ((@other & TOOL_TAGS) + (@title & TOOL_TAGS) + (@description & TOOL_TAGS)).uniq
     skills =    ((@other & SKILL_TAGS) + (@title & SKILL_TAGS) + (@description & SKILL_TAGS)).uniq
-    all    =    (library + language + tools + skills).uniq.sort
+    all    =    ([@category] + library + language + tools + skills).uniq.sort
     { library: library, language: language, tools: tools, skills: skills, all: all }
   end
 
   def self.tag_list
-    (LANGUAGE_TAGS + LIBRARY_TAGS + TOOL_TAGS + SKILL_TAGS).sort
+    (CATEGORY_TAGS + LANGUAGE_TAGS + LIBRARY_TAGS + TOOL_TAGS + SKILL_TAGS).sort
   end
 
   def self.tag_type(tag)
+    return 'category' if CATEGORY_TAGS.include?(tag)
     return 'library' if LIBRARY_TAGS.include?(tag)
     return 'language' if LANGUAGE_TAGS.include?(tag)
     return 'tool' if TOOL_TAGS.include?(tag)

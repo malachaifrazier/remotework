@@ -25,13 +25,13 @@ class Job::Authentic < Job
       job = self.new(title: title,
                      posted_at: entry.published,
                      company: company,
-                     category: determine_category(feed),
                      location: location,
                      description: entry.summary,
                      company_url: '',
                      original_post_url: entry.entry_id.gsub(/^http:/, 'https:'),
                      source: "Authentic Jobs")
-      job.rebuild_tags!
+      category = determine_category(feed)
+      job.rebuild_tags!(category)
       return job
     end
 

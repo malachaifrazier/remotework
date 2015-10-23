@@ -3,13 +3,8 @@
     %li
       .job
         .row
-          .col-sm-10
+          .col-sm-12
             %h2= link_to job.title, job_path(job)
-          .col-sm-2
-            .hidden-xs
-              .pull-right.category= link_to job.category.capitalize, category_path(job.category)
-            .visible-xs
-              .category= link_to job.category.capitalize, category_path(job.category)
         .row
           .col-xs-8
             %h3= job.company

@@ -7,14 +7,14 @@
       #content
         %h1 #{fa_icon 'envelope-square'} Sign up for Email Alerts
         .panel.panel-default
-          - if @category.present? || @tags.present?
+          - if @tags.present?
             .panel-heading
               .row
                 .col-xs-12
                   %span.filter-label Filters
               .row
                 .col-md-10.col-sm-9.col-xs-12
-                  = render partial: 'shared/tag_filter', locals: { category: @category, tags: @tags }
+                  = render partial: 'shared/tag_filter', locals: { tags: @tags }
           .panel-body
             .text-center
               .envelope= fa_icon 'envelope-square'

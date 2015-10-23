@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   get    '/jobs/'                                    => 'jobs#index', as: :jobs
   get    '/jobs/:id'                                 => 'jobs#show',  as: :job
   get    '/jobs/tags/:tags'                          => 'jobs#index', as: :tag
-  get    '/jobs/category/:category'                  => 'jobs#index', as: :category
-  get    '/jobs/category/:category/tags/:tags'       => 'jobs#index', as: :category_tag
 
   post   '/alerts'                                   => 'alerts#create'
   delete '/alerts/:id'                               => 'alerts#destroy', as: :alert

@@ -71,7 +71,6 @@ CREATE TABLE alerts (
     updated_at timestamp without time zone,
     email_address_id uuid NOT NULL,
     tags text[] DEFAULT '{}'::text[],
-    category character varying,
     last_sent_at timestamp without time zone,
     active boolean DEFAULT true NOT NULL,
     frequency character varying NOT NULL
@@ -156,7 +155,6 @@ CREATE TABLE jobs (
     source character varying,
     slug character varying,
     type character varying,
-    category character varying,
     sent_daily_alerts_at timestamp without time zone,
     sent_weekly_alerts_at timestamp without time zone,
     last_tweeted_at timestamp without time zone,
@@ -385,4 +383,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151022022231');
 INSERT INTO schema_migrations (version) VALUES ('20151023122216');
 
 INSERT INTO schema_migrations (version) VALUES ('20151023125824');
+
+INSERT INTO schema_migrations (version) VALUES ('20151023213257');
 

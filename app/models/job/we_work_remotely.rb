@@ -28,13 +28,13 @@ class Job::WeWorkRemotely < Job
         job = self.new(title: title.strip,
                        posted_at: entry.published,
                        company: company.strip,
-                       category: determine_category(feed),
                        location: location.strip,
                        description: entry.summary,
                        company_url: '',
                        original_post_url: entry.entry_id,
                        source: "We Work Remotely")
-        job.rebuild_tags!
+        category = determine_category(feed)
+        job.rebuild_tags!(category)
         return job
       end
     end

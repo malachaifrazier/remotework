@@ -16,13 +16,13 @@ class Job::Github < Job
       job = self.new(title: title.strip,
                      posted_at: posted_at,
                      company: company.strip,
-                     category: self.guess_category_from_title(title),
                      location: location.strip,
                      description: entry.content,
                      company_url: '',
                      original_post_url: link,
                      source: "Github Jobs")
-      job.rebuild_tags!
+      category = self.guess_category_from_title(title)
+      job.rebuild_tags!(category)
       return job
     end
   end

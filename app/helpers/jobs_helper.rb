@@ -5,9 +5,9 @@ module JobsHelper
     end.html_safe
   end
 
-  def active_tab_class(tab, params)
-    return 'active' if tab == params[:category]
-    return 'active' if tab == 'everything' && params[:category].nil?
+  def active_tab_class(tab, tags)
+    return 'active' if tags.include?(tab)
+    return 'active' if tab == 'everything' && (TagBuilder::CATEGORY_TAGS & tags).empty?
     ''
   end
 end

@@ -1,20 +1,20 @@
 = link_to root_path, class: "navmenu-brand" do
   = image_tag 'remotely-awesome-logo-white.png', class: 'logo'
 %ul.nav.navmenu-nav
-  %li{ class: active_tab_class('everything', params) }
+  %li{ class: active_tab_class('everything', @tags) }
     = link_to "Recent", jobs_path, class: 'category-link'
-  %li{ class: active_tab_class('development', params) }
-    = link_to "Develop", category_path('development'), class: 'category-link'
-  %li{ class: active_tab_class('design', params) }
-    = link_to "Design", category_path('design'), class: 'category-link'
-  %li{ class: active_tab_class('management', params) }
-    = link_to "Manage", category_path('management'), class: 'category-link'
-  %li{ class: active_tab_class('other', params) }
-    = link_to "Other", category_path('other'), class: 'category-link'
+  %li{ class: active_tab_class('development', @tags) }
+    = link_to "Develop", tag_path('development'), class: 'category-link'
+  %li{ class: active_tab_class('design', @tags) }
+    = link_to "Design", tag_path('design'), class: 'category-link'
+  %li{ class: active_tab_class('management', @tags) }
+    = link_to "Manage", tag_path('management'), class: 'category-link'
+  %li{ class: active_tab_class('other', @tags) }
+    = link_to "Other", tag_path('other'), class: 'category-link'
 
 .buttons
   .text-center
-    = link_to "Post a Job", nil, class: 'btn btn-primary'
+    = link_to "#{fa_icon 'thumb-tack'} Post a Job".html_safe, nil, class: 'btn btn-primary'
     = link_to "#{fa_icon 'twitter'} Follow Us".html_safe, 'http://www.twitter.com/RemotelyAweJobs', class: 'btn btn-twitter'
     = link_to "#{fa_icon 'envelope'} Get Alerts".html_safe, alert_enroll_path(action: 'new', category: @category, tags: @tags), class: 'btn btn-info'
     
