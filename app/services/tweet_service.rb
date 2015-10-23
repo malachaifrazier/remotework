@@ -17,7 +17,7 @@ class TweetService
 
   def job_description
     # Someday: Link shortening, hashtags. Today: lameness.
-    link = Rails.application.routes.url_helpers.job_url(@job, host: 'http://www.remotelyawesomejobs.com/')
+    link = Rails.application.routes.url_helpers.job_url(@job, host: 'http://www.remotelyawesomejobs.com')
     "#{@job.company}: #{@job.title}".truncate(135 - link.length) + " #{link}"
   end
 end

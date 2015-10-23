@@ -54,6 +54,36 @@ body {
     margin-top: -9px;
     text-align: center;
   }
+  .buttons {
+    a {
+      margin-bottom: 10px;
+      width: 150px;
+      i {
+        margin-right: 5px;
+      }
+    }
+    .btn-twitter {
+      background-color: #4099FF;
+    }
+  }
+  .ceres {
+    @media(max-height: 675px) {
+      display: none;
+    }
+    color: #777;
+    font-size: 8px;
+    letter-spacing: 5px;
+    margin-top: 80px;
+    position: absolute;
+    bottom: 25px;
+    text-transform: uppercase;
+    width: 200px;
+    img.ceres-logo {
+      margin-right: 15px;
+      margin-top: 5px;
+      width: 80px;
+    }
+  }
 }
 
 .label-tag {
@@ -116,6 +146,9 @@ body {
         background-color: $navmenu-inverse-toggle-icon-bar-bg
       }
     }
+  }
+  li {
+    margin-bottom: 10px;
   }
 }
 

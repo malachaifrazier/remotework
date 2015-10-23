@@ -11,3 +11,16 @@
     = link_to "Manage", category_path('management'), class: 'category-link'
   %li{ class: active_tab_class('other', params) }
     = link_to "Other", category_path('other'), class: 'category-link'
+
+.buttons
+  .text-center
+    = link_to "Post a Job", nil, class: 'btn btn-primary'
+    = link_to "#{fa_icon 'twitter'} Follow Us".html_safe, 'http://www.twitter.com/RemotelyAweJobs', class: 'btn btn-twitter'
+    = link_to "#{fa_icon 'envelope'} Get Alerts".html_safe, alert_enroll_path(action: 'new', category: @category, tags: @tags), class: 'btn btn-info'
+    
+.ceres
+  .text-center
+    .project
+      A Project By    
+    %a{ href: 'http://www.cereslogic.com' }    
+      = image_tag 'ceres-logic-logo-bw-white.png', class: 'ceres-logo'
