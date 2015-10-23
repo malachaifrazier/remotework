@@ -82,7 +82,8 @@ class TagBuilder
     language =  ((@other & LANGUAGE_TAGS) + (@title & LANGUAGE_TAGS) + (@description & LANGUAGE_TAGS)).uniq
     tools =     ((@other & TOOL_TAGS) + (@title & TOOL_TAGS) + (@description & TOOL_TAGS)).uniq
     skills =    ((@other & SKILL_TAGS) + (@title & SKILL_TAGS) + (@description & SKILL_TAGS)).uniq
-    { library: library, language: language, tools: tools, skills: skills }
+    all    =    (library + language + tools + skills).uniq.sort
+    { library: library, language: language, tools: tools, skills: skills, all: all }
   end
 
   def self.tag_list

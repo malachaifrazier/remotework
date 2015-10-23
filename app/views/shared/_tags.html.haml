@@ -1,13 +1,16 @@
 .tags
-  - job.language_list.first(5).each do |tag|
-    %span.label.label-tag.label-language-tag
+  - job.grouped_tags.each do |tag|
+    %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag" }
       = link_to(tag.to_s, add_tag_url(@category, @tags, tag.to_s))
-  - job.library_list.first(5).each do |tag|
-    %span.label.label-tag.label-library-tag
-      = link_to(tag.to_s, add_tag_url(@category, @tags, tag.to_s))
-  - job.tool_list.first(3).each do |tag|
-    %span.label.label-tag.label-tool-tag
-      = link_to(tag.to_s, add_tag_url(@category, @tags, tag.to_s))
-  - job.skill_list.first(3).each do |tag|
-    %span.label.label-tag.label-skill-tag
-      = link_to(tag.to_s, add_tag_url(@category, @tags, tag.to_s))
+  -# - job.language_list.first(5).each do |tag|
+  -#   %span.label.label-tag.label-language-tag
+  -#     = link_to(tag.to_s, add_tag_url(@category, @tags, tag.to_s))
+  -# - job.library_list.first(5).each do |tag|
+  -#   %span.label.label-tag.label-library-tag
+  -#     = link_to(tag.to_s, add_tag_url(@category, @tags, tag.to_s))
+  -# - job.tool_list.first(3).each do |tag|
+  -#   %span.label.label-tag.label-tool-tag
+  -#     = link_to(tag.to_s, add_tag_url(@category, @tags, tag.to_s))
+  -# - job.skill_list.first(3).each do |tag|
+  -#   %span.label.label-tag.label-skill-tag
+  -#     = link_to(tag.to_s, add_tag_url(@category, @tags, tag.to_s))

@@ -1,7 +1,6 @@
 class Job < ActiveRecord::Base
   include FriendlyId
   friendly_id :name_for_slug, use: :slugged
-  acts_as_taggable_on :languages, :libraries, :tools, :skills
 
   validates_presence_of :category
   validates_presence_of :title
@@ -28,7 +27,8 @@ class Job < ActiveRecord::Base
 
   scope :for_tags, ->(tags) {
     return where('1=1') if tags.blank?
-    tagged_with(tags)
+    tags_pg = "{#{tags.join(',')}}"
+    where("tags @> ?", tags_pg)
   }
 
   scope :unsent_daily, ->() { where(sent_daily_alerts_at: nil) }
@@ -45,10 +45,15 @@ class Job < ActiveRecord::Base
 
   def rebuild_tags!(other=nil)
     tags = TagBuilder.new(self.title, self.description).tags
-    self.language_list = tags[:language]
-    self.library_list = tags[:library]
-    self.tool_list = tags[:tools]
-    self.skill_list = tags[:skills]
+    self.tags = tags[:all]
+  end
+
+  def grouped_tags
+    language_tags = (self.tags & TagBuilder::LANGUAGE_TAGS)
+    library_tags = (self.tags & TagBuilder::LIBRARY_TAGS)
+    tool_tags = (self.tags & TagBuilder::TOOL_TAGS)
+    skill_tags = (self.tags & TagBuilder::SKILL_TAGS)
+    language_tags + library_tags + tool_tags + skill_tags
   end
 
   def self.guess_category_from_title(title)

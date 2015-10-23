@@ -20,5 +20,8 @@ module Remotework
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.autoload_paths += %W(#{config.root}/app/services #{config.root}/app/models/job)
+
+    # We do some pretty Postgres-specific stuff in this project, so switch this over.
+    config.active_record.schema_format = :sql
   end
 end
