@@ -67,3 +67,5 @@ gem 'twitter'                                       # to tweet the jobs.
 gem 'pg_search'                                     # for fulltext search
 gem 'sucker_punch'                                  # async background jobs on the cheap.
 gem 'exception_notification'                        # emails for exeptions
+
+gem 'rails_12factor', group: :production            # for heroku
