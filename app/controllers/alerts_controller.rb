@@ -4,6 +4,7 @@ class AlertsController < ApplicationController
 
   def new
     @tags = (params[:tags] || '').split('+')
+    @q = params[:q]
     @email_address = EmailAddress.new
     @alert = Alert.new(tags: @tags)
   end
@@ -27,7 +28,7 @@ class AlertsController < ApplicationController
   private
 
   def alert_params
-    params.require(:alert).permit(:frequency, :tags => [])
+    params.require(:alert).permit(:frequency, :search_query, :tags => [])
   end
 
   def email_params

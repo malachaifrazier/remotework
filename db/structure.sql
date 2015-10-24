@@ -73,7 +73,8 @@ CREATE TABLE alerts (
     tags text[] DEFAULT '{}'::text[],
     last_sent_at timestamp without time zone,
     active boolean DEFAULT true NOT NULL,
-    frequency character varying NOT NULL
+    frequency character varying NOT NULL,
+    search_query character varying
 );
 
 
@@ -385,4 +386,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151023122216');
 INSERT INTO schema_migrations (version) VALUES ('20151023125824');
 
 INSERT INTO schema_migrations (version) VALUES ('20151023213257');
+
+INSERT INTO schema_migrations (version) VALUES ('20151024202708');
 

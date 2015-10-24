@@ -5,16 +5,12 @@
   .row
     .col-md-10.col-sm-10.col-xs-12
       #content
-        %h1 #{fa_icon 'envelope-square'} Sign up for Email Alerts
+        %h1 Sign up for Email Alerts
         .panel.panel-default
-          - if @tags.present?
-            .panel-heading
-              .row
-                .col-xs-12
-                  %span.filter-label Filters
-              .row
-                .col-md-10.col-sm-9.col-xs-12
-                  = render partial: 'shared/tag_filter', locals: { tags: @tags }
+          .panel-heading
+            .row
+              .col-xs-12
+                = render partial: 'shared/filter', locals: { tags: @tags, q: @q }
           .panel-body
             .text-center
               .envelope= fa_icon 'envelope-square'
@@ -30,7 +26,7 @@
               .form-group.email-address 
                 = f.label :frequency
                 = f.select :frequency, options_for_select([['Daily','daily'],['Weekly','weekly']]), {}, class: 'form-control'
-                = f.hidden_field :category
+                = f.hidden_field :search_query, value: @q                
                 - @alert.tags.each do |tag|
                   = f.hidden_field :tags, multiple: true, value: tag
               = fields_for @email_address do |e|

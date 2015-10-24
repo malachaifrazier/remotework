@@ -152,6 +152,28 @@ body {
   }
 }
 
+.search-filter {
+  color: $charcoal;
+  margin-bottom: 5px;
+  input[type=text] {
+    color: $charcoal;
+  }
+  a {
+    color: $charcoal;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.filter-label {
+  color: $charcoal;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
 .tag-filter {
   font-size: 16px;
   margin-bottom: 8px;

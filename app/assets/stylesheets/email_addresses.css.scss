@@ -33,6 +33,14 @@ body.email_addresses {
       margin: 30p;
       width: 100%;
     }
+    table {
+      td, th {
+        text-align: left;
+        &.actions {
+          text-align: right;
+        }
+      }
+    }
   }
   .filter-label {
     color: $charcoal;

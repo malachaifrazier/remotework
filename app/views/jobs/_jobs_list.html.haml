@@ -1,0 +1,28 @@
+- if jobs.empty?
+  .text-center
+    .sad= fa_icon 'frown-o'
+    %p There's nothing here.
+    
+- else
+  %ul
+    - jobs.each do |job|
+      %li
+        .job
+          .row
+            .col-sm-9
+              %h2= link_to job.title, job_path(job)
+            .col-sm-3
+              .source.text-right= job.source
+          .row
+            .col-xs-8
+              %h3= job.company
+            .col-xs-4
+              .hidden-xs
+                %p.pull-right.when-posted= when_posted(job)
+              .visible-xs.when-posted
+                %p= when_posted(job)
+          .row
+            .col-xs-12
+              = render partial: 'shared/tags', locals: { job: job }
+
+  = paginate(jobs)

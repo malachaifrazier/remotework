@@ -8,8 +8,11 @@ class FilterTagsController < ApplicationController
 
   def destroy
     path = Rails.application.routes.recognize_path(request.referrer)
-    tags = (path[:tags].split('+') || []) - [params[:id]]
+    @q = params[:q]
+    tags = (path[:tags] || '').split('+') - [params[:id]]
+    redirect_to jobs_path(q: @q) and return if tags.empty?
     path[:tags] = tags.join('+')
+    path[:q] = @q if @q.present?
     redirect_to url_for(path)
   end
 end

@@ -14,9 +14,9 @@
 
 .buttons
   .text-center
-    = link_to "#{fa_icon 'thumb-tack'} Post a Job".html_safe, nil, class: 'btn btn-primary'
+    -#  = link_to "#{fa_icon 'thumb-tack'} Post a Job".html_safe, jobs_new_path, class: 'btn btn-primary'
     = link_to "#{fa_icon 'twitter'} Follow Us".html_safe, 'http://www.twitter.com/RemotelyAweJobs', class: 'btn btn-twitter'
-    = link_to "#{fa_icon 'envelope'} Get Alerts".html_safe, alert_enroll_path(action: 'new', category: @category, tags: @tags), class: 'btn btn-info'
+    = link_to "#{fa_icon 'envelope'} Get Alerts".html_safe, alert_enroll_path(action: 'new', tags: @tags, q: @q), class: 'btn btn-info'
     
 .ceres
   .text-center

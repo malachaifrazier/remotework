@@ -37,6 +37,13 @@ body.job-listings {
       margin-top: 0;
     }
   }
+  .sad {
+    font-size: 64px;
+  }
+  .source {
+    color: $beige;
+    font-size: 14px;
+  }
   .panel {
     border-radius: 5px;
     margin-top: 0;
@@ -79,7 +86,7 @@ body.job-listings {
   }
 }
 
-body.jobs.show {
+body.jobs.show, body.jobs.new {
   background-color: $beige;
   color: $charcoal;
   padding: 75px 0;
@@ -117,5 +124,8 @@ body.jobs.show {
     .apply {
       margin-top: 40px;
     }
+  }
+  p.coming-soon {
+    font-size: 18px;
   }
 };

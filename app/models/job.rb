@@ -1,5 +1,6 @@
 class Job < ActiveRecord::Base
   include FriendlyId
+  include PgSearch
   friendly_id :name_for_slug, use: :slugged
 
   validates_presence_of :title
@@ -12,8 +13,8 @@ class Job < ActiveRecord::Base
         title ILIKE ?
     AND company ILIKE ?
     AND (
-          ((posted_at - ?) < INTERVAL '24 HOURS' AND (posted_at - ?) >= '0 SECONDS') OR
-          ((posted_at - ?) > INTERVAL '-24 HOURS' AND (posted_at - ?) <= '0 SECONDS')
+          ((posted_at - ?) < INTERVAL '72 HOURS' AND (posted_at - ?) >= '0 SECONDS') OR
+          ((posted_at - ?) > INTERVAL '-72 HOURS' AND (posted_at - ?) <= '0 SECONDS')
         )
     SQL
     where(sql, other_job.title, other_job.company, at, at, at, at)
@@ -28,6 +29,8 @@ class Job < ActiveRecord::Base
   scope :unsent_daily, ->() { where(sent_daily_alerts_at: nil) }
 
   scope :next_up_for_tweet, -> { where("posted_at > ?", 7.days.ago).order('last_tweeted_at DESC') }
+
+  pg_search_scope :search, :against => [:title, :company, :description]
 
   def self.skip_description_scrape?
     false

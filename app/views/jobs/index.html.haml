@@ -7,16 +7,10 @@
         = render partial: 'shared/flash'
       .navigation= render partial: 'shared/nav'
       .panel.panel-default
-        - if @tags.present?
-          .panel-heading
-            .row
-              .col-xs-12
-                %span.filter-label Filters
-            .row
-              .col-md-10.col-sm-9.col-xs-12
-                = render partial: 'shared/tag_filter', locals: { tags: @tags }
-            .row
-              .col-xs-12
-                = link_to "#{fa_icon 'envelope'} Sign up for email alerts".html_safe, alert_enroll_path(action: 'new', tags: @tags)
+        .panel-heading
+          = render partial: 'shared/filter', locals: { tags: @tags, q: @q }
+          .row
+            .col-xs-12
+              = link_to "#{fa_icon 'envelope'} Sign up for email alerts".html_safe, alert_enroll_path(action: 'new', tags: @tags, q: @q)
         .panel-body
-          = render partial: 'shared/jobs_list', locals: { jobs: @jobs }
+          = render partial: 'jobs_list', locals: { jobs: @jobs }

@@ -64,3 +64,4 @@ gem 'uniquify'                                      # to generate tokens
 gem 'bootstrap-typeahead-rails'                     # completion of tag names
 gem 'bootbox-rails'                                 # prettier modals.
 gem 'twitter'                                       # to tweet the jobs.
+gem 'pg_search'                                     # for fulltext search

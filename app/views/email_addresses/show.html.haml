@@ -16,16 +16,28 @@
               - else
                 %h2 These are the alerts that are active for <b>#{@email_address.email}</b>.
               %table.table
+                %thead
+                  %th Search Query
+                  %th Tags
+                  %th Frequency
+                  %th
                 %tbody
                   - @email_address.alerts.each do |alert|
                     %tr
                       %td
+                        - if alert.search_query.present?
+                          = alert.search_query
+                        - else
+                          (none)
+                      %td                        
                         - if alert.tags.present?
                           - alert.tags.each do |tag|
                             %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag"}
                               = tag.to_s
+                        - else
+                          (none)
                       %td= alert.frequency.capitalize
-                      %td= link_to "#{fa_icon 'times-circle'} Delete".html_safe, alert_path(alert), method: :delete, class: 'btn btn-xs btn-danger delete-alert', data: { alert: alert.id }
+                      %td.actions= link_to "#{fa_icon 'times-circle'} Delete".html_safe, alert_path(alert), method: :delete, class: 'btn btn-xs btn-danger delete-alert', data: { alert: alert.id }
 
 :coffeescript
   $ ->

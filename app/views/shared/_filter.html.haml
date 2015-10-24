@@ -1,11 +1,32 @@
+.row
+  .col-xs-12
+    .filter-label Filters
+  
+.search-filter
+  .row
+    .col-xs-12
+      - if q.present?
+        %b Searched For:
+        = q
+        = link_to remove_search_query_url(request.path) do
+          = fa_icon 'times-circle'
+      - else
+        = form_tag request.path, method: :get do
+          = hidden_field_tag 'tags', tags.join('+'), multiple: true
+          .input-group
+            = text_field_tag :q, nil, class: 'form-control', placeholder: 'Search for...'
+            .input-group-btn
+              %button.btn.btn-primary{ type: 'submit' }
+                #{fa_icon 'search'} Search
+
 .tag-filter.form-inline
   - if tags.present?
     - tags.each do |tag|
       %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag"}
         = tag.to_s
-        = link_to(filter_tag_path(tag.to_s), method: :delete) do
+        = link_to(filter_tag_path(tag.to_s, q: @q), method: :delete) do
           = fa_icon 'times-circle'
-  = link_to "#{fa_icon 'plus'}".html_safe, nil, id: 'add-tag'
+    = link_to "#{fa_icon 'plus'}".html_safe, nil, id: 'add-tag'
   %span.hidden#add-tag-field-wrapper
     = form_tag filter_tags_path do
       = text_field_tag :tag_name, nil, class: 'form-control input-xs', id: 'add-tag-field', placeholder: "Add a tag".html_safe
