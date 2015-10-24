@@ -5,10 +5,10 @@ class CreateJobsTable < ActiveRecord::Migration
       t.string      :name
     end
 
-    Category.create!(name: 'Web Development')
-    Category.create!(name: 'Mobile Development')
-    Category.create!(name: 'Design')
-    Category.create!(name: 'Management')
+#    Category.create!(name: 'Web Development')
+#    Category.create!(name: 'Mobile Development')
+#    Category.create!(name: 'Design')
+#    Category.create!(name: 'Management')
 
     create_table :jobs do |t|
       t.timestamps
