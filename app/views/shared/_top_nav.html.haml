@@ -1,7 +1,5 @@
-%button.navbar-toggle{type: "button", data: {toggle: "collapse", target: "#navmenu"}}
+%button.navbar-toggle{type: "button", data: {toggle: "offcanvas", target: "#navmenu"}}
   %span.icon-bar
   %span.icon-bar
   %span.icon-bar
-.navbar-header
-  = link_to root_path, class: "navbar-brand" do
-    = image_tag 'remotely-awesome-logo-white-horizontal.png', class: 'horizontal-logo'
+= render partial: 'shared/top_header'  

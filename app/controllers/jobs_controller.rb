@@ -5,7 +5,10 @@ class JobsController < ApplicationController
     query = Job.for_tags(@tags).order('posted_at DESC')
     query = query.search(@q) if @q.present?
     @jobs = query.page(params[:page] || 1)
-    render 'index', layout: 'listings'
+    respond_to do |format|
+      format.html { render 'index', layout: 'listings' }
+      format.js 
+    end
   end
 
   def show

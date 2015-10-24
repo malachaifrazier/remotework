@@ -1,11 +1,11 @@
-- if jobs.empty?
+- if @jobs.empty?
   .text-center
-    .sad= fa_icon 'frown-o'
-    %p There's nothing here.
-    
+    .sad
+      = fa_icon 'frown-o'
+    %p There&rsquo;s nothing here.
 - else
   %ul
-    - jobs.each do |job|
+    - @jobs.each do |job|
       %li
         .job
           .row
@@ -24,5 +24,4 @@
           .row
             .col-xs-12
               = render partial: 'shared/tags', locals: { job: job }
-
-  = paginate(jobs)
+  -# = paginate(jobs)

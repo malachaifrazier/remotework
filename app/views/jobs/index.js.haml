@@ -1,0 +1,2 @@
+$('.jobs-container').append("#{escape_javascript(render 'jobs')}");
+$('#load_more').replaceWith("#{escape_javascript(link_to_next_page @jobs, 'Load More', remote: true, id: 'load_more', class: 'btn btn-primary', data: { 'disable-with' => '<i class=\'fa fa-spinner fa-spin\'></i> Loading...'.html_safe })}");

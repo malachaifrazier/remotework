@@ -1,5 +1,6 @@
-= link_to root_path, class: "navmenu-brand" do
-  = image_tag 'remotely-awesome-logo-white.png', class: 'logo'
+.hidden-xs
+  = link_to root_path, class: "navmenu-brand" do
+    = image_tag 'remotely-awesome-logo-white.png', class: 'logo'
 %ul.nav.navmenu-nav
   %li{ class: active_tab_class('everything', @tags) }
     = link_to "Recent", jobs_path, class: 'category-link'

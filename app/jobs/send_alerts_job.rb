@@ -1,7 +1,7 @@
 class SendAlertsJob < ActiveJob::Base
   queue_as :low
 
-  def perform(frequency ,opts={})
+  def perform(frequency, opts={})
     raise ArgumentError unless ['daily','weekly'].include?(frequency)
 
     timestamp_column = "sent_#{frequency}_alerts_at"
