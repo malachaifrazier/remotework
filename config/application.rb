@@ -23,5 +23,7 @@ module Remotework
 
     # We do some pretty Postgres-specific stuff in this project, so switch this over.
     config.active_record.schema_format = :sql
+
+    config.active_job.queue_adapter = :sucker_punch
   end
 end

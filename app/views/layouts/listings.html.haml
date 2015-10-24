@@ -13,7 +13,8 @@
 %body{ class: "job-listings #{controller.controller_name} #{controller.action_name} " }
   .navigation= render partial: 'shared/nav'
   = yield
-
+  = render partial: 'shared/ga'
+  
 :coffeescript
   $ ->
     $('[data-toggle="offcanvas"]').click ()->

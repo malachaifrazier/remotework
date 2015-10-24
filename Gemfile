@@ -49,7 +49,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 ### Added for this project ###
 
 gem 'puma'                                          # Multithreaded server
-gem 'rspec'
+gem 'rspec'                                         # tests
 gem 'haml'
 gem 'bootstrap-sass'
 gem 'jasny-bootstrap-rails'                         # for the responsive side menu
@@ -65,3 +65,5 @@ gem 'bootstrap-typeahead-rails'                     # completion of tag names
 gem 'bootbox-rails'                                 # prettier modals.
 gem 'twitter'                                       # to tweet the jobs.
 gem 'pg_search'                                     # for fulltext search
+gem 'sucker_punch'                                  # async background jobs on the cheap.
+gem 'exception_notification'                        # emails for exeptions

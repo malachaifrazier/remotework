@@ -9,6 +9,8 @@ class EmailAddress < ActiveRecord::Base
   uniquify :validation_token, :length => 64, :omit => %w(i j l o 1 0 q)
   uniquify :login_token, :length => 64, :omit => %w(i j l o 1 0 q)
 
+  after_commit :send_validation_email, on: :create
+
   def self.subscribe!(email)
     # UPSERTish thing. Would be great if we could do real UPSERTs
     begin
@@ -27,5 +29,9 @@ class EmailAddress < ActiveRecord::Base
 
   def validate!
     self.touch(:validated_at)
+  end
+  
+  def send_validation_email
+    ValidationMailer.validate_email(self.id).deliver_later
   end
 end
