@@ -15,5 +15,14 @@
           .job-description
             = @job.description.squeeze(' ').html_safe
           .apply
-            = link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, :back, class: 'btn btn-default btn-lg'
-            = link_to "Apply on #{@job.source} #{fa_icon 'chevron-right'}".html_safe, @job.original_post_url, class: "btn btn-primary btn-lg", target: '_blank'
+            .hidden-xs
+              = link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, :back, class: 'btn btn-default btn-lg'
+              = link_to "Apply on #{@job.source} #{fa_icon 'chevron-right'}".html_safe, @job.original_post_url, class: "btn btn-primary btn-lg", target: '_blank'
+            .visible-xs
+              .text-center
+                .row
+                  .col-xs-12
+                    %p= link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, :back, class: 'btn btn-default btn-sm'
+                .row
+                  .col-xs-12
+                    %p= link_to "Apply on #{@job.source} #{fa_icon 'chevron-right'}".html_safe, @job.original_post_url, class: "btn btn-primary btn-sm", target: '_blank'
