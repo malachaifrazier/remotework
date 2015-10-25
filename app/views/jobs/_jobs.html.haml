@@ -9,18 +9,20 @@
       %li
         .job
           .row
-            .col-sm-9
+            .col-sm-12
               %h2= link_to job.title, job_path(job)
-            .col-sm-3
-              .source.text-right= job.source
           .row
-            .col-xs-8
-              %h3= job.company
-            .col-xs-4
+            .col-sm-8
+              %h3
+                %span.company= job.company
+              .hidden-xs.source via #{job.source}
+            .col-sm-4
               .hidden-xs
                 %p.pull-right.when-posted= when_posted(job)
               .visible-xs.when-posted
-                %p= when_posted(job)
+                = when_posted(job)
+              .visible-xs.source
+                via #{job.source}
           .row
             .col-xs-12
               = render partial: 'shared/tags', locals: { job: job }
