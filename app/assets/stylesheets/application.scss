@@ -151,6 +151,10 @@ body {
   }
 }
 
+.nobar {
+  overflow: hidden;
+}
+
 .search-filter {
   color: $charcoal;
   margin-bottom: 5px;

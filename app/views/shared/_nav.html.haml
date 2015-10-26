@@ -1,6 +1,6 @@
 -# For big screens
 -# Sidebar
-%nav.navmenu.navmenu-inverse.navmenu-fixed-left.offcanvas-xs
+%nav.navmenu.navmenu-inverse.navmenu-fixed-left.offcanvas-xs.nobar
   = render partial: 'shared/side_nav'
 
 -# For small screens
@@ -8,5 +8,5 @@
 %nav.navbar.navbar-fixed-top.navbar-inverse.visible-xs
   = render partial: 'shared/top_nav'
 -# Sidebar
-%nav.navmenu.navmenu-inverse.navmenu-fixed-left.offcanvas#navmenu
+%nav.navmenu.navmenu-inverse.navmenu-fixed-left.offcanvas#navmenu.nobar
   = render partial: 'shared/side_nav'
