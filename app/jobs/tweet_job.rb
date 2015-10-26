@@ -4,8 +4,9 @@ class TweetJob < ActiveJob::Base
   def perform
     ActiveRecord::Base.connection_pool.with_connection do
       job = Job.next_up_for_tweet.limit(1).first
-      job.touch(:last_tweeted_at)
       TweetService.new(job).tweet
+      job.touch(:last_tweeted_at)
+      job.save
     end
   end
 end
