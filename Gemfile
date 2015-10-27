@@ -69,3 +69,4 @@ gem 'sucker_punch'                                  # async background jobs on t
 gem 'exception_notification'                        # emails for exeptions
 gem 'open_uri_redirections'                         # security be damned, need to parse twitter data feeds.
 gem 'rails_12factor', group: :production            # for heroku
+gem 'newrelic_rpm'                                  # monitoring
