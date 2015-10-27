@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'open_uri_redirections'  # danger Will Robinson
 
 class RssIngestionJob < ActiveJob::Base
   queue_as :low
@@ -29,7 +30,7 @@ class RssIngestionJob < ActiveJob::Base
 
   def fetch_description(url)
     url = normalize_url(url)
-    source = open(url).read
+    source = open(url, allow_redirections: :all).read
     Readability::Document.new(source, blacklist: %w[img], tags: %w[div p ul li strong h2]).content
   end
 
