@@ -70,6 +70,7 @@ gem 'open_uri_redirections'                         # security be damned, need t
 gem 'rails_12factor', group: :production            # for heroku
 gem 'newrelic_rpm'                                  # monitoring
 gem 'sidekiq'                                       # background job processing.
+gem 'capistrano-sidekiq', group: :development       # to deploy sidekiq stuff.
 
 # Capistrano stuff
 group :development do
