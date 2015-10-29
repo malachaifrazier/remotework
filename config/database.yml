@@ -26,7 +26,7 @@ test:
 
 production:
   <<: *default
-  host: localhost
-  database: remotework_test
+  host: 10.132.227.189
+  database: remotework_production
   username: remotework
-  password: remotework
+  password: <%= ENV['APPNAME_DATABASE_PASSWORD'] %>
