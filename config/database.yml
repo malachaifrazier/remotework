@@ -29,4 +29,4 @@ production:
   host: 10.132.227.189
   database: remotework_production
   username: remotework
-  password: <%= ENV['APPNAME_DATABASE_PASSWORD'] %>
+  password: <%= ENV['RA_POSTGRES_PASSWORD'] %>
