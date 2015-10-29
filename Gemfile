@@ -70,3 +70,12 @@ gem 'exception_notification'                        # emails for exeptions
 gem 'open_uri_redirections'                         # security be damned, need to parse twitter data feeds.
 gem 'rails_12factor', group: :production            # for heroku
 gem 'newrelic_rpm'                                  # monitoring
+
+# Capistrano stuff
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+end
