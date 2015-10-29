@@ -2,7 +2,6 @@
 server '45.55.248.140', port: 22, roles: [:web, :app], primary: true
 server '45.55.85.82', port: 22, roles: [:web, :app]
 
-
 set :repo_url,        'git@github.com:mdesjardins/remotework.git'
 set :application,     'remotework'
 set :user,            'deploy'
@@ -26,6 +25,7 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
 set :sidekiq_options_per_process, ["--queue high,3", "--queue default,2", "--queue low,1"]
+set :sidekiq_monit_use_sudo, false
 
 ## Defaults:
 # set :scm,           :git
