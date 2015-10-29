@@ -35,6 +35,7 @@ set :sidekiq_options_per_process, ["--queue high,3", "--queue default,2", "--que
 
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/boot.rb}
 set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :puma do
