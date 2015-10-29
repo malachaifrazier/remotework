@@ -71,6 +71,7 @@ gem 'rails_12factor', group: :production            # for heroku
 gem 'newrelic_rpm'                                  # monitoring
 gem 'sidekiq'                                       # background job processing.
 gem 'capistrano-sidekiq', group: :development       # to deploy sidekiq stuff.
+gem 'whenever'                                      # for scheduled jobs
 
 # Capistrano stuff
 group :development do

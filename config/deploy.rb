@@ -5,8 +5,8 @@ server '45.55.85.82', port: 22, roles: [:web, :app]
 set :repo_url,        'git@github.com:mdesjardins/remotework.git'
 set :application,     'remotework'
 set :user,            'deploy'
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
+set :puma_threads,    [4, 12]
+set :puma_workers,    2
 
 # Don't change these unless you know what you're doing
 set :pty,             true
@@ -25,6 +25,9 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
 set :sidekiq_options_per_process, ["--queue high,3", "--queue default,2", "--queue low,1"]
+
+role :whenever, "45.55.248.140"
+set :whenever_roles, "whenever"
 
 ## Defaults:
 # set :scm,           :git
