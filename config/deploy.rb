@@ -1,6 +1,6 @@
 # Change these
 server '45.55.248.140', port: 22, roles: [:web, :app], primary: true
-server '159.203.77.129', port: 22, roles: [:web, :app]
+server '45.55.85.82', port: 22, roles: [:web, :app]
 
 
 set :repo_url,        'git@github.com:mdesjardins/remotework.git'
