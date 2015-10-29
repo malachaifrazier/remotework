@@ -25,7 +25,6 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
 set :sidekiq_options_per_process, ["--queue high,3", "--queue default,2", "--queue low,1"]
-#set :sidekiq_monit_use_sudo, false
 
 ## Defaults:
 # set :scm,           :git
