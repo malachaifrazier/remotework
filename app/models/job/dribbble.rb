@@ -29,4 +29,8 @@ class Job::Dribbble < Job
   def self.remote?(location)
     /Remote/i.match(location) || /Anywhere/i.match(location)
   end
+
+  def skip_description_scrape?
+    true
+  end
 end
