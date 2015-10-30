@@ -24,8 +24,6 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
-set :sidekiq_options_per_process, ["--queue high,3", "--queue default,2", "--queue low,1"]
-
 role :whenever, "45.55.248.140"
 set :whenever_roles, "whenever"
 
