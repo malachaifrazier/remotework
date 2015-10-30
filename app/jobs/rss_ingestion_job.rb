@@ -17,10 +17,15 @@ class RssIngestionJob < ActiveJob::Base
           klazz.delete_all if opts[:purge_source]
           feed = Feedjira::Feed.fetch_and_parse feed_url
           feed.entries.each do |entry|
-            job = klazz.factory(entry, feed)
-            if job
-              job.description = fetch_description(job.original_post_url) unless klazz.skip_description_scrape?
-              job.save! unless Job.probable_duplicate(job).exists?
+            begin
+              job = klazz.factory(entry, feed)
+              if job
+                job.description = fetch_description(job.original_post_url) unless klazz.skip_description_scrape?
+                job.save! unless Job.probable_duplicate(job).exists?
+              end
+            rescue => e
+              Rails.logger.error "Failed to fetch job on #{feed_url}, entry #{entry.inspect}"
+              Rails.logger.error "Got exception: #{e.message}"
             end
           end
         end

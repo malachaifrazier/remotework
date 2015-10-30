@@ -30,7 +30,7 @@ class Job::Dribbble < Job
     /Remote/i.match(location) || /Anywhere/i.match(location)
   end
 
-  def skip_description_scrape?
-    true
-  end
+#  def skip_description_scrape?
+#    true
+#  end
 end
