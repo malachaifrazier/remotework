@@ -32,6 +32,6 @@ class EmailAddress < ActiveRecord::Base
   end
   
   def send_validation_email
-    ValidationMailer.validate_email(self.id).deliver_later
+    ValidationMailer.validate_email(self.id).deliver_later(queue: 'high')
   end
 end
