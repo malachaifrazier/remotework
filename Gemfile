@@ -73,6 +73,7 @@ gem 'sidekiq'                                       # background job processing.
 gem 'capistrano-sidekiq', group: :development       # to deploy sidekiq stuff.
 gem 'whenever'                                      # for scheduled jobs
 gem 'rollbar', '~> 2.5.0'                           # exception reporting
+gem 'sidekiq-rollbar'                               # sidekiq/rollbar integration.
 
 # Capistrano stuff
 group :development do
