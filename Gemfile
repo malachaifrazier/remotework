@@ -72,6 +72,7 @@ gem 'newrelic_rpm'                                  # monitoring
 gem 'sidekiq'                                       # background job processing.
 gem 'capistrano-sidekiq', group: :development       # to deploy sidekiq stuff.
 gem 'whenever'                                      # for scheduled jobs
+gem 'rollbar', '~> 2.5.0'                           # exception reporting
 
 # Capistrano stuff
 group :development do
