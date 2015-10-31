@@ -1,9 +1,8 @@
 namespace :periodic do
   desc "Downloads new job posts"
-  task :fetch_rss_jobs => :environment do
-    # Keep StackOverflow at the end... we have a vast majority
-    # of jobs sourced from them and if there are any duplicates
-    # let's let the smaller sites "win."
-    RssIngestionJob.perform_later([ENV['JOB_CLASS']])
+  task :fetch_rss_jobs, [:job_class] => [:environment] do |t,args|
+    job_class = args[:job_class]
+    puts "Processing job class #{job_class}"
+    RssIngestionJob.perform_later([job_class])
   end
 end

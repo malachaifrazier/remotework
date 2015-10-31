@@ -17,8 +17,28 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every :hour do
-  rake "periodic:fetch_all_jobs"
+every :hour, at: 0 do
+  rake "periodic:fetch_rss_jobs[Job::StackOverflow]" 
+end
+
+every :hour, at: 10 do
+  rake "periodic:fetch_rss_jobs[Job::Authentic]" 
+end
+
+every :hour, at: 20 do
+  rake "periodic:fetch_rss_jobs[Job::WeWorkRemotely]" 
+end
+
+every :hour, at: 30 do
+  rake "periodic:fetch_rss_jobs[Job::Github]" 
+end
+
+every :hour, at: 40 do
+  rake "periodic:fetch_rss_jobs[Job::Dribbble]" 
+end
+
+every :hour, at: 50 do
+  rake "periodic:fetch_twitter_jobs[Job::Jobspresso]" 
 end
 
 every 51.minutes do
