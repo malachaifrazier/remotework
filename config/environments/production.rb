@@ -98,3 +98,5 @@ Rails.application.config.middleware.use ExceptionNotification::Rack,
     :sender_address => %{"notifier" <notifier@remotelyawesomejobs.com>},
     :exception_recipients => %w{dev@remotelyawesomejobs.com}
   }
+
+Rails.logger = Le.new('2524aa02-495f-4314-8f2d-6ac151754f92', :debug => true, :local => true)
