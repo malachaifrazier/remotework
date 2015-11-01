@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root   'jobs#index'
 
-  #
+  # For the load balancer
+  get 'health_check' => 'health_check#index', :as => :health_check
+  
   # We don't do a lot of resource routing here because we want the
   # URLs to be as SEO friendly as possible. :-/
   #
