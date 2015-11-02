@@ -6,16 +6,34 @@
     .col-md-10.col-sm-10.col-xs-12
       .panel
         #content
-          %h1 Coming soon
-          %p.coming-soon
-            Today we're focused on scouring the web to find the best
-            sources of remote technology jobs on the internet. Soon
-            you will be able to post your awesome job right here on
-            our site, too! Until then, let us know who you are and
-            tell us what you need &mdash; that way we can build a
-            jobs site that's perfect for you. We'll let you know when
-            we're ready!
-          %fieldset
-            %legend Tell us your needs
+          %h1 Post a Job
+          %p Job postings are free during our beta period, no credit card required!
+          = form_for @job do |f|
+            %fieldset
+              %legend About the Job
+              .form-group
+                = f.label :title, "Job Title", class: 'control-label'
+                = f.text_field :title, class: 'form-control'
+              .form-group
+                = f.label :description, "Job Description", class: 'control-label'
+                = f.text_area :description, class: 'form-control'
+              .form-group
+                = f.label :category, "Job Category", class: 'control-label'
+                = f.select :category, ['Development','Design','Management','Other'], {}, class: 'form-control'
+            -# TODO: Tags
+            %fieldset
+              %legend About Your Company
+              .form-group
+                = f.label :company, "Company Name", class: 'control-label'
+                = f.text_field :company, class: 'form-control'
+              .form-group
+                = f.label :location, "Company Location", class: 'control-label'
+                = f.text_field :location, class: 'form-control'
+              .form-group
+                = f.label :company_url, "Company Website", class: 'control-label'
+                = f.text_field :company_url, class: 'form-control'
+            -# TODO: How to apply
+            .text-center
+              = f.submit "Preview your post", class: 'btn btn-lg btn-primary'
             
             

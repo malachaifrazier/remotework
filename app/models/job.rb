@@ -7,6 +7,8 @@ class Job < ActiveRecord::Base
   validates_presence_of :company
   validates_presence_of :description
 
+  attr_accessor :category
+
   scope :probable_duplicate, ->(other_job) {
     at = other_job.posted_at
     sql = <<-SQL

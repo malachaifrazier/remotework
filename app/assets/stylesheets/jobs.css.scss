@@ -126,7 +126,10 @@ body.jobs.show, body.jobs.new {
       margin-top: 40px;
     }
   }
-  p.coming-soon {
+  p {
     font-size: 18px;
+  }
+  input[type=text],select {
+    color: $charcoal;
   }
 };

@@ -20,8 +20,10 @@ class RssIngestionJob < ActiveJob::Base
             begin
               job = klazz.factory(entry, feed)
               if job
-                job.description = fetch_description(job.original_post_url) unless klazz.skip_description_scrape?
-                job.save! unless Job.probable_duplicate(job).exists?
+                unless Job.probable_duplicate(job).exists?
+                  job.description = fetch_description(job.original_post_url) unless klazz.skip_description_scrape?
+                  job.save! 
+                end
               end
             rescue => e
               Rails.logger.error "Failed to fetch job on #{feed_url}, entry #{entry.inspect}"
