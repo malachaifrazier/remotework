@@ -23,7 +23,6 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
-
 role :whenever, "45.55.248.140"
 set :whenever_roles, "whenever"
 
@@ -78,10 +77,20 @@ namespace :deploy do
     end
   end
 
+  desc "Update crontab with whenever"
+  task :update_cron do
+    on roles(:whenever) do
+      within current_path do
+        execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
+      end
+    end
+  end
+
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
+  after  :finishing,    'deploy:update_cron'
 end
 
 # ps aux | grep puma    # Get puma pid
