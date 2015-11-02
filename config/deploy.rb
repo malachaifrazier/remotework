@@ -81,7 +81,7 @@ namespace :deploy do
   task :update_cron do
     on roles(:whenever) do
       within current_path do
-        execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
+        execute :bundle, :exec, "whenever --write-crontab #{fetch(:application)}"
       end
     end
   end
