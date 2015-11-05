@@ -18,5 +18,7 @@
 #= require jasny-bootstrap.min
 #= require bootstrap-typeahead-rails
 #= require bootbox
+#= require select2
+#= require summernote
 #= require_tree .
 

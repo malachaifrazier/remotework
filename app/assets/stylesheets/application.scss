@@ -22,6 +22,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "vendor/bootstrap-typeahead";
+@import "select2";
+@import "select2-bootstrap";
+@import "summernote";
 @import "jasny-bootstrap.min";
 
 .navmenu {
@@ -111,8 +114,18 @@ body {
   }
 }
 
+.navbar.navbar-inverse {
+  background-color: $navmenu-inverse-bg;
+  background-image: image-url('bg/tiles/debut_dark.png');
+  background-repeat: repeat-xy;
+  border-color: $navmenu-inverse-border;
+  color: $navmenu-inverse-color;
+}
+
 .navmenu.navmenu-inverse {
   background-color: $navmenu-inverse-bg;
+  background-image: image-url('bg/tiles/debut_dark.png');
+  background-repeat: repeat-xy;
   border-color: $navmenu-inverse-border;
   color: $navmenu-inverse-color;
   a {

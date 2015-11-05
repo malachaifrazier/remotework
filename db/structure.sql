@@ -159,7 +159,9 @@ CREATE TABLE jobs (
     sent_daily_alerts_at timestamp without time zone,
     sent_weekly_alerts_at timestamp without time zone,
     last_tweeted_at timestamp without time zone,
-    tags text[] DEFAULT '{}'::text[]
+    tags text[] DEFAULT '{}'::text[],
+    company_description text,
+    how_to_apply text
 );
 
 
@@ -388,4 +390,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151023125824');
 INSERT INTO schema_migrations (version) VALUES ('20151023213257');
 
 INSERT INTO schema_migrations (version) VALUES ('20151024202708');
+
+INSERT INTO schema_migrations (version) VALUES ('20151104215128');
 

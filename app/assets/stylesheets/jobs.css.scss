@@ -20,8 +20,13 @@
   }
 }
 
+
+body {
+  background-image: image-url('bg/tiles/bedge_grunge.png');
+  background-repeat: repeat-xy;
+}
+
 body.job-listings {
-  background-color: $beige;
   .heading {
     color: $charcoal;
     padding: 15px 0 5px;
@@ -91,7 +96,7 @@ body.jobs.show, body.jobs.new {
   background-color: $beige;
   color: $charcoal;
   padding: 75px 0;
-  .panel {
+  .panel.panel-main {
     margin-bottom: 5px;
     padding: 0 20px 40px;
     h1 {
@@ -129,7 +134,13 @@ body.jobs.show, body.jobs.new {
   p {
     font-size: 18px;
   }
-  input[type=text],select {
+  input[type=text],input[type=password],select {
     color: $charcoal;
+  }
+  .trumbowyg {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    width: 100%;
   }
 };

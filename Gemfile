@@ -73,7 +73,10 @@ gem 'sidekiq'                                       # background job processing.
 gem 'capistrano-sidekiq', group: :development       # to deploy sidekiq stuff.
 gem 'whenever'                                      # for scheduled jobs
 gem 'rollbar', '~> 2.5.0'                           # exception reporting
-gem 'le'                                            # log aggregation
+gem 'le'                                            # log aggregation (not working?)
+gem 'select2-rails'                                 # for tagging on the new job submission page.
+# gem 'trumbowyg', git: 'https://github.com/ringe/Trumbowyg'  # for WYSIWYG editing.
+gem 'summernote-rails'                              # for WYSIWYG editing (job descriptions, etc).
 
 # Capistrano stuff
 group :development do

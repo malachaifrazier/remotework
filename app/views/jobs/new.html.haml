@@ -4,25 +4,31 @@
 .container
   .row
     .col-md-10.col-sm-10.col-xs-12
-      .panel
+      .panel.panel-main
         #content
           %h1 Post a Job
-          %p Job postings are free during our beta period, no credit card required!
+          %p Job postings are free during our beta period, no credit card required! If you already have an account you should sign in before creating this post.
           = form_for @job do |f|
             %fieldset
-              %legend About the Job
+              %legend Tell the world about the Job
               .form-group
                 = f.label :title, "Job Title", class: 'control-label'
-                = f.text_field :title, class: 'form-control'
+                = f.text_field :title, class: 'form-control', placeholder: 'E.g., "Senior Python Developer" or "Project Manager"'
               .form-group
                 = f.label :description, "Job Description", class: 'control-label'
-                = f.text_area :description, class: 'form-control'
+                = f.text_area :description, class: 'form-control wysiwyg'
               .form-group
                 = f.label :category, "Job Category", class: 'control-label'
                 = f.select :category, ['Development','Design','Management','Other'], {}, class: 'form-control'
-            -# TODO: Tags
+              .form-group
+                = f.label :tags, "Tags", class: 'control-label'
+                = f.select :tags, ['ruby','java','php','javascript'], {}, class: 'form-control tags', multiple: true, id: 'tags'
+              .form-group
+                = f.label :how_to_apply, "Instructions for how to apply", class: 'control-label'
+                = f.text_area :how_to_apply, class: 'form-control wysiwyg', placeholder: 'How should the candidate reach you? What should they provide?'
+                
             %fieldset
-              %legend About Your Company
+              %legend Who are you?
               .form-group
                 = f.label :company, "Company Name", class: 'control-label'
                 = f.text_field :company, class: 'form-control'
@@ -32,8 +38,42 @@
               .form-group
                 = f.label :company_url, "Company Website", class: 'control-label'
                 = f.text_field :company_url, class: 'form-control'
-            -# TODO: How to apply
+              .form-group
+                = f.label :company_description, "Tell us about your company and why it rocks.", class: 'control-label'
+                = f.text_area :company_description, class: 'form-control wysiwyg'
+              
+            %fieldset
+              %legend Create an account
+              .form-group
+                = label_tag :email, "Email address", class: 'control-label'
+                = text_field_tag :email, nil, class: 'form-control'
+              .form-group
+                = label_tag :password, "Password", class: 'control-label'
+                = password_field_tag :password, nil, class: 'form-control'
+
+              
             .text-center
               = f.submit "Preview your post", class: 'btn btn-lg btn-primary'
             
-            
+:coffeescript
+  $ ->
+    $( "#tags" ).select2(
+      theme: "bootstrap",
+      tags: #{TagBuilder.tag_list_without_categories}
+    )  
+
+    $('.wysiwyg').summernote(
+     toolbar: [     
+       ['style', ['bold', 'italic', 'underline', 'clear']],
+       ['font', ['strikethrough', 'superscript', 'subscript']],
+       ['para', ['ul', 'ol', 'paragraph']],
+     ]
+    )
+    
+    # $('.wysiwyg').trumbowyg(
+    #   fullscreenable: false,
+    #   closable: false,
+    #   btns: ['formatting','|', 'btnGrp-design','|','link','|','btnGrp-lists']
+    #   resetCss: true,
+    #   autogrow: true
+    # )

@@ -96,6 +96,10 @@ class TagBuilder
     (CATEGORY_TAGS + LANGUAGE_TAGS + LIBRARY_TAGS + TOOL_TAGS + SKILL_TAGS).sort
   end
 
+  def self.tag_list_without_categories
+    (LANGUAGE_TAGS + LIBRARY_TAGS + TOOL_TAGS + SKILL_TAGS).sort
+  end
+
   def self.tag_type(tag)
     return 'category' if CATEGORY_TAGS.include?(tag)
     return 'library' if LIBRARY_TAGS.include?(tag)
