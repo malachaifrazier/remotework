@@ -1,0 +1,26 @@
+.navigation
+  %nav.navbar.navbar-fixed-top.navbar-inverse
+    = render partial: 'shared/top_header'
+.container
+  .row
+    .col-md-10.col-sm-10.col-xs-12
+      .panel.panel-main
+        #content
+          %h1 Password Reset
+          = render partial: 'shared/flash'
+          %p
+            Please choose a new password for your account.
+          .row
+            .col-xs-12
+              = form_for @user, url: password_reset_path(@user) do |f|
+                .form-group
+                  = f.label :email
+                  %p.form-control-static= @user.email
+                .form-group
+                  = f.label :password, "New Password"
+                  = f.password_field :password, class: 'input input-lg form-control'
+                .form-group
+                  = f.label :password_confirmation, "New Password one more time (just to be sure)"
+                  = f.password_field :password_confirmation, class: 'input input-lg form-control'                  
+                .form-group
+                  .text-center= submit_tag "Reset me!", class: 'btn btn-lg btn-primary'                      

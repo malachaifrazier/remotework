@@ -147,7 +147,7 @@ CREATE TABLE jobs (
     updated_at timestamp without time zone,
     category_id integer,
     title character varying NOT NULL,
-    posted_at timestamp without time zone NOT NULL,
+    posted_at timestamp without time zone,
     company character varying NOT NULL,
     location character varying NOT NULL,
     description text NOT NULL,
@@ -161,7 +161,8 @@ CREATE TABLE jobs (
     last_tweeted_at timestamp without time zone,
     tags text[] DEFAULT '{}'::text[],
     company_description text,
-    how_to_apply text
+    how_to_apply text,
+    user_id uuid
 );
 
 
@@ -190,6 +191,20 @@ ALTER SEQUENCE jobs_id_seq OWNED BY jobs.id;
 
 CREATE TABLE schema_migrations (
     version character varying NOT NULL
+);
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE users (
+    id uuid DEFAULT uuid_generate_v4() NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    email character varying NOT NULL,
+    password_digest character varying NOT NULL,
+    password_reset_token character varying
 );
 
 
@@ -237,6 +252,14 @@ ALTER TABLE ONLY friendly_id_slugs
 
 ALTER TABLE ONLY jobs
     ADD CONSTRAINT jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
@@ -317,6 +340,13 @@ CREATE INDEX index_jobs_on_tags ON jobs USING btree (sort_array(tags));
 
 
 --
+-- Name: index_jobs_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_jobs_on_user_id ON jobs USING btree (user_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -345,6 +375,14 @@ ALTER TABLE ONLY alerts
 
 ALTER TABLE ONLY alerts_jobs
     ADD CONSTRAINT fk_rails_c85ab29865 FOREIGN KEY (alert_id) REFERENCES alerts(id);
+
+
+--
+-- Name: fk_rails_df6238c8a6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY jobs
+    ADD CONSTRAINT fk_rails_df6238c8a6 FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
@@ -392,4 +430,16 @@ INSERT INTO schema_migrations (version) VALUES ('20151023213257');
 INSERT INTO schema_migrations (version) VALUES ('20151024202708');
 
 INSERT INTO schema_migrations (version) VALUES ('20151104215128');
+
+INSERT INTO schema_migrations (version) VALUES ('20151105225052');
+
+INSERT INTO schema_migrations (version) VALUES ('20151106222845');
+
+INSERT INTO schema_migrations (version) VALUES ('20151108141959');
+
+INSERT INTO schema_migrations (version) VALUES ('20151108222059');
+
+INSERT INTO schema_migrations (version) VALUES ('20151108222409');
+
+INSERT INTO schema_migrations (version) VALUES ('20151110220211');
 

@@ -32,6 +32,8 @@ class Job < ActiveRecord::Base
 
   scope :next_up_for_tweet, -> { where("posted_at > ?", 7.days.ago).order('last_tweeted_at DESC') }
 
+  scope :posted, -> { where("posted_at IS NOT NULL") }
+
   pg_search_scope :search, :against => [:title, :company, :description]
 
   def self.skip_description_scrape?

@@ -1,0 +1,54 @@
+// Place all the styles related to the Jobs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+@import "colors";
+@import "fonts";
+
+@media (min-width: 768px) {
+  body {
+    padding-left: 200px;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    padding-top: 60px;
+  }
+}
+
+
+body {
+  background-image: image-url('bg/tiles/bedge_grunge.png');
+  background-repeat: repeat-xy;
+}
+
+legend {
+  border-width: 0;
+}
+
+
+body.users.new {
+  background-color: $beige;
+  color: $charcoal;
+  padding: 75px 0;
+  .panel.panel-main {
+    margin-bottom: 5px;
+    padding: 0 20px 40px;
+    h1 {
+      font-family: $radley;
+    }
+    h2 {
+      color: $ash;
+      font-family: $radley;
+      font-size: 24px;
+      line-height: 20px;
+    }
+    input[type=text],input[type=password] {
+      color: $charcoal;
+    }
+  }
+};

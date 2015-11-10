@@ -15,10 +15,15 @@
 
 .buttons
   .text-center
-    -#  = link_to "#{fa_icon 'thumb-tack'} Post a Job".html_safe, jobs_new_path, class: 'btn btn-primary'
+    = link_to "#{fa_icon 'thumb-tack'} Post a Job".html_safe, jobs_new_path, class: 'btn btn-primary'
     = link_to "#{fa_icon 'twitter'} Follow Us".html_safe, 'http://www.twitter.com/RemotelyAweJobs', class: 'btn btn-twitter'
     = link_to "#{fa_icon 'envelope'} Get Alerts".html_safe, alert_enroll_path(action: 'new', tags: @tags, q: @q), class: 'btn btn-info'
-    
+    .session
+      - if logged_in?    
+        = link_to "#{fa_icon 'sign-out'} Sign out".html_safe, session_path, method: :delete
+      - else
+        = link_to "#{fa_icon 'sign-in'} Sign in".html_safe, new_session_path
+        
 .ceres
   .text-center
     .project

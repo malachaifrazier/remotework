@@ -1,0 +1,27 @@
+.navigation
+  %nav.navbar.navbar-fixed-top.navbar-inverse
+    = render partial: 'shared/top_header'
+.container
+  .row
+    .col-md-10.col-sm-10.col-xs-12
+      .panel.panel-main
+        #content
+          %h1 Glad to meet you!
+          = render partial: 'shared/flash'
+          %p
+            Welcome aboard. Signing up will give you the ability to post jobs to the
+            job board. Just let us know how to reach you and you&rsquo;ll be on your way! 
+          .row
+            .col-xs-12
+              = form_for @user do |f|
+                .form-group
+                  = f.label :email
+                  = f.text_field :email, class: 'input input-lg form-control'
+                .form-group
+                  = f.label :password
+                  = f.password_field :password, class: 'input input-lg form-control'
+                .form-group
+                  = f.label :password_confirmation, "Password one more time (just to be sure)"
+                  = f.password_field :password_confirmation, class: 'input input-lg form-control'                  
+                .form-group
+                  .text-center= submit_tag "Sign me up!", class: 'btn btn-lg btn-primary'

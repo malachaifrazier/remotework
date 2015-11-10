@@ -41,6 +41,7 @@ GEM
     autoprefixer-rails (6.0.3)
       execjs
       json
+    bcrypt (3.1.10)
     bootbox-rails (0.5.0)
     bootstrap-sass (3.3.5)
       autoprefixer-rails (>= 5.0.0.1)
@@ -122,6 +123,8 @@ GEM
     guess_html_encoding (0.0.11)
     haml (4.0.7)
       tilt
+    has_secure_token (1.0.0)
+      activerecord (>= 3.0)
     hike (1.2.3)
     hitimes (1.2.3)
     http (0.9.8)
@@ -298,6 +301,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   bootbox-rails
   bootstrap-sass
   bootstrap-typeahead-rails
@@ -313,6 +317,7 @@ DEPENDENCIES
   font-awesome-rails
   friendly_id
   haml
+  has_secure_token
   jasny-bootstrap-rails
   jbuilder (~> 2.0)
   jquery-rails

@@ -1,0 +1,20 @@
+.navigation
+  %nav.navbar.navbar-fixed-top.navbar-inverse
+    = render partial: 'shared/top_header'
+.container
+  .row
+    .col-md-10.col-sm-10.col-xs-12
+      .panel.panel-main
+        #content
+          %h1 Oh dear! Forgot your password?
+          %p No worries, we will have you fixed up in a jiffy!
+          = render partial: 'shared/flash'
+          .row
+            .col-xs-12
+              = form_tag password_resets_path do
+                .form-group
+                  = label_tag :email
+                  = text_field_tag :email, nil, class: 'input input-lg form-control'
+                .form-group
+                  .text-center= submit_tag "Please Reset me!", class: 'btn btn-lg btn-primary'
+            

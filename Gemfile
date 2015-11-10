@@ -75,8 +75,9 @@ gem 'whenever'                                      # for scheduled jobs
 gem 'rollbar', '~> 2.5.0'                           # exception reporting
 gem 'le'                                            # log aggregation (not working?)
 gem 'select2-rails'                                 # for tagging on the new job submission page.
-# gem 'trumbowyg', git: 'https://github.com/ringe/Trumbowyg'  # for WYSIWYG editing.
 gem 'summernote-rails'                              # for WYSIWYG editing (job descriptions, etc).
+gem 'bcrypt'                                        # for has_secure_password
+gem 'has_secure_token'                              # Generates validation tokens.
 
 # Capistrano stuff
 group :development do

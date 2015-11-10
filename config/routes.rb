@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get    '/jobs/'                                    => 'jobs#index', as: :jobs
   get    '/jobs/new'                                 => 'jobs#new'
   get    '/jobs/:tags'                               => 'jobs#index', as: :tag
+  post   '/jobs'                                     => 'jobs#create'
 
   post   '/alerts'                                   => 'alerts#create'
   delete '/alerts/:id'                               => 'alerts#destroy', as: :alert
@@ -26,4 +27,7 @@ Rails.application.routes.draw do
     get :validate # REST be damned. Email clients can't do POSTs. :(
   end
   resources :filter_tags
+  resources :users
+  resource  :session
+  resources :password_resets
 end
