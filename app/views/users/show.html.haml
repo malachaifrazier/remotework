@@ -1,1 +1,26 @@
-Logged in user is #{current_user.email}
+%h1 Your Account
+You are currently signed in as <b>#{current_user.email}</b>
+%legend Posted Jobs
+- if current_user.jobs.present?
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Job Title
+        %th Posted on
+        %th Status
+        %th 
+    - current_user.jobs.each do |job|
+      %tr
+        %td= job.title
+        %td
+          - if job.posted_at.present?
+            = job.posted_at
+          - else
+            Never
+        %td
+        %td
+- else
+  (No jobs posted yet)
+
+.text-center
+  = link_to "#{fa_icon 'sign-out'} Sign out".html_safe, session_path, method: :delete, class: "btn btn-lg btn-primary"

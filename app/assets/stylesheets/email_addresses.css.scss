@@ -3,12 +3,16 @@
 
 body.email_addresses {
   color: $charcoal;
-  padding-top: 50px;
+  padding-top: 75px;
   h1 {
     font-family: $radley;
-    font-size: 36px;
+    font-size: 28px;
+  }
+  #content {
+    padding: 20px;
   }
   .panel {
+    margin-bottom: 0;
     .panel-body {
       padding: 20px;
     }

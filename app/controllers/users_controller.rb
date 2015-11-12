@@ -9,8 +9,8 @@ class UsersController < ApplicationController
       sign_in(@user)
       redirect_to jobs_path, notice: "Welcome aboard! Your account has been created."
     else
-      flash[:errors] = "Invalid user information: #{@user.errors.full_messages.to_sentence}"       
-      false
+      flash[:error] = "Invalid user information: #{@user.errors.full_messages.to_sentence}"
+      render :new
     end
   end
 

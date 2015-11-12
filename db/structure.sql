@@ -162,7 +162,8 @@ CREATE TABLE jobs (
     tags text[] DEFAULT '{}'::text[],
     company_description text,
     how_to_apply text,
-    user_id uuid
+    user_id uuid,
+    expires_at timestamp without time zone
 );
 
 
@@ -204,7 +205,9 @@ CREATE TABLE users (
     updated_at timestamp without time zone,
     email character varying NOT NULL,
     password_digest character varying NOT NULL,
-    password_reset_token character varying
+    password_reset_token character varying,
+    validation_token character varying,
+    email_validated_at timestamp without time zone
 );
 
 
@@ -442,4 +445,10 @@ INSERT INTO schema_migrations (version) VALUES ('20151108222059');
 INSERT INTO schema_migrations (version) VALUES ('20151108222409');
 
 INSERT INTO schema_migrations (version) VALUES ('20151110220211');
+
+INSERT INTO schema_migrations (version) VALUES ('20151111214936');
+
+INSERT INTO schema_migrations (version) VALUES ('20151111220510');
+
+INSERT INTO schema_migrations (version) VALUES ('20151112210536');
 

@@ -28,6 +28,14 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-%body{ class: "#{controller.controller_name} #{controller.action_name}" }
-  = yield
-  = render partial: 'shared/ga'
+  %body{ class: "#{controller.controller_name} #{controller.action_name}" }
+    .navigation
+      %nav.navbar.navbar-fixed-top.navbar-inverse
+        = render partial: 'shared/top_header'
+    .container
+      .row
+        .col-md-10.col-sm-10.col-xs-12
+          .panel.panel-main
+            #content
+              = yield
+    = render partial: 'shared/ga'

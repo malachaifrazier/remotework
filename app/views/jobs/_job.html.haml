@@ -1,0 +1,8 @@
+.job-heading
+  %h1.job-title= job.title
+  %h2.job-company= job.company
+  .source
+    via #{job.source}
+  = render partial: 'shared/tags', locals: { job: job }
+.job-description
+  = job.description.squeeze(' ').html_safe

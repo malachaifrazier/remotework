@@ -1,9 +1,9 @@
 == README
 
-Yet another half-finished side project by mdesjardins. :)
+Source code for http://www.remotelyawesomejobs.com
 
 This is a scraper site that aggregates remote job postings on various job
 boards around the internet. These things are popping up like flies, so
 I decided to make my own for fun.
 
-No, there are no specs yet. Yes, I am a terrible person.
+Because this is a fun side project, there aren't a lot of specs. _Caveat emptor_.

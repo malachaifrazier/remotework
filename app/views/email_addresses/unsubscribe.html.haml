@@ -1,16 +1,7 @@
-.navigation
-  %nav.navbar.navbar-fixed-top.navbar-inverse
-    = render partial: 'shared/top_header'
-.container
-  .row
-    .col-md-10.col-sm-10.col-xs-12
-      #content
-        %h1 Unsubscribe
-        .panel.panel-default
-          .panel-body
-            .text-center
-              .envelope= fa_icon 'envelope-square'
-              = render partial: 'shared/flash'
-              %h2 Hopefully you're unsubscribing because you found a great new remote job!
-              %p Click the button below to confirm that you don't want any more e-mail from us.
-              = button_to "Please unsubscribe me", email_address_path(@email_address.login_token), method: :delete, class: 'btn btn-lg btn-danger'
+%h1 Unsubscribe
+.text-center
+   .envelope= fa_icon 'envelope-square'
+   = render partial: 'shared/flash'
+   %h2 Hopefully you're unsubscribing because you found a great new remote job!
+   %p Click the button below to confirm that you don't want any more e-mail from us.
+   = button_to "Please unsubscribe me", email_address_path(@email_address.login_token), method: :delete, class: 'btn btn-lg btn-danger'

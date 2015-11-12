@@ -1,43 +1,34 @@
-.navigation
-  %nav.navbar.navbar-fixed-top.navbar-inverse
-    = render partial: 'shared/top_header'
-.container
-  .row
-    .col-md-10.col-sm-10.col-xs-12
-      #content
-        %h1 Your Email Alerts
-        .panel.panel-default
-          .panel-body
-            .text-center
-              .envelope= fa_icon 'envelope-square'
-              = render partial: 'shared/flash'
-              - if @email_address.alerts.empty?
-                %h2 There are currently no e-mail alerts for <b>#{@email_address.email}</b>.
+%h1 Your Email Alerts
+.text-center
+  .envelope= fa_icon 'envelope-square'
+  = render partial: 'shared/flash'
+  - if @email_address.alerts.empty?
+    %h2 There are currently no e-mail alerts for <b>#{@email_address.email}</b>.
+  - else
+    %h2 These are the alerts that are active for <b>#{@email_address.email}</b>.
+    %table.table
+      %thead
+        %th Search Query
+        %th Tags
+        %th Frequency
+        %th
+      %tbody
+        - @email_address.alerts.each do |alert|
+          %tr
+            %td
+              - if alert.search_query.present?
+                = alert.search_query
               - else
-                %h2 These are the alerts that are active for <b>#{@email_address.email}</b>.
-                %table.table
-                  %thead
-                    %th Search Query
-                    %th Tags
-                    %th Frequency
-                    %th
-                  %tbody
-                    - @email_address.alerts.each do |alert|
-                      %tr
-                        %td
-                          - if alert.search_query.present?
-                            = alert.search_query
-                          - else
-                            (none)
-                        %td                        
-                          - if alert.tags.present?
-                            - alert.tags.each do |tag|
-                              %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag"}
-                                = tag.to_s
-                          - else
-                            (none)
-                        %td= alert.frequency.capitalize
-                        %td.actions= link_to "#{fa_icon 'times-circle'} Delete".html_safe, alert_path(alert), method: :delete, class: 'btn btn-xs btn-danger delete-alert', data: { alert: alert.id }
+                (none)
+            %td                        
+              - if alert.tags.present?
+                - alert.tags.each do |tag|
+                  %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag"}
+                    = tag.to_s
+              - else
+                (none)
+            %td= alert.frequency.capitalize
+            %td.actions= link_to "#{fa_icon 'times-circle'} Delete".html_safe, alert_path(alert), method: :delete, class: 'btn btn-xs btn-danger delete-alert', data: { alert: alert.id }
 
 :coffeescript
   $ ->

@@ -3,12 +3,14 @@
 
 body.alerts {
   color: $charcoal;
-  padding-top: 50px;
+  padding: 75px 0;
   h1 {
     font-family: $radley;
-    font-size: 24px;
+    font-size: 28px;
+    margin: 20px;
   }
   .panel {
+    margin: 10px;
     .panel-body {
       padding: 20px;
     }

@@ -1,0 +1,14 @@
+= render partial: 'job', locals: { job: @job }
+.apply
+  .hidden-xs
+    = link_to "#{fa_icon 'chevron-left'} Make more edits".html_safe, edit_job_path(@job.id), class: 'btn btn-default btn-lg'
+    = link_to "Looks Great! Post this job!".html_safe, post_job_path(@job), method: :post, class: "btn btn-primary btn-lg"
+  .visible-xs
+    .text-center
+      .row
+        .col-xs-12
+          %p= link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, :back, class: 'btn btn-default btn-sm'
+      .row
+        .col-xs-12
+          %p= link_to "Looks Great! Post this job!".html_safe, post_job_path(@job), method: :post, class: "btn btn-primary btn-lg"
+

@@ -96,7 +96,7 @@ body.job-listings {
   }
 }
 
-body.jobs.show, body.jobs.new, body.jobs.create {
+body.jobs.show, body.jobs.new, body.jobs.create, body.jobs.edit, body.jobs.preview {
   background-color: $beige;
   color: $charcoal;
   padding: 75px 0;

@@ -49,7 +49,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 ### Added for this project ###
 
 gem 'puma'                                          # Multithreaded server
-gem 'rspec'                                         # tests
 gem 'haml'
 gem 'bootstrap-sass'
 gem 'jasny-bootstrap-rails'                         # for the responsive side menu
@@ -78,6 +77,7 @@ gem 'select2-rails'                                 # for tagging on the new job
 gem 'summernote-rails'                              # for WYSIWYG editing (job descriptions, etc).
 gem 'bcrypt'                                        # for has_secure_password
 gem 'has_secure_token'                              # Generates validation tokens.
+gem 'sinatra'                                       # Needed for the Sidekiq web console.
 
 # Capistrano stuff
 group :development do
@@ -86,4 +86,17 @@ group :development do
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
+end
+
+# Spec stuff
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rspec-mocks'
+  gem 'rspec-sidekiq'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'poltergeist'  
+  gem 'database_cleaner'
+  gem 'launchy'
 end

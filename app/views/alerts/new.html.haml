@@ -1,40 +1,33 @@
-.navigation
-  %nav.navbar.navbar-fixed-top.navbar-inverse
-    = render partial: 'shared/top_header'
-.container
-  .row
-    .col-md-10.col-sm-10.col-xs-12
-      #content
-        %h1 Sign up for Email Alerts
-        .panel.panel-default
-          .panel-heading
-            .row
-              .col-xs-12
-                = render partial: 'shared/filter', locals: { tags: @tags, q: @q }
-          .panel-body
-            .text-center
-              .envelope= fa_icon 'envelope-square'
-              %h2 Be the first to know!
-            %p
-              Looking for a perfect remote job? We can send along any postings that match your search criteria above. And have no
-              fear, we will NEVER spam your inbox, and you can shut them off at any time (hopefully because you found a great new
-              company to work for!)
-            = form_for @alert do |f|                
-              .alert.alert-danger.hidden.invalid-email
-                Please enter a valid e-mail address.
-              .alert.alert-danger.hidden.invalid-email= flash[:error]
-              .form-group.email-address 
-                = f.label :frequency
-                = f.select :frequency, options_for_select([['Daily','daily'],['Weekly','weekly']]), {}, class: 'form-control'
-                = f.hidden_field :search_query, value: @q                
-                - @alert.tags.each do |tag|
-                  = f.hidden_field :tags, multiple: true, value: tag
-              = fields_for @email_address do |e|
-                .form-group.email-address
-                  = e.label :email, class: 'control-label'
-                  = e.text_field :email, class: 'form-control'
-              %button.btn.btn-lg.btn-primary#submit
-                #{fa_icon 'paper-plane'} Send Me Jobs!
+%h1 Sign up for Email Alerts
+.panel.panel-default
+  .panel-heading
+    .row
+      .col-xs-12
+        = render partial: 'shared/filter', locals: { tags: @tags, q: @q }
+  .panel-body
+    .text-center
+      .envelope= fa_icon 'envelope-square'
+      %h2 Be the first to know!
+    %p
+      Looking for a perfect remote job? We can send along any postings that match your search criteria above. And have no
+      fear, we will NEVER spam your inbox, and you can shut them off at any time (hopefully because you found a great new
+      company to work for!)
+    = form_for @alert do |f|                
+      .alert.alert-danger.hidden.invalid-email
+        Please enter a valid e-mail address.
+      .alert.alert-danger.hidden.invalid-email= flash[:error]
+      .form-group.email-address 
+        = f.label :frequency
+        = f.select :frequency, options_for_select([['Daily','daily'],['Weekly','weekly']]), {}, class: 'form-control'
+        = f.hidden_field :search_query, value: @q                
+        - @alert.tags.each do |tag|
+          = f.hidden_field :tags, multiple: true, value: tag
+      = fields_for @email_address do |e|
+        .form-group.email-address
+          = e.label :email, class: 'control-label'
+          = e.text_field :email, class: 'form-control'
+      %button.btn.btn-lg.btn-primary#submit
+        #{fa_icon 'paper-plane'} Send Me Jobs!
 
 :coffeescript
   $ ->
