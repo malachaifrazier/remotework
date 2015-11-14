@@ -51,28 +51,28 @@
     %fieldset
       %legend Your account
       - if logged_in?
-        You are logged in as <b>#{current_user.email}</b>
+        You are signed in as <b>#{current_user.email}</b>
       - else
         .row
-          .col-xs-6
+          .col-xs-6.spec-new
             .radio
               = label_tag do
                 = radio_button_tag 'account', 'new'
                 Create a new account
             .form-group
-              = u.label :email, "Email address", class: 'control-label'
+              = u.label :email, "Email address", class: 'control-label spec-new-email-address'
               = u.text_field :email, class: 'form-control'
             .form-group
               = u.label :password, "Password", class: 'control-label'
               = u.password_field :password, class: 'form-control'
             .form-group
               = u.label :password_confirmation, "Confirm Password", class: 'control-label'
-              = u.password_field :password_confirmation, class: 'form-control'                    
-          .col-xs-6
+              = u.password_field :password_confirmation, class: 'form-control' 
+          .col-xs-6.spec-existing
             .radio
               = label_tag do
                 = radio_button_tag 'account', 'existing'
-                Log into an existing account
+                Sign in to an existing account
             .form-group
               = label_tag :email, "Email address", class: 'control-label'
               = text_field_tag :email, nil, class: 'form-control'

@@ -31,8 +31,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-# Removed, doesn't work w/ JRuby.
-# gem 'spring',        group: :development
+gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -78,6 +77,7 @@ gem 'summernote-rails'                              # for WYSIWYG editing (job d
 gem 'bcrypt'                                        # for has_secure_password
 gem 'has_secure_token'                              # Generates validation tokens.
 gem 'sinatra'                                       # Needed for the Sidekiq web console.
+gem 'aasm'                                          # state machine in the job model.
 
 # Capistrano stuff
 group :development do

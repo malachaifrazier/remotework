@@ -1,26 +1,39 @@
 %h1 Your Account
 You are currently signed in as <b>#{current_user.email}</b>
+
+- message = dashboard_message(current_user)
+- if message.present?
+  .message
+    .alert.alert-danger= message
+
 %legend Posted Jobs
 - if current_user.jobs.present?
   %table.table.table-condensed
     %thead
       %tr
         %th Job Title
-        %th Posted on
+        %th Posted at
+        %th Expires at
         %th Status
         %th 
     - current_user.jobs.each do |job|
       %tr
         %td= job.title
         %td
-          - if job.posted_at.present?
-            = job.posted_at
+          - if job.posted? && job.posted_at.present?
+            = job.posted_at.to_s(:mini_date_time)
           - else
             Never
         %td
-        %td
+          - if job.posted? && job.expires_at.present?
+            = job.expires_at.to_s(:mini_date_time)          
+        %td= job.status.humanize
+        %td= job_list_action(current_user, job)
 - else
   (No jobs posted yet)
 
+%legend Payment Information
+No payment information on your account.
+  
 .text-center
   = link_to "#{fa_icon 'sign-out'} Sign out".html_safe, session_path, method: :delete, class: "btn btn-lg btn-primary"

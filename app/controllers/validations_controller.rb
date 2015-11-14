@@ -8,6 +8,11 @@ class ValidationsController < ApplicationController
     redirect_to(jobs_path, notice: "We encountered a problem validating your email.") and return unless @user.present?
     @user.email_validated!
     sign_in(@user)
-    redirect_to jobs_path, notice: "Thanks for validating your email!"
+    redirect_to user_path(current_user), notice: "Thanks for validating your email!"
+  end
+
+  def create
+    UserMailer.validate(current_user.id).deliver_later(queue: 'high')
+    redirect_to user_path(current_user), notice: "Email validation message has been sent to #{current_user.email}"
   end
 end

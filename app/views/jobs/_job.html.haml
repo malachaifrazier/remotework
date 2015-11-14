@@ -6,3 +6,9 @@
   = render partial: 'shared/tags', locals: { job: job }
 .job-description
   = job.description.squeeze(' ').html_safe
+- if job.company_description.present?
+  %h3.company-description Company
+  = job.company_description.squeeze(' ').html_safe
+- if job.how_to_apply.present?
+  %h3.how-to-apply How to apply
+  = job.how_to_apply.squeeze(' ').html_safe

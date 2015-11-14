@@ -163,7 +163,8 @@ CREATE TABLE jobs (
     company_description text,
     how_to_apply text,
     user_id uuid,
-    expires_at timestamp without time zone
+    expires_at timestamp without time zone,
+    status character varying
 );
 
 
@@ -451,4 +452,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151111214936');
 INSERT INTO schema_migrations (version) VALUES ('20151111220510');
 
 INSERT INTO schema_migrations (version) VALUES ('20151112210536');
+
+INSERT INTO schema_migrations (version) VALUES ('20151113225731');
 

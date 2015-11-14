@@ -14,12 +14,6 @@ class User < ActiveRecord::Base
 
   def email_validated!
     touch(:email_validated_at)
-
-    # If the user has any unposted jobs, post them now.
-    # TODO we probably should ask the user if they want to do this. :-/
-    self.jobs.each do |job|
-      job.post!
-    end
   end
 
   def email_validated?

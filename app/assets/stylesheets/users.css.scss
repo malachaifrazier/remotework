@@ -36,6 +36,9 @@ body.users {
   background-color: $beige;
   color: $charcoal;
   padding: 75px 0;
+  .message {
+    margin-top: 10px;
+  }
   .panel.panel-main {
     margin-bottom: 5px;
     padding: 0 20px 40px;

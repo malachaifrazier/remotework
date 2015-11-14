@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    render_404 and return unless params[:id] == current_user.id
     @user = current_user
   end
 

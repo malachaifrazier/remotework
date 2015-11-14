@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   
   resources :jobs do
     member do
-      get :preview
-      post :post
+      get   :preview
+      post  :post
+      patch :pause
     end
   end
   get    '/tags/:tags'                    => 'jobs#index',     as: :tag
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   get    '/unsubscribe/:token'            => 'email_addresses#unsubscribe', as: :unsubscribe
 
   resources :email_addresses do
-    get :validate # REST be damned. Email clients can't do POSTs. :(
+    get :validate
   end
   resources :filter_tags
   resources :users

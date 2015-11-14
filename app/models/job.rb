@@ -1,13 +1,19 @@
 class Job < ActiveRecord::Base
   include FriendlyId
   include PgSearch
+  include AASM
   friendly_id :name_for_slug, use: :slugged
 
   validates_presence_of :title
   validates_presence_of :company
   validates_presence_of :description
 
+  belongs_to :user
+
   attr_accessor :category
+
+  scope :unsent_daily, ->() { where(sent_daily_alerts_at: nil) }
+  scope :next_up_for_tweet, -> { where("posted_at > ?", 7.days.ago).posted.order('last_tweeted_at DESC') }
 
   scope :probable_duplicate, ->(other_job) {
     at = other_job.posted_at
@@ -28,12 +34,6 @@ class Job < ActiveRecord::Base
     where("tags @> ?", tags_pg)
   }
 
-  scope :unsent_daily, ->() { where(sent_daily_alerts_at: nil) }
-
-  scope :next_up_for_tweet, -> { where("posted_at > ?", 7.days.ago).order('last_tweeted_at DESC') }
-
-  scope :posted, -> { where("posted_at IS NOT NULL") }
-
   pg_search_scope :search, :against => [:title, :company, :description]
 
   def self.skip_description_scrape?
@@ -44,14 +44,46 @@ class Job < ActiveRecord::Base
     "#{self.company} #{self.title}"
   end
 
-  def post!
-    return unless user.present?
-    if user.email_validated?
-      self.touch(:posted_at)
-    else
-      return false
+  aasm column: 'status' do
+    state :pending, initial: true
+    state :paused
+    state :posted
+    state :expired
+
+    event :post do
+      before do
+        touch(:posted_at)
+        update_attribute(:expires_at, Time.zone.now + 30.days)
+      end
+      transitions from: [:pending, :paused], to: :posted
+    end
+
+    event :pause do
+      transitions from: [:pending, :posted], to: :paused
+    end
+
+    event :expire do
+      before do
+        touch(:expired_at)
+      end
+      transitions from: [:pending, :posted], to: :expired
     end
   end
+
+
+
+
+
+
+
+  # def post!
+  #   return unless user.present?
+  #   if user.email_validated?
+  #     self.touch(:posted_at)
+  #   else
+  #     return false
+  #   end
+  # end
 
   def rebuild_tags!(category, other=nil)
     tags = TagBuilder.new(category, self.title, self.description).tags

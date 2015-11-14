@@ -27,9 +27,7 @@ class JobsController < ApplicationController
   end
 
   def create    
-Rails.logger.debug ">>>> 1"
     @job = Job::RemotelyAwesome.new(job_params)
-Rails.logger.debug ">>>> 2"
     render :new and return unless handle_user(user_params)
     @job.user = @user
     if @job.save
@@ -40,27 +38,43 @@ Rails.logger.debug ">>>> 2"
     end
   end
 
+  def destroy
+    @job = Job.where(user_id: current_user.id).friendly.find(params[:id])
+    if @job && @job.destroy!
+      flash[:notice] = "The job posting for '#{@job.title}' has been deleted."
+    else
+      flash[:error] = "There was an error deleting the job posting for '#{@job.title}': #{@job.errors.full_messages.to_sentence}"
+    end
+    redirect_to user_path(current_user)
+  end
+
   def preview
-    @job = Job.friendly.find(params[:id])
+    @job = Job.where(user_id: current_user.id).friendly.find(params[:id])
   end
 
   def post
-    @job = Job.friendly.find(params[:id])
-    flash[:notice] = @job.post! ? "Your job has been posted." : "One more thing - please check your inbox. We need to verify your e-mail address before posting your job."
+    @job = Job.where(user_id: current_user.id).friendly.find(params[:id])
+    if @job.user.email_validated?
+      @job.post!
+      flash[:notice] = "Your job has been posted."
+    end
     redirect_to user_path(current_user)
+  end
+
+  def pause
+    @job = Job.where(user_id: current_user.id).friendly.find(params[:id])
+    @job.pause!
+    redirect_to user_path(current_user), notice: "Your job posting has been paused. It is not currently displayed on the site"    
   end
 
   private
 
 
   def handle_user(user_params)
-Rails.logger.debug ">>>> HANDLE USER"
     if logged_in?
-Rails.logger.debug ">>> LOGGED IN"
       @user = current_user
       return true 
     end
-Rails.logger.debug ">>>> ACCOUNT #{params[:account].inspect}"    
     if params[:account] == 'new'
       create_user(user_params)
     elsif params[:account] == 'existing'
@@ -69,7 +83,6 @@ Rails.logger.debug ">>>> ACCOUNT #{params[:account].inspect}"
   end
 
   def create_user(user_params)
-Rails.logger.debug ">>>>> USER PARAMS ARE #{user_params.inspect}"
     @user = User.new(user_params)
     if @user.save
       sign_in(@user)

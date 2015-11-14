@@ -119,6 +119,19 @@ body.jobs.show, body.jobs.new, body.jobs.create, body.jobs.edit, body.jobs.previ
     h2.job-company {
       margin-top: 5px;
     }
+    h3.company-description, h3.how-to-apply {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .preview-header {
+      background-color: $beige;
+      letter-spacing: 4px;
+      line-height: 20px;
+      margin: 10px 0;
+      padding: 8px;
+      text-transform: uppercase;
+    }
     .job-heading {
       border-bottom:1px solid $beige;
       margin-bottom: 15px;
