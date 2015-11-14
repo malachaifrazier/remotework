@@ -26,7 +26,7 @@
         = tag.to_s
         = link_to(filter_tag_path(tag.to_s, q: @q), method: :delete) do
           = fa_icon 'times-circle'
-    = link_to "#{fa_icon 'plus'}".html_safe, nil, id: 'add-tag'
+  = link_to "#{fa_icon 'plus'} Add a tag filter".html_safe, nil, id: 'add-tag'
   %span.hidden#add-tag-field-wrapper
     = form_tag filter_tags_path do
       = text_field_tag :tag_name, nil, class: 'form-control input-xs', id: 'add-tag-field', placeholder: "Add a tag".html_safe

@@ -1,7 +1,7 @@
 class FilterTagsController < ApplicationController
   def create
     path = Rails.application.routes.recognize_path(request.referrer)
-    tags = (path[:tags].split('+') || []) + [params[:tag_name]]
+    tags = ((path[:tags] || '').split('+') || []) + [params[:tag_name]]
     path[:tags] = tags.uniq.join('+')
     redirect_to url_for(path)
   end

@@ -5,7 +5,9 @@ You are currently signed in as <b>#{current_user.email}</b>
 - if message.present?
   .message
     .alert.alert-danger= message
-
+  
+.message= render partial: 'shared/flash'
+    
 %legend Posted Jobs
 - if current_user.jobs.present?
   %table.table.table-condensed
@@ -18,7 +20,7 @@ You are currently signed in as <b>#{current_user.email}</b>
         %th 
     - current_user.jobs.each do |job|
       %tr
-        %td= job.title
+        %td= link_to job.title, job_path(job)
         %td
           - if job.posted? && job.posted_at.present?
             = job.posted_at.to_s(:mini_date_time)
@@ -28,12 +30,14 @@ You are currently signed in as <b>#{current_user.email}</b>
           - if job.posted? && job.expires_at.present?
             = job.expires_at.to_s(:mini_date_time)          
         %td= job.status.humanize
-        %td= job_list_action(current_user, job)
+        %td
+          .pull-right= job_list_action(current_user, job)
 - else
   (No jobs posted yet)
 
 %legend Payment Information
 No payment information on your account.
   
-.text-center
+.actions.text-center
+  = link_to "#{fa_icon 'thumb-tack'} Post a job".html_safe, new_job_path, class: "btn btn-lg btn-default"
   = link_to "#{fa_icon 'sign-out'} Sign out".html_safe, session_path, method: :delete, class: "btn btn-lg btn-primary"

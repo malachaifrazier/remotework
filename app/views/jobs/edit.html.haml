@@ -1,113 +1,17 @@
-.navigation
-  %nav.navbar.navbar-fixed-top.navbar-inverse
-    = render partial: 'shared/top_header'
-.container
-  .row
-    .col-md-10.col-sm-10.col-xs-12
-      .panel.panel-main
-        #content
-          %h1 Post a Job
-          %p Why post a job on Remotely Awesome Jobs?
-          %ul
-            %li
-              Job postings are <b>totally free</b> during our beta period, no credit card required!
-            %li
-              Jobs posted directly on Remotely Awesome Jobs get featured prominently at the top
-              of all relevant search results.
-            %li
-              Lots of developers already signed up for our e-mail alerts will also see your
-              job in the "featured" section of the message whenever they get alerts.
-            %li
-              Did we mention the free part?
-          
-          = form_for @job, url: jobs_path do |f|
-            %fieldset
-              .form-group
-                = f.label :title, "Job Title", class: 'control-label'
-                = f.text_field :title, class: 'form-control'
-              .form-group.description
-                = f.label :description, "Job Description", class: 'control-label'
-                = f.text_area :description, class: 'form-control wysiwyg tall'
-              .form-group
-                = f.label :category, "Job Category", class: 'control-label'
-                = f.select :category, ['Development','Design','Management','Other'], {}, class: 'form-control'
-              .form-group
-                = f.label :tags, "Tags", class: 'control-label'
-                = f.select :tags, ['ruby','java','php','javascript'], {}, class: 'form-control tags', multiple: true, id: 'tags'
-              .form-group.instructions
-                = f.label :how_to_apply, "Instructions for how to apply", class: 'control-label'
-                = f.text_area :how_to_apply, class: 'form-control wysiwyg', placeholder: 'How should the candidate reach you? What should they provide?'
-                
-            %fieldset
-              %legend About the company
-              .form-group
-                = f.label :company, "Company Name", class: 'control-label'
-                = f.text_field :company, class: 'form-control'
-              .form-group
-                = f.label :location, "Company Location", class: 'control-label'
-                = f.text_field :location, class: 'form-control'
-              .form-group
-                = f.label :company_url, "Company Website", class: 'control-label'
-                = f.text_field :company_url, class: 'form-control'
-              .form-group.company-description
-                = f.label :company_description, "Tell us about your company and why it rocks.", class: 'control-label'
-                = f.text_area :company_description, class: 'form-control wysiwyg tall'
+%h1
+  - if @job.posted?
+    Edit Job
+  - else
+    Post a Job
 
-            = fields_for :user, @job.user do |u|
-              %fieldset
-                %legend Your account
-                - if logged_in?
-                  You are logged in as <b>#{current_user.email}</b>
-                - else
-                  .row
-                    .col-xs-6
-                      .radio
-                        = u.label :new do
-                          = radio_button_tag 'account', 'new'
-                          Create a new account
-                      .form-group
-                        = u.label :email, "Email address", class: 'control-label'
-                        = u.text_field :email, class: 'form-control'
-                      .form-group
-                        = u.label :password, "Password", class: 'control-label'
-                        = u.password_field :password, class: 'form-control'
-                      .form-group
-                        = u.label :password_confirmation, "Confirm Password", class: 'control-label'
-                        = u.password_field :password_confirmation, class: 'form-control'                    
-                    .col-xs-6
-                      .radio
-                        = label_tag do
-                          = radio_button_tag 'account', 'existing'
-                          Log into an existing account
-                      .form-group
-                        = label_tag :email, "Email address", class: 'control-label'
-                        = text_field_tag :email, nil, class: 'form-control'
-                      .form-group
-                        = label_tag :password, "Password", class: 'control-label'
-                        = password_field_tag :password, nil, class: 'form-control'             
-            .text-center
-              = f.submit "Preview your post", class: 'btn btn-lg btn-primary preview'
-            
-:coffeescript
-  $ ->
-    $( "#tags" ).select2(
-      theme: "bootstrap",
-      tags: #{TagBuilder.tag_list_without_categories}
-    )  
-
-    $('.wysiwyg.tall').summernote(
-     height: 250
-     toolbar: [     
-       ['style', ['bold', 'italic', 'underline', 'clear']],
-       ['font', ['strikethrough', 'superscript', 'subscript']],
-       ['para', ['ul', 'ol', 'paragraph']],
-     ]
-    )
-
-    $('.wysiwyg').not('.tall').summernote(
-     toolbar: [     
-       ['style', ['bold', 'italic', 'underline', 'clear']],
-       ['font', ['strikethrough', 'superscript', 'subscript']],
-       ['para', ['ul', 'ol', 'paragraph']],
-     ]
-    )
+- unless @job.posted?  
+  = render partial: 'why_post'
+= render partial: 'shared/flash'
+    
+= form_for @job, url: job_path(@job) do |f|    
+  = render partial: 'form', locals: { f: f }
+  .text-center
+    - if @job.posted?
+      = f.submit "Update your post", class: 'btn btn-lg btn-primary preview'
+    - else
+      = f.submit "Preview your post", class: 'btn btn-lg btn-primary preview'

@@ -38,6 +38,21 @@ class JobsController < ApplicationController
     end
   end
 
+  def update
+    @job = Job.where(user_id: current_user.id).friendly.find(params[:id])
+    render :edit and return unless handle_user(user_params)
+    if @job && @job.update_attributes(job_params)
+      if @job.posted?
+        redirect_to user_path(current_user), notice: 'Your job post has been updated.'
+      else
+        redirect_to preview_job_path(@job)
+      end
+    else
+      flash[:error] = "Unable to update job post: #{@job.errors.full_messages.to_sentence}"
+      render :edit
+    end
+  end
+
   def destroy
     @job = Job.where(user_id: current_user.id).friendly.find(params[:id])
     if @job && @job.destroy!
@@ -64,8 +79,9 @@ class JobsController < ApplicationController
   def pause
     @job = Job.where(user_id: current_user.id).friendly.find(params[:id])
     @job.pause!
-    redirect_to user_path(current_user), notice: "Your job posting has been paused. It is not currently displayed on the site"    
+    redirect_to user_path(current_user)
   end
+
 
   private
 

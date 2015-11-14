@@ -66,6 +66,9 @@ body {
     }
     .btn-twitter {
       background-color: #4099FF;
+      &:hover { 
+        border-color:  #4099FF;
+      }
     }
   }
   .ceres {

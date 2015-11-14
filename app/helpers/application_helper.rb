@@ -7,7 +7,7 @@ module ApplicationHelper
   def add_tag_url(tags, new_tag, q)
     tags ||= []
     tags += [new_tag]
-    tag_url(tags,q)
+    tag_url(tags.uniq,q)
   end
 
   def remove_tag_url(tags, remove_tag, q)
@@ -40,5 +40,9 @@ module ApplicationHelper
     result = url.join('/')
     result << '?q=' + opts[:q] if opts[:q].present?
     result
+  end
+
+  def welcome_message
+    ['Howdy!', 'Hello there!', 'Greetings!', 'Welcome!', "Hey there, what's up?", 'Good to see you!'].sample
   end
 end
