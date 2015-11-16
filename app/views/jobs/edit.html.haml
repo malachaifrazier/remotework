@@ -12,6 +12,6 @@
   = render partial: 'form', locals: { f: f }
   .text-center
     - if @job.posted?
-      = f.submit "Update your post", class: 'btn btn-lg btn-primary preview'
+      = f.submit "Update your post", class: 'btn btn-lg btn-primary preview', data: { 'disable-with' => 'Updating...' }
     - else
-      = f.submit "Preview your post", class: 'btn btn-lg btn-primary preview'
+      = f.submit "Preview your post", class: 'btn btn-lg btn-primary preview', data: { 'disable-with' => 'Submitting...' }

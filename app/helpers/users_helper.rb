@@ -8,7 +8,7 @@ module UsersHelper
         (link_to "#{fa_icon 'pencil-square-o'} Edit Post".html_safe, edit_job_path(job), class: 'btn btn-xs btn-default')
       else
         (link_to "#{fa_icon 'play'} Post Now".html_safe, post_job_path(job), method: :post, class: 'btn btn-xs btn-default') + ' ' +
-        (link_to "#{fa_icon 'trash'} Delete".html_safe, job_path(job), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete #{job.title}?" })
+        (link_to "#{fa_icon 'trash'} Delete".html_safe, job_path(job), method: :delete, class: 'btn btn-xs btn-danger delete-job', data: { title: job.title })
       end
     end
   end

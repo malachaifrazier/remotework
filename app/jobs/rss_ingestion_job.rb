@@ -20,9 +20,10 @@ class RssIngestionJob < ActiveJob::Base
             begin
               job = klazz.factory(entry, feed)
               if job
-                unless Job.probable_duplicate(job).exists?
+                unless klazz.probable_duplicate(job).exists?
                   job.description = fetch_description(job.original_post_url) unless klazz.skip_description_scrape?
                   job.save! 
+                  job.post!
                 end
               end
             rescue => e

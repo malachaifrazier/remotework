@@ -16,4 +16,4 @@
         = f.label :password_confirmation, "Password one more time (just to be sure)"
         = f.password_field :password_confirmation, class: 'input input-lg form-control'                  
       .form-group
-        .text-center= submit_tag "Sign me up!", class: 'btn btn-lg btn-primary'
+        .text-center= submit_tag "Sign me up!", class: 'btn btn-lg btn-primary', data: { 'disable-with' => "Creating your account..." }

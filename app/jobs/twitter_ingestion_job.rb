@@ -26,7 +26,8 @@ class TwitterIngestionJob < ActiveJob::Base
             if job
               job.original_post_url = normalize_url(job.original_post_url)
               job.description = fetch_description(job.original_post_url) unless klazz.skip_description_scrape?
-              job.save! unless Job.probable_duplicate(job).exists?
+              job.save! unless klazz.probable_duplicate(job).exists?
+              job.post!
             end
           end
         end

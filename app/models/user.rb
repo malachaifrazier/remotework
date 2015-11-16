@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   def validate_email!
     self.regenerate_validation_token
-    UserMailer.validate(self.id).deliver_later(queue: 'high')
+    UserMailer.validate(self.id).deliver_later
   end
 
   def defaults_from_previous_job

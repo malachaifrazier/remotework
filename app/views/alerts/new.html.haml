@@ -26,7 +26,7 @@
         .form-group.email-address
           = e.label :email, class: 'control-label'
           = e.text_field :email, class: 'form-control'
-      %button.btn.btn-lg.btn-primary#submit
+      %button.btn.btn-lg.btn-primary#submit{ data: { 'disable-with' => "Signing you up..." } }
         #{fa_icon 'paper-plane'} Send Me Jobs!
 
 :coffeescript

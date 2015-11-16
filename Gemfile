@@ -89,7 +89,7 @@ group :development do
 end
 
 # Spec stuff
-group :development, :test do
+group :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rspec-mocks'

@@ -41,3 +41,15 @@ No payment information on your account.
 .actions.text-center
   = link_to "#{fa_icon 'thumb-tack'} Post a job".html_safe, new_job_path, class: "btn btn-lg btn-default"
   = link_to "#{fa_icon 'sign-out'} Sign out".html_safe, session_path, method: :delete, class: "btn btn-lg btn-primary"
+
+:coffeescript
+  $ ->
+    $('.delete-job').on 'click', (e)->
+      e.preventDefault()
+      $clicked = $(e.target)
+      title = $clicked.data('title')
+      bootbox.confirm "Delete the post for <b>" + title + "</b>?", (result)->
+        if result
+          $clicked.unbind "click"
+          $clicked.get(0).click()
+      false  

@@ -6,4 +6,4 @@
 = form_for @job, url: jobs_path do |f|
   = render partial: 'form', locals: { f: f }
   .text-center
-    = f.submit "Preview your post", class: 'btn btn-lg btn-primary preview'
+    = f.submit "Preview your post", class: 'btn btn-lg btn-primary preview', data: { 'disable-with' => 'Submitting...' }

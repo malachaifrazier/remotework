@@ -5,7 +5,8 @@ class Job::Github < Job
   # we try to re-ingest them again a few days later. For that
   # reason, we override the scope for Github and make the date
   # window a lot wider.
-  scope :probable_duplicate, ->(other_job) {
+  # pseudo-scope. Using a class method instead because we need to override this in a child class.
+  def self.probable_duplicate(other_job)
     at = other_job.posted_at
     sql = <<-SQL
         title ILIKE ?
@@ -16,8 +17,7 @@ class Job::Github < Job
         )
     SQL
     where(sql, other_job.title, other_job.company, at, at, at, at)
-  }
-
+  end
 
   def self.feed_urls
     ["https://jobs.github.com/positions.atom"]

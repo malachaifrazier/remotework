@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    sign_out and redirect_to jobs_path, notice: 'You have been signed out.'
+    sign_out
+    redirect_to jobs_path, notice: 'You have been signed out.'
   end
 end

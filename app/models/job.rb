@@ -15,19 +15,6 @@ class Job < ActiveRecord::Base
   scope :unsent_daily, ->() { where(sent_daily_alerts_at: nil) }
   scope :next_up_for_tweet, -> { where("posted_at > ?", 7.days.ago).posted.order('last_tweeted_at DESC') }
 
-  scope :probable_duplicate, ->(other_job) {
-    at = other_job.posted_at
-    sql = <<-SQL
-        title ILIKE ?
-    AND company ILIKE ?
-    AND (
-          ((posted_at - ?) < INTERVAL '72 HOURS' AND (posted_at - ?) >= '0 SECONDS') OR
-          ((posted_at - ?) > INTERVAL '-72 HOURS' AND (posted_at - ?) <= '0 SECONDS')
-        )
-    SQL
-    where(sql, other_job.title, other_job.company, at, at, at, at)
-  }
-
   scope :for_tags, ->(tags) {
     return where('1=1') if tags.blank?
     tags_pg = "{#{tags.join(',')}}"
@@ -35,6 +22,20 @@ class Job < ActiveRecord::Base
   }
 
   pg_search_scope :search, :against => [:title, :company, :description]
+
+  # pseudo-scope. Using a class method instead because we need to override this in a child class.
+  def self.probable_duplicate(other_job)
+    at = other_job.posted_at
+    sql = <<-SQL
+        title ILIKE ?
+    AND company ILIKE ?
+    AND (
+          ((posted_at - ?) < INTERVAL '14 DAYS' AND (posted_at - ?) >= '0 SECONDS') OR
+          ((posted_at - ?) > INTERVAL '-14 DAYS' AND (posted_at - ?) <= '0 SECONDS')
+        )
+    SQL
+    where(sql, other_job.title, other_job.company, at, at, at, at)
+  end
 
   def self.skip_description_scrape?
     false
@@ -52,7 +53,7 @@ class Job < ActiveRecord::Base
 
     event :post do
       before do
-        touch(:posted_at)
+        touch(:posted_at) if posted_at.nil?
         update_attribute(:expires_at, Time.zone.now + 30.days)
       end
       transitions from: [:pending, :paused], to: :posted
