@@ -40,11 +40,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.raj_host = "remotelyawesomejobs.local:5000"
 end
 
-Rails.application.config.middleware.use ExceptionNotification::Rack,
-  :email => {
-    :email_prefix => "[RemotelyAwesomeJobs Exception] ",
-    :sender_address => %{"notifier" <notifier@remotelyawesomejobs.com>},
-    :exception_recipients => %w{exception@remotelyawesomejobs.com}
-  }

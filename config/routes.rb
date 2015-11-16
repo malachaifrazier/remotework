@@ -1,3 +1,14 @@
+
+class DomainConstraint
+  def initialize(domain)
+    @domains = [domain].flatten
+  end
+
+  def matches?(request)
+    @domains.include? request.domain
+  end
+end
+
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -7,6 +18,10 @@ Rails.application.routes.draw do
     username == ENV["SIDEKIQ_USERNAME"] && password == ENV["SIDEKIQ_PASSWORD"]
   end if Rails.env.production?
   mount Sidekiq::Web => '/sidekiq'
+
+  constraints DomainConstraint.new(['rawsme.local', 'raws.me']) do
+    get "/:id" => "shortened_links#show"
+  end
 
   root   'jobs#index'
 

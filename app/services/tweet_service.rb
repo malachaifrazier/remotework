@@ -17,7 +17,43 @@ class TweetService
 
   def job_description
     # Someday: Link shortening, hashtags. Today: lameness.
-    link = Rails.application.routes.url_helpers.job_url(@job, host: 'http://www.remotelyawesomejobs.com')
-    "#{@job.company}: #{@job.title}".truncate(135 - link.length) + " #{link}"
+    long_link = Rails.application.routes.url_helpers.job_url(@job, host: 'http://www.remotelyawesomejobs.com')
+    short_link = " http://raws.me/#{LinkShorteningService.new.short_url(long_link)}"
+    "#{@job.company}: #{@job.title}".truncate(135 - short_link.length - hashtags.length) + short_link + hashtags
+  end
+
+  def hashtags
+    hashtags = ["#job", "#remote", top_tag].join(' ')
+  end
+
+  def top_tag
+    # Ordered by priority. Hashtag first, job tag second. Choose one.
+    [
+     ['rails','ruby-on-rails'],
+     ['wordpress','wordpress'],
+     ['design','design'],
+     ['qa','qa'],
+     ['rails','ruby-on-rails'],
+     ['django','django'],
+     ['php','php'],
+     ['android','android'],
+     ['scala','scala'],
+     ['elixir','elixir'],
+     ['golang','golang'],
+     ['java','java'],
+     ['ember','ember'],
+     ['angular','angular'],
+     ['node','node'],
+     ['js','javascript'],
+     ['iOS','ios'],
+     ['ObjC','objective-c'],
+     ['swift','swift'],
+     ['CSharp','c#'],
+     ['chef','chef'],
+     ['puppet','puppet'],
+     ['ansible','ansible']
+    ].each do |tag|
+      return '#' + tag.first if @job.tags.include? tag.last
+    end
   end
 end

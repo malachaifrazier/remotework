@@ -197,6 +197,36 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: shortened_links; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE shortened_links (
+    id integer NOT NULL,
+    short character varying NOT NULL,
+    long character varying NOT NULL
+);
+
+
+--
+-- Name: shortened_links_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE shortened_links_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: shortened_links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE shortened_links_id_seq OWNED BY shortened_links.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -224,6 +254,13 @@ ALTER TABLE ONLY friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('friendly
 --
 
 ALTER TABLE ONLY jobs ALTER COLUMN id SET DEFAULT nextval('jobs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY shortened_links ALTER COLUMN id SET DEFAULT nextval('shortened_links_id_seq'::regclass);
 
 
 --
@@ -256,6 +293,14 @@ ALTER TABLE ONLY friendly_id_slugs
 
 ALTER TABLE ONLY jobs
     ADD CONSTRAINT jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: shortened_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY shortened_links
+    ADD CONSTRAINT shortened_links_pkey PRIMARY KEY (id);
 
 
 --
@@ -454,4 +499,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151111220510');
 INSERT INTO schema_migrations (version) VALUES ('20151112210536');
 
 INSERT INTO schema_migrations (version) VALUES ('20151113225731');
+
+INSERT INTO schema_migrations (version) VALUES ('20151116134134');
 
