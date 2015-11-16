@@ -19,7 +19,7 @@ class TweetService
     # Someday: Link shortening, hashtags. Today: lameness.
     long_link = Rails.application.routes.url_helpers.job_url(@job, host: 'http://www.remotelyawesomejobs.com')
     short_link = " http://raws.me/#{LinkShorteningService.new.short_url(long_link)}"
-    "#{@job.company}: #{@job.title}".truncate(135 - short_link.length - hashtags.length) + short_link + hashtags
+    "#{@job.company}: #{@job.title}".truncate(135 - short_link.length - hashtags.length) + short_link + ' ' + hashtags
   end
 
   def hashtags
