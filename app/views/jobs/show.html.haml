@@ -1,13 +1,30 @@
-= render partial: 'job', locals: { job: @job }
-.apply
-  .hidden-xs
-    = link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, :back, class: 'btn btn-default btn-lg'
-    = link_to "Apply on #{@job.source} #{fa_icon 'chevron-right'}".html_safe, @job.original_post_url, class: "btn btn-primary btn-lg", target: '_blank'
-  .visible-xs
-    .text-center
-      .row
-        .col-xs-12
-          %p= link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, :back, class: 'btn btn-default btn-sm'
-      .row
-        .col-xs-12
-          %p= link_to "Apply on #{@job.source} #{fa_icon 'chevron-right'}".html_safe, @job.original_post_url, class: "btn btn-primary btn-sm", target: '_blank'
+.row
+  .col-md-8
+    = render partial: 'job', locals: { job: @job }
+    .apply
+      .hidden-xs.display-sm.display-md.display-lg
+        .text-center
+          - if @job.original_post_url.present?
+            .row
+              .col-xs-12
+                %p= link_to "Apply on #{@job.source} #{fa_icon 'chevron-right'}".html_safe, @job.original_post_url, class: "btn btn-primary btn-lg", target: '_blank'
+          .row
+            .col-xs-12
+              %p= link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, jobs_path              
+      .display-xs.hidden-sm.hidden-md.hidden-lg
+        .text-center
+          - if @job.original_post_url.present?
+            .row
+              .col-xs-12
+                %p= link_to "Apply on #{@job.source} #{fa_icon 'chevron-right'}".html_safe, @job.original_post_url, class: "btn btn-primary btn-sm", target: '_blank'    
+          .row
+            .col-xs-12
+              %p= link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, jobs_path, class: 'btn btn-default btn-sm'
+  .col-md-4.sidebar
+    .buttons
+      .text-center
+        .button= link_to "#{fa_icon 'thumb-tack'} Post a Job".html_safe, new_job_path, class: 'btn btn-primary'
+        .button= link_to "#{fa_icon 'twitter'} Follow Us".html_safe, 'http://www.twitter.com/RemotelyAweJobs', class: 'btn btn-twitter'
+        .button= link_to "#{fa_icon 'envelope'} Get Alerts".html_safe, alert_enroll_path(action: 'new', tags: @tags, q: @q), class: 'btn btn-info'
+        .link= link_to "View more jobs", jobs_path
+    

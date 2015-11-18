@@ -4,25 +4,17 @@
       = fa_icon 'frown-o'
     %p There&rsquo;s nothing here.
 - else
+  - if @featured.present?
+    %h4 Featured
+    %ul.featured
+      - @featured.each do |featured|
+        %li= render partial: 'summary', locals: { job: featured }
+  - if @today.present?
+    %h4 Today
+    %ul
+      - @today.each do |today|
+        %li= render partial: 'summary', locals: { job: today }
+    %h4 Earlier        
   %ul
     - @jobs.each do |job|
-      %li
-        .job
-          .row
-            .col-sm-12
-              %h2= link_to job.title, job_path(job)
-          .row
-            .col-sm-8
-              %h3
-                %span.company= job.company
-              .hidden-xs.source via #{job.source}
-            .col-sm-4
-              .hidden-xs
-                %p.pull-right.when-posted= when_posted(job)
-              .visible-xs.when-posted
-                = when_posted(job)
-              .visible-xs.source
-                via #{job.source}
-          .row
-            .col-xs-12
-              = render partial: 'shared/tags', locals: { job: job }
+      %li= render partial: 'summary', locals: { job: job }

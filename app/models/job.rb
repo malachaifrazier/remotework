@@ -14,6 +14,10 @@ class Job < ActiveRecord::Base
 
   scope :unsent_daily, ->() { where(sent_daily_alerts_at: nil) }
   scope :next_up_for_tweet, -> { where("posted_at > ?", 7.days.ago).posted.order('last_tweeted_at DESC') }
+  scope :featured, ->() { where(type: 'Job::RemotelyAwesome') }
+  scope :not_featured, ->() { where("type <> 'Job::RemotelyAwesome'") }
+  scope :today, ->() { where("posted_at >= NOW() - '1 day'::INTERVAL") }
+  scope :before_today, ->() { where("posted_at < NOW() - '1 day'::INTERVAL") }
 
   scope :for_tags, ->(tags) {
     return where('1=1') if tags.blank?

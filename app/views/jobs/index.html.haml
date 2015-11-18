@@ -4,6 +4,16 @@
       .heading
         %h3= welcome_message
         %h2 <b>Remotely Awesome Jobs</b>   curates the best remote tech jobs across the web.
+        - if @tags.empty?
+          .popular
+            %i Popular tags:
+            = render_tag('ruby-on-rails', @tags, @q)
+            = render_tag('django', @tags, @q)
+            = render_tag('objective-c', @tags, @q)
+            = render_tag('java', @tags, @q)
+            = render_tag('javascript', @tags, @q)
+            = render_tag('php', @tags, @q)
+            = render_tag('design', @tags, @q)
         = render partial: 'shared/flash'
       .navigation= render partial: 'shared/nav'
       .panel.panel-default
@@ -11,7 +21,7 @@
           = render partial: 'shared/filter', locals: { tags: @tags, q: @q }
           .row
             .col-xs-12
-              = link_to "#{fa_icon 'envelope'} Sign up for email alerts".html_safe, alert_enroll_path(action: 'new', tags: @tags, q: @q)
+              = link_to "Get email alerts when matching jobs are posted".html_safe, alert_enroll_path(action: 'new', tags: @tags, q: @q)
         .panel-body
           .jobs-container
             = render partial: 'jobs'

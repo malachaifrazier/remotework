@@ -27,6 +27,16 @@
 @import "summernote";
 @import "jasny-bootstrap.min";
 
+.btn-twitter {
+  background-color: $twitter;
+  color: #fff;
+  &:hover {       
+    background-color: darken($twitter, 10%);
+    border-color:  #4099FF;
+    color: #fff;
+  }
+}
+
 .navmenu {
   width: 200px;
 }
@@ -64,15 +74,9 @@ body {
         margin-right: 5px;
       }
     }
-    .btn-twitter {
-      background-color: #4099FF;
-      &:hover { 
-        border-color:  #4099FF;
-      }
-    }
   }
   .ceres {
-    @media(max-height: 700px) {
+    @media(max-height: 725px) {
       display: none;
     }
     color: #777;
@@ -80,13 +84,28 @@ body {
     letter-spacing: 5px;
     margin-top: 80px;
     position: absolute;
-    bottom: 25px;
+    bottom: 35px;
     text-transform: uppercase;
     width: 200px;
     img.ceres-logo {
       margin-right: 15px;
       margin-top: 5px;
       width: 80px;
+    }
+  }
+
+  .about {
+    @media(max-height: 650px) {
+      display: none;
+    }
+    bottom: 10px;
+    font-size: 8px;
+    letter-spacing: 5px;
+    position: absolute;
+    text-transform: uppercase;
+    width: 200px;
+    i {
+      font-size: 10px;
     }
   }
 }
