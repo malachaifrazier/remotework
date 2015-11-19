@@ -1,57 +1,57 @@
 .row
   .col-md-12
-    %h1 About Remotely Awesome Jobs
-    %p
-      = image_tag 'mike-desjardins.jpg', title: "Mike slurping a mug o' coffee the size of a baby's noggin.", class: 'vanity'
-      Hi, my name is #{link_to "Mike Desjardins", 'http://www.mikedesjardins.net'},
-      and I built this website. I've been a remote worker since 2008, which means I
-      get to live in #{link_to 'Portland, Maine USA', 'http://www.visitportland.com/'},
-      which is the coolest little city on the planet. Even though I live way up here,
-      I've worked for companies based in Virginia, New York City, Oregon, and Boston.
-      I've had co-workers in places as far away as Turkey, Singapore, Uruguay, and
-      New Zealand. As you can probably imagine, I'm a big fan of the book
-      <i>#{link_to "Remote", 'http://37signals.com/remote/'}</i> by 37 signals.
-    %p
-      I had a few different reasons for building this site. First, I wanted
-      to have a simple, basic web application that I could showcase to prove
-      to potential employers and/or clients that I know what I'm doing. This
-      site is certainly simple and basic. I built it in my spare time when I
-      could've been doing other things, so the goal wasn't to create the
-      next Facebook.
-    %p
-      The second reason I built this site was because I had amassed a folder of
-      bookmarks in my browser for places to look for remote work, all with special
-      URL parameters to get to the right query to find only those remote-friendly
-      jobs I was interested in. It seemed silly to be checking a bunch of
-      different sites instead of just aggregating them somewhere.
-    %p
-      So the last reason to build it was because it was fun and pretty darned
-      easy to build. This site isn't rocket science, but it fulfilled a few
-      needs and was kinda neat to do from start to finish all on my own.
-    %h1 Sites we crawl
-    %p
-      My goal is to add at least one new source of jobs every week. Right now
-      there are six sites crawled by Remotely Awesome Jobs:
-      %ul
-        %li= link_to "Stack Overflow Careers", 'http://careers.stackoverflow.com'
-        %li= link_to "Authentic Jobs", 'http://www.authenticjobs.com'
-        %li= link_to "Jobspresso", 'http://www.jobspresso.com'
-        %li= link_to "WeWorkRemotely", 'http://weworkremotely.com'
-        %li= link_to "GitHub Jobs", 'http://jobs.github.com'
-        %li= link_to "Dribbble", 'https://dribbble.com/jobs'
-    %p
-      I've started on a few more. There are a few other remote job aggregators
-      out there, and I intend to keep Remotely Awesome Jobs ahead of
-      everyone else in terms of number of sources.
-    %h1 Hire me!
-    %p
-      Occasionally I'm available for consulting and/or contracting work. If
-      that sounds like something you'd be interested in, I have a one-man
-      consulting company called #{link_to "Ceres Logic", 'http://www.cereslogic.com'}
-      where you can swing by and contact me. You can also check out
-      my #{link_to 'Github', 'http://www.github.com/mdesjardins'} and
-      #{link_to 'LinkedIn', 'http://www.linkedin.com/in/michaeldesjardins'}
-      profiles to learn a little more about me.
-    %h1 Thanks for stopping by!
-    %p= link_to "Take me back to the jobs, please!", jobs_path
-      
+    .wall-of-text
+      %h1 About Remotely Awesome Jobs
+      %p
+        = image_tag 'mike-desjardins.jpg', title: "Mike slurping a mug o' coffee the size of a baby's noggin.", class: 'vanity'
+        Hi, my name is #{link_to "Mike Desjardins", 'http://www.mikedesjardins.net'},
+        and I built this website. I've been a remote worker since 2008, which means I
+        get to live in #{link_to 'Portland, Maine USA', 'http://www.visitportland.com/'},
+        which is the coolest little city on the planet. Even though I live way up here,
+        I've worked for companies based in Virginia, New York City, Oregon, and Boston.
+        I've had co-workers in places as far away as Turkey, Singapore, Uruguay, and
+        New Zealand. As you can probably imagine, I'm a big fan of the book
+        <i>#{link_to "Remote", 'http://37signals.com/remote/'}</i> by 37 signals.
+      %p
+        I had a few different reasons for building this site. First, I wanted
+        to have a simple, basic web application that I could showcase to prove
+        to potential employers and/or clients that I know what I'm doing. This
+        site is certainly simple and basic. I built it in my spare time when I
+        could've been doing other things, so the goal wasn't to create the
+        next Facebook.
+      %p
+        The second reason I built this site was because I had amassed a folder of
+        bookmarks in my browser for places to look for remote work, all with special
+        URL parameters to get to the right query to find only those remote-friendly
+        jobs I was interested in. It seemed silly to be checking a bunch of
+        different sites instead of just aggregating them somewhere.
+      %p
+        So the last reason to build it was because it was fun and pretty darned
+        easy to build. This site isn't rocket science, but it fulfilled a few
+        needs and was kinda neat to do from start to finish all on my own.
+      %h1 Sites we crawl
+      %p
+        My goal is to add at least one new source of jobs every week. Right now
+        there are six sites crawled by Remotely Awesome Jobs:
+        %ul
+          %li= link_to "Stack Overflow Careers", 'http://careers.stackoverflow.com'
+          %li= link_to "Authentic Jobs", 'http://www.authenticjobs.com'
+          %li= link_to "Jobspresso", 'http://www.jobspresso.com'
+          %li= link_to "WeWorkRemotely", 'http://weworkremotely.com'
+          %li= link_to "GitHub Jobs", 'http://jobs.github.com'
+          %li= link_to "Dribbble", 'https://dribbble.com/jobs'
+      %p
+        I've started on a few more. There are a few other remote job aggregators
+        out there, and I intend to keep Remotely Awesome Jobs ahead of
+        everyone else in terms of number of sources.
+      %h1 Hire me!
+      %p
+        Occasionally I'm available for consulting and/or contracting work. If
+        that sounds like something you'd be interested in, I have a one-man
+        consulting company called #{link_to "Ceres Logic", 'http://www.cereslogic.com'}
+        where you can swing by and contact me. You can also check out
+        my #{link_to 'Github', 'http://www.github.com/mdesjardins'} and
+        #{link_to 'LinkedIn', 'http://www.linkedin.com/in/michaeldesjardins'}
+        profiles to learn a little more about me.
+      %h1 Thanks for stopping by!
+      %p= link_to "Take me back to the jobs, please!", jobs_path
