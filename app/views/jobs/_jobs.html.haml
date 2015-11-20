@@ -4,17 +4,18 @@
       = fa_icon 'frown-o'
     %p There&rsquo;s nothing here.
 - else
-  - if @featured.present?
-    %h4 Featured
-    %ul.featured
-      - @featured.each do |featured|
-        %li= render partial: 'summary', locals: { job: featured }
-  - if @today.present?
-    %h4 Today
-    %ul
-      - @today.each do |today|
-        %li= render partial: 'summary', locals: { job: today }
-    %h4 Earlier        
+  - if params[:page] == 1
+    - if @featured.present?
+      %h4 Featured
+      %ul.featured
+        - @featured.each do |featured|
+          %li= render partial: 'summary', locals: { job: featured }
+    - if @today.present?
+      %h4 Today
+      %ul
+        - @today.each do |today|
+          %li= render partial: 'summary', locals: { job: today }
+      %h4 Earlier        
   %ul
     - @jobs.each do |job|
       %li= render partial: 'summary', locals: { job: job }

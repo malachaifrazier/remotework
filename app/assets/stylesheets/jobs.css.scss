@@ -20,12 +20,6 @@
   }
 }
 
-
-body {
-  background-image: image-url('bg/tiles/bedge_grunge.png');
-  background-repeat: repeat-xy;
-}
-
 legend {
   border-width: 0;
 }
@@ -42,7 +36,7 @@ body.job-listings {
     color: $charcoal;
     padding: 15px 0 5px;
     h2 {
-      font-family: $radley;
+      font-family: $lato;
       font-size: 16px;
       margin-top: 5px;
     }
@@ -115,7 +109,6 @@ body.job-listings {
 }
 
 body.jobs.show, body.jobs.new, body.jobs.create, body.jobs.edit, body.jobs.preview {
-  background-color: $beige;
   color: $charcoal;
   padding: 75px 0;
   .panel.panel-main {

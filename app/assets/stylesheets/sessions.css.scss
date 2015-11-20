@@ -20,19 +20,11 @@
   }
 }
 
-
-body {
-  background-image: image-url('bg/tiles/bedge_grunge.png');
-  background-repeat: repeat-xy;
-}
-
 legend {
   border-width: 0;
 }
 
-
 body.sessions.new {
-  background-color: $beige;
   color: $charcoal;
   padding: 75px 0;
   .panel.panel-main {
