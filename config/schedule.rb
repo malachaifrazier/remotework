@@ -21,6 +21,10 @@ every :hour, at: 0 do
   rake "periodic:fetch_rss_jobs[Job::StackOverflow]" 
 end
 
+every :hour, at: 5 do
+  rake "periodic:fetch_rss_jobs[Job::WfhIo]" 
+end
+
 every :hour, at: 10 do
   rake "periodic:fetch_rss_jobs[Job::Authentic]" 
 end
