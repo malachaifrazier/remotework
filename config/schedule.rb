@@ -29,6 +29,10 @@ every :hour, at: 10 do
   rake "periodic:fetch_rss_jobs[Job::Authentic]" 
 end
 
+every :hour, at: 15 do
+  rake "periodic:fetch_rss_jobs[Job::OffsiteCareers]" 
+end
+
 every :hour, at: 20 do
   rake "periodic:fetch_rss_jobs[Job::WeWorkRemotely]" 
 end
