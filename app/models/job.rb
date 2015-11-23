@@ -75,21 +75,6 @@ class Job < ActiveRecord::Base
     end
   end
 
-
-
-
-
-
-
-  # def post!
-  #   return unless user.present?
-  #   if user.email_validated?
-  #     self.touch(:posted_at)
-  #   else
-  #     return false
-  #   end
-  # end
-
   def rebuild_tags!(category, other=nil)
     tags = TagBuilder.new(category, self.title, self.description).tags
     self.tags = tags[:all]

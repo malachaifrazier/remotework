@@ -21,7 +21,11 @@ class RssIngestionJob < ActiveJob::Base
               job = klazz.factory(entry, feed)
               if job
                 unless klazz.probable_duplicate(job).exists?
-                  job.description = fetch_description(job.original_post_url) unless klazz.skip_description_scrape?
+                  unless klazz.skip_description_scrape?
+                    job.description = fetch_description(job.original_post_url) 
+                    category = Job.guess_category_from_title(entry.title)
+                    job.rebuild_tags!(category, entry.categories.join(' '))
+                  end
                   job.save! 
                   job.post!
                 end
@@ -29,6 +33,7 @@ class RssIngestionJob < ActiveJob::Base
             rescue => e
               Rails.logger.error "Failed to fetch job on #{feed_url}, entry #{entry.inspect}"
               Rails.logger.error "Got exception: #{e.message}"
+              Rails.logger.error e.backtrace.join("\n ")
             end
           end
         end

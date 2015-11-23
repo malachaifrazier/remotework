@@ -22,7 +22,7 @@ class Job::OffsiteCareers < Job
         category = self.guess_category_from_title(match_data[1].strip)
         job.rebuild_tags!(category, entry.categories.join(' '))
         return job
-    end
+      end
     end
 
     def determine_category(feed)
