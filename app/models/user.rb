@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :jobs
 
   after_create :validate_email!
+  after_create :send_notice
 
   def email_validated!
     touch(:email_validated_at)
@@ -35,5 +36,12 @@ class User < ActiveRecord::Base
       company_description: most_recent_job.company_description,
       how_to_apply: most_recent_job.how_to_apply
     }
+  end
+
+  
+  private
+
+  def send_notice
+    NoticeMailer.new_user_signup(self.id).deliver_later(queue: :low)
   end
 end

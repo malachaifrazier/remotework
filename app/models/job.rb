@@ -61,6 +61,9 @@ class Job < ActiveRecord::Base
         update_attribute(:expires_at, Time.zone.now + 30.days)
       end
       transitions from: [:pending, :paused], to: :posted
+      after do
+        send_notice if self.respond_to?(:send_notice)
+      end
     end
 
     event :pause do
