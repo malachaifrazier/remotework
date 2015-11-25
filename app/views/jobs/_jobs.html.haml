@@ -4,7 +4,7 @@
       = fa_icon 'frown-o'
     %p There&rsquo;s nothing here.
 - else
-  - if params[:page] == 1
+  - if params[:page].blank? || params[:page] == 1
     - if @featured.present?
       %h4 Featured
       %ul.featured
