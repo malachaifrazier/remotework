@@ -16,6 +16,7 @@ class Job < ActiveRecord::Base
   scope :next_up_for_tweet, -> { where("posted_at > ?", 7.days.ago).posted.order('last_tweeted_at DESC') }
   scope :featured, ->() { where(type: 'Job::RemotelyAwesome') }
   scope :not_featured, ->() { where("type <> 'Job::RemotelyAwesome'") }
+  scope :not_ours, ->() { where("type <> 'Job::RemotelyAwesome'") }
   scope :today, ->() { where("posted_at >= NOW() - '1 day'::INTERVAL") }
   scope :before_today, ->() { where("posted_at < NOW() - '1 day'::INTERVAL") }
 
@@ -54,6 +55,7 @@ class Job < ActiveRecord::Base
     state :paused
     state :posted
     state :expired
+    state :dead
 
     event :post do
       before do
@@ -68,6 +70,10 @@ class Job < ActiveRecord::Base
 
     event :pause do
       transitions from: [:pending, :posted], to: :paused
+    end
+
+    event :kill do
+      transitions from: [:posted], to: :dead
     end
 
     event :expire do

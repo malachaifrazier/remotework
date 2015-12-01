@@ -65,4 +65,8 @@ every :tuesday, at: '12:10pm' do
   rake "periodic:weekly_alerts"
 end
 
+every 6.hours do
+  rake "periodic:find_404"
+end
+
 # Learn more: http://github.com/javan/whenever
