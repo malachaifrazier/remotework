@@ -54,4 +54,8 @@ Rails.application.routes.draw do
   resource  :session
   resources :password_resets
   resources :validations
+
+  namespace :admin do
+    resources :jobs
+  end
 end

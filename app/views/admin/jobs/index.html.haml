@@ -1,0 +1,28 @@
+%h1 Jobs
+%table.table.table-condensed
+  %thead
+    %tr
+      %th
+      %th Title
+      %th Company
+      %th Status
+      %th Posted on
+      %th Source
+      %th
+  %tbody
+    %tr
+      - @jobs.each do |job|
+        %tr
+          %td.unedited
+            - unless job.reviewed?
+              = fa_icon 'circle'
+          %td= job.title
+          %td= job.company
+          %td= job.status
+          %td= job.posted_at.to_s(:mini_date_time)
+          %td= job.source
+          %td
+            = link_to "Edit", edit_admin_job_path(job), class: 'btn btn-default btn-xs'
+            = link_to "Expire", admin_job_path(job), method: :delete, class: 'btn btn-default btn-xs'
+          
+= paginate(@jobs)

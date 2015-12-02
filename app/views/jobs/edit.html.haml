@@ -9,7 +9,7 @@
 = render partial: 'shared/flash'
     
 = form_for @job, url: job_path(@job) do |f|    
-  = render partial: 'form', locals: { f: f }
+  = render partial: 'shared/job_form', locals: { f: f }
   .text-center
     - if @job.posted?
       = f.submit "Update your post", class: 'btn btn-lg btn-primary preview', data: { 'disable-with' => 'Updating...' }

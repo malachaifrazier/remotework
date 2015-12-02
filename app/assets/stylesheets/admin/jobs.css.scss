@@ -1,0 +1,18 @@
+@import "colors";
+@import "fonts";
+
+body.admin.jobs {
+  padding: 20px;
+  .container {
+    background-color: #fff;
+    #content { 
+      color: $charcoal;
+      .unedited {
+        color: #00F;
+      }
+      form {
+        margin: 40px;
+      }
+    }
+  }
+}

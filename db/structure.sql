@@ -164,7 +164,9 @@ CREATE TABLE jobs (
     how_to_apply text,
     user_id uuid,
     expires_at timestamp without time zone,
-    status character varying
+    status character varying,
+    reviewed_at timestamp without time zone,
+    expired_at timestamp without time zone
 );
 
 
@@ -238,7 +240,8 @@ CREATE TABLE users (
     password_digest character varying NOT NULL,
     password_reset_token character varying,
     validation_token character varying,
-    email_validated_at timestamp without time zone
+    email_validated_at timestamp without time zone,
+    admin boolean DEFAULT false
 );
 
 
@@ -501,4 +504,10 @@ INSERT INTO schema_migrations (version) VALUES ('20151112210536');
 INSERT INTO schema_migrations (version) VALUES ('20151113225731');
 
 INSERT INTO schema_migrations (version) VALUES ('20151116134134');
+
+INSERT INTO schema_migrations (version) VALUES ('20151202140140');
+
+INSERT INTO schema_migrations (version) VALUES ('20151202144247');
+
+INSERT INTO schema_migrations (version) VALUES ('20151202145935');
 

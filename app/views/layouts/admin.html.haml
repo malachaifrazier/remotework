@@ -1,7 +1,7 @@
 !!!5
 %html
   %head
-    %title Remote Work: Find who's hiring telework technologists | Remotely Awesome Jobs
+    %title Remote Work Admin
     %meta{ charset: 'utf-8' }
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
     %meta{ 'http-equiv' => "X-UA-Compatible", content: "IE=edge" }
@@ -29,13 +29,8 @@
     = csrf_meta_tags
 
   %body{ class: "#{controller.controller_path.split('/').join(' ')} #{controller.action_name}" }
-    .navigation
-      %nav.navbar.navbar-fixed-top.navbar-inverse
-        = render partial: 'shared/top_header'
     .container
-      .row
-        .col-md-10.col-sm-10.col-xs-12
-          .panel.panel-main
-            #content
-              = yield
-    = render partial: 'shared/ga'
+      #content
+        .row
+          .col-xs-12
+            = yield

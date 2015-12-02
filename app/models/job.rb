@@ -118,4 +118,12 @@ class Job < ActiveRecord::Base
     end
     'other'
   end
+
+  def reviewed?
+    reviewed_at.present?
+  end
+
+  def reviewed!
+    touch(:reviewed_at)
+  end
 end

@@ -1,0 +1,4 @@
+= form_for @job, as: :job, url: admin_job_path(@job) do |f|
+  = render partial: 'shared/job_form', locals: { job: @job, f: f }
+  .text-center= f.submit 'Save', class: 'btn btn-lg btn-primary'
+  
