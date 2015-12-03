@@ -1,4 +1,15 @@
 %h1 Jobs
+
+- if @q.present?
+  %h2 Searched for #{@q}
+
+= form_tag request.path, method: :get do
+  .input-group
+    = text_field_tag :q, nil, class: 'form-control', placeholder: 'Search for...'
+    .input-group-btn
+      %button.btn.btn-primary{ type: 'submit' }
+        #{fa_icon 'search'} Search
+  
 %table.table.table-condensed
   %thead
     %tr

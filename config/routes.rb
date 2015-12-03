@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get    '/unsubscribe/:token'            => 'email_addresses#unsubscribe', as: :unsubscribe
 
   get    '/about'                         => 'pages#about', as: :about
+  get    '/why'                           => 'pages#why', as: :why
 
   resources :email_addresses do
     get :validate

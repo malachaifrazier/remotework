@@ -19,13 +19,18 @@ class Job < ActiveRecord::Base
   scope :not_ours, ->() { where("type <> 'Job::RemotelyAwesome'") }
   scope :today, ->() { where("posted_at >= NOW() - '1 day'::INTERVAL") }
   scope :before_today, ->() { where("posted_at < NOW() - '1 day'::INTERVAL") }
-
+  scope :this_week, ->() { where("posted_at < NOW() - '1 week'::INTERVAL") }
   scope :for_tags, ->(tags) {
     return where('1=1') if tags.blank?
     tags_pg = "{#{tags.join(',')}}"
     where("tags @> ?", tags_pg)
   }
-
+  scope :similar, ->(job, number=3) {
+    category = job.category
+    language = job.tags_that_are('language').first
+    Job.for_tags([category, language]).where('id != ?', job.id).limit(number)
+  }
+  
   pg_search_scope :search, :against => [:title, :company, :description]
 
   # pseudo-scope. Using a class method instead because we need to override this in a child class.
@@ -97,6 +102,14 @@ class Job < ActiveRecord::Base
     language_tags + library_tags + tool_tags + skill_tags
   end
 
+  def category
+    (tags && TagBuilder::CATEGORY_TAGS).first
+  end
+
+  def tags_that_are(type)
+    tags && TagBuilder.const_get("#{type.upcase}_TAGS")
+  end
+  
   def self.guess_category_from_title(title)
     # Some boards don't have any type of category on their job postings (yuck!). We've gotta
     # make a guess based on keywords the job title (yuck).  Order in the array is important

@@ -1,6 +1,9 @@
 class Admin::JobsController < Admin::BaseController
   def index
-    @jobs = Job.all.order('posted_at DESC').page(params[:page] || 1).per(50)
+    @q = params[:q]
+    query = Job.all.order('posted_at DESC')
+    query = query.search(@q) if @q.present?
+    @jobs = query.page(params[:page] || 1).per(50)
   end
 
   def edit

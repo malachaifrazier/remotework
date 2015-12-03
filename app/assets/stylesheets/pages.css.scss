@@ -11,7 +11,7 @@ body.pages {
       font-size: 28px;
       margin: 20px;
     }
-    p {
+    p, li {
       font-size: 18px;
       line-height: 28px;
       margin-left: 20px;
@@ -21,6 +21,12 @@ body.pages {
         margin-right: 10px;
         width: 120px;
       }
+    }
+    .logo {
+      margin-bottom: 20px;
+    }
+    a.back {
+        font-size: 20px;
     }
   }
 }

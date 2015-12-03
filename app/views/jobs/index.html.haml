@@ -2,8 +2,10 @@
   .row
     .col-md-10.col-sm-9.col-xs-12
       .heading
-        %h3= welcome_message
-        %h2 <b>Remotely Awesome Jobs</b>   curates the best remote tech jobs across the web.
+        %h2 <b>Remotely Awesome Jobs</b> curates the best remote tech jobs across the web.
+        %h3
+          = number_with_delimiter Job.this_week.count
+          remote jobs added this week. #{link_to "Read why we think we&rsquo;re so awesome.".html_safe, why_path}
         - if @tags.empty?
           .popular
             %i Popular tags:

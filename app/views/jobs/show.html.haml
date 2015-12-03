@@ -22,9 +22,15 @@
               %p= link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, jobs_path, class: 'btn btn-default btn-sm'
   .col-md-4.sidebar
     .buttons
-      .text-center
-        .button= link_to "#{fa_icon 'thumb-tack'} Post a Job".html_safe, new_job_path, class: 'btn btn-primary'
-        .button= link_to "#{fa_icon 'twitter'} Follow Us".html_safe, 'http://www.twitter.com/RemotelyAweJobs', class: 'btn btn-twitter'
-        .button= link_to "#{fa_icon 'envelope'} Get Alerts".html_safe, alert_enroll_path(action: 'new', tags: @tags, q: @q), class: 'btn btn-info'
-        .link= link_to "View more jobs", jobs_path
-    
+      .button= link_to "#{fa_icon 'thumb-tack'} Post a Job".html_safe, new_job_path, class: 'btn btn-info'
+      .button= link_to "#{fa_icon 'twitter'} Follow Us on Twitter".html_safe, 'http://www.twitter.com/RemotelyAweJobs', class: 'btn btn-info'
+      .button= link_to "#{fa_icon 'list-alt'} View More Remote Jobs".html_safe, jobs_path, class: 'btn btn-info'
+      .button= link_to "#{fa_icon 'envelope'} Email alerts for jobs like this".html_safe, alert_enroll_path(action: 'new', tags: @tags, q: @q), class: "btn btn-primary"
+      - if current_user && current_user.admin?
+        .button= link_to "#{fa_icon 'edit'} Edit this post".html_safe, edit_admin_job_path(@job), class: "btn btn-danger"
+    .similar
+      %h4 Similar Posts
+      - Job.similar(@job).each do |job|
+        .job-mini-summary
+          .job-title= link_to job.title, job_path(job)
+          .job-company= job.company

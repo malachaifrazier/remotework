@@ -37,15 +37,15 @@ body.job-listings {
     color: $charcoal;
     padding: 15px 0 5px;
     h2 {
-      font-family: $lato;
-      font-size: 16px;
-      margin-top: 5px;
-    }
-    h3 {
       font-size: 22px;
       font-weight: bold;
       margin-bottom: 3px;
       margin-top: 0;      
+    }
+    h3 {
+      font-family: $lato;
+      font-size: 16px;
+      margin-top: 5px;        
     }
   }
   .sad {
@@ -176,15 +176,31 @@ body.jobs.show, body.jobs.new, body.jobs.create, body.jobs.edit, body.jobs.previ
       .button {
         margin: 5px 0;
         a {
-          width: 150px;
+          width: 215px;
           i {
-            margin-right: 5px;
+            margin-right: 4px;
           }
         }
       }
       .link {
-          margin-top: 10px;
+          margin-top: 20px;
       }
     }
+    .similar {
+      h4 {
+        color: $charcoal;
+        font-size: 14px;
+        letter-spacing: 2px;
+        margin-top: 15px;
+        text-transform: uppercase;
+      }
+      .job-mini-summary {
+        margin-bottom: 10px;
+        .job-company {
+          color: $ash;
+          font-style: italic;  
+        }
+      }
+    }  
   }
 };

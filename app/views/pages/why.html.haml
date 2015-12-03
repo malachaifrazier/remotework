@@ -1,0 +1,34 @@
+.row
+  .col-md-12
+    .wall-of-text
+      %h1 What makes Remotely Awesome Jobs so awesome?
+      %p
+        Great question! There are lots of job post aggregators out
+        there, and there are even a few that focus on remote work
+        like we do.
+      %p
+        We thing Remotely Awesome Jobs is better than all those
+        other sites for several reasons:
+        %ul
+          %li
+            <b>We crawl more sites.</b> Period. Most other remote aggregators
+            scrape the same three or four sites for job posts. We currently
+            crawl nine and we're adding more every day.
+          %li
+            <b>Get daily job alerts without creating an account.</b> Ugh.
+            Who needs another password to remember? That'd be lame.
+          %li
+            <b>We look amazing on mobile devices.</b> We take responsive
+            design seriously, and the site doesn't even need any Javascript
+            to do its thing. We also don't have any huge images to slow
+            you down.
+          %li
+            <b>We have job posts no one else has.</b> Because employers can
+            post job openings directly on our site.
+      %p
+        We have a few more features up our sleeve too, so keep checking back
+        and don't stop being awesome!
+        .text-center
+          .logo
+            = image_tag 'remotely-awesome-logo-black-150-rect.png'
+          = link_to "#{fa_icon 'chevron-left'} Back to the Job Posts!".html_safe, jobs_path, class: 'back'
