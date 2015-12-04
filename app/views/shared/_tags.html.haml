@@ -1,5 +1,5 @@
 .tags
-  - job.grouped_tags.each do |tag|
+  - job.grouped_tags.uniq.each do |tag|
     .no-break
       %span.label.label-tag{ class: "label-#{TagBuilder.tag_type(tag.to_s)}-tag" }
         = link_to(tag.to_s, add_tag_url(@tags, tag.to_s, @q))

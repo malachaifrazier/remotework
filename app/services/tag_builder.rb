@@ -6,7 +6,7 @@ class TagBuilder
 
   LANGUAGE_TAGS = %w[java javascript coffeescript ecmascript c# ruby python golang php c++ typescript actionscript objective-c swift css sass
                    scss less sql groovy haskell c clojure scala erlang vb lisp r fortran pascal delphi kotlin ceylon html bash f# ocaml perl
-                   xml json elixir lua assembly-language matlab cobol d ada dart rust smalltalk tcl ios]
+                   xml json elixir lua assembly-language matlab cobol d ada dart rust smalltalk tcl]
 
   LIBRARY_TAGS = %w[ruby-on-rails sinatra grape cake drupal joomla symfony zend wordpress magneto laravel flask django node angular backbone
                   ember spring cocoa ios iphone lift android titanium
