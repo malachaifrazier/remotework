@@ -69,4 +69,8 @@ every 6.hours do
   rake "periodic:find_404"
 end
 
+every 1.day, :at => '12:01 am' do
+  rake "periodic:expire_jobs"
+end
+
 # Learn more: http://github.com/javan/whenever

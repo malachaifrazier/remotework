@@ -1,0 +1,15 @@
+= content_for :pre_content do
+  Your job post has expired.
+
+%h2 Your job post has expired
+%p
+  We're just writing to let you know that your
+  job post for <b>"#{@job.title}"</b> has expired, and
+  it is no longer featured on our site.
+%p
+  If you want to re-post it, then #{link_to "Sign into", new_session_url}
+  your account.
+%p
+  Cheers,
+  %br
+  Mike at Remotely Awesome Jobs

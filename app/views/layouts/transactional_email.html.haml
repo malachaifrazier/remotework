@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+%html{ xmlns: "https://www.w3.org/1999/xhtml" }
+  %head
+    %title= message.subject
+    %meta{ 'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8" }
+    %meta{ name: "viewport", content: "width=device-width" }
+    :css
+      a {
+        text-decoration: none !important;
+      }
+
+      /* overrides addresses, numbers, etc. being linked */
+
+      span.apple-override-header a {
+        color: #ffffff !important;
+        text-decoration: none !important;
+      }
+
+      span.apple-override-hidden a {
+        color: #242525 !important;
+        text-decoration: none !important;
+      }
+
+      span.apple-override-dark a {
+        color: #292e31 !important;
+        text-decoration: none !important;
+      }
+
+      span.apple-override-light a {
+        color: #77858c !important;
+        text-decoration: none !important;
+      }
+
+      /* [override] prevents Yahoo Mail breaking media queries */
+
+      /* retina */
+      @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+
+        body[override] span.retina img {
+          visibility: hidden !important;
+        }
+
+      /* tablets */
+      @media all and (max-device-width: 768px) {
+
+        body[override] span.retina img {
+          visibility: hidden !important;
+        }
+
+        body[override] td.font-large, body[override] td.font-large span, body[override] td.font-large a {
+          font-size: 18px !important;
+          line-height: 25px !important;
+        }
+
+        body[override] td.font-medium, body[override] td.font-medium span, body[override] td.font-medium a {
+          font-size: 16px !important;
+          line-height: 23px !important;
+        }
+
+        body[override] td.font-small, body[override] td.font-small span, body[override] td.font-small a {
+          font-size: 15px !important;
+          line-height: 21px !important;
+        }
+
+        body[override] td.title, body[override] td.title span, body[override] td.title a {
+          font-size: 24px !important;
+          line-height: 28px !important;
+        }
+      }
+
+      /* mobile */
+      @media all and (max-device-width: 500px) {
+
+        body[override] table.width, body[override] td.width {
+          width: 100% !important;
+        }
+
+        body[override] td.temp-padding, body[override] td.temp-padding div.clear {
+          display: none !important;
+          width: 0 !important;
+        }
+
+        body[override] td.banner {
+          height: 186px !important;
+        }
+
+        body[override] td.subbanner-item {
+          -moz-box-sizing: border-box !important;
+          -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+          display: block !important;
+          padding-left: 10px !important;
+          padding-right: 10px !important;
+          text-align: center !important;
+          width: 100% !important;
+        }
+
+        body[override] tr.summary-item td.summary-padding, body[override] tr.summary-item td.summary-padding div.clear {
+          width: 17px !important;
+        }
+
+        body[override] a.browser-link {
+          display: block !important;
+        }
+
+      }
+
+  %body{ bgcolor: "f9fafa", style: "border: 0; margin: 0; padding: 0; min-width: 100%;", override: "fix" }
+    %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%" }
+      %tbody
+        %tr
+          %td{ bgcolor: "f9fafa", style: "border: 0; margin: 0; padding: 0;" }
+            -#  header
+            %table{ style: "background-color: #eee;", border: "0", cellpadding: "0", cellspacing: "0", width: "100%" }
+              %tbody
+                %tr
+                  %td{ align: "center", style: "border: 0; margin: 0; padding: 0;" }
+
+                    -# preheader (hidden)
+                    %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%" }
+                      %tbody
+                        %tr
+                          %td{ height: "17", align: "center", style: "border: 0; margin: 0; padding: 0;" }
+                            %table.width{ align: "center", border: "0", cellpadding: "0", cellspacing: "0" }
+                              %tbody
+                                %tr
+                                  %td{ style: "color: #eee" }
+                                    = yield :pre_content
+                    -# /preheader
+
+                    -# banner
+                    %table.width{ border: "0", cellpadding: "0", cellspacing: "0" }
+                      %tbody
+                        %tr
+                          %td{ height: "1", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;", width: "100%" }
+                            .clear{ style: "height: 1px; width: 1px;" }&nbsp;
+                        %tr
+                          %td.banner{ style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;", valign: "middle" }
+                            %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%" }
+                              %tr
+                                %td.perm-padding{ style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;", width: "20" }
+                                  .clear{ style: "height: 1px; width: 20px;" }
+                                %td{ style: "border: 0; margin: 0; padding: 0;", width: "100%" }
+                                  %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%" }
+                                    %tr
+                                      %td.icon{ align: "center", height: "150", style: "border: 0; margin: 0; padding: 0;" }
+                                        %a{ href: "http://www.remotelyawesomejobs.com", style: "border: 0; margin: 0; padding: 0;", target: "_blank" }
+                                          %span
+                                            %img{ alt: "Remotely Awesome Jobs", height: "150", style: "border: 0; margin: 0; padding: 0;", src: asset_url("remotely-awesome-logo-black-150-rect.png") }
+                                    %tr
+                                      %td.title{ align: "center", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;" }
+                                        %span{ style: "color: #f39220; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 35px;" }
+                                          = yield(:title)
+                                    %tr
+                                      %td{ height: "1", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;", width: "100%" }
+                                        .clear{ style: "height: 1px; width: 1px;"}&nbsp;
+                                %td.perm-padding{ style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;", width: "20" }
+                                  .clear{ style: "height: 1px; width: 20px;" }
+                        %tr
+                          %td{ height: "22", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;", width: "100%" }
+                            .clear{ style: "height: 22px; width: 1px;"}&nbsp;
+                    -# /banner
+            -# /header
+
+            -# main content
+            %table{ bgcolor: "ffffff", border: "0", cellpadding: "0", cellspacing: "0", style: "border-bottom: 1px solid #e4e6e8; border-top: 1px solid #e4e6e8;", width: "100%" }
+              %tbody
+                %tr
+                  %td{ align: "center", style: "border: 0; margin: 0; padding: 0;" }
+                    %table.width{ border: "0", cellpadding: "0", cellspacing: "0" }
+                      %tbody
+                        %tr
+                          %td{ colspan: "3", height: "28", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;" }
+                            .clear{ style: "height: 28px; width: 1px;" }&nbsp;
+                        %tr
+                          %td.temp-padding{ style: "border: 0; margin: 0; padding: 0; mso-line-height-rule: exactly; font-size: 1px; line-height: 1px;" }
+                            .clear{ style: "height: 1px; width: 20px;" }
+                          %td{ style: "border: 0; margin: 0; padding: 0; mso-line-height-rule: exactly; font-size: 1px; line-height: 1px;", width: "460" }
+                            %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%" }
+                              %tbody
+                                %tr.summary-item
+                                  %td.summary-padding{ style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px;", width: "1" }
+                                    .clear{ style: "height: 1px; width: 1px;" }
+                                  %td{ align: "left", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; color: #555; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 20px;", width: "100" }
+                                    -# actual mesage content
+                                    = yield
+                                    -# /actual mesage content 
+                                  %td.summary-padding{ style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px;", width: "1" }
+                                    .clear{ style: "height: 1px; width: 1px;" }
+                                %tr
+                                  %td{ colspan: "3", height: "28", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;" }
+                                    .clear{ style: "height: 28px; width: 1px;" }&nbsp;
+                          %td.temp-padding{ style: "border: 0; margin: 0; padding: 0; mso-line-height-rule: exactly; font-size: 1px; line-height: 1px;" }
+                            .clear{ style: "height: 1px; width: 20px;" }
+            -# /main content
+            
+            -# footer
+            %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%" }
+              %tbody
+                %tr
+                  %td{ align: "center", style: "border: 0; margin: 0; padding: 0;" }
+                    %table.width{ border: "0", cellpadding: "0", cellspacing: "0" }
+                      %tbody
+                        %tr
+                          %td{ colspan: "3", height: "28", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;" }
+                            .clear{ style: "height: 28px; width: 1px;" }&nbsp;
+                        %tr
+                          %td.perm-padding{ style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px;", width: "20" }
+                            .clear{ style: "height: 1px; width: 20px;" }
+                          %td.font-small{ align: "center", style: "border: 0; margin: 0; padding: 0; color: #959fa5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 17px;" }
+                            -# copyright and unsubscribe
+                            %table
+                              %tr
+                                %td{ height: "28", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;" }
+                                  .clear{ style: "height: 28px; width: 1px;" }&nbsp;
+                              %tr{ align: "center" }
+                                %td.footerContent{ valign: "top", style: "border-collapse: collapse;color: #808080;font-family: Helvetica;font-size: 10px;line-height: 150%;text-align:center;" }
+                                  %em Copyright &copy; #{Date.today.year} Ceres Logic, LLC. All rights reserved.
+                            -# /copyright and unsubscribe
+                          %td.perm-padding{ style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px;", width: "20" }
+                            .clear{ style: "height: 1px; width: 20px;" }
+                        %tr
+                          %td{ colspan: "3", height: "200", style: "border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;" }
+                            .clear{ style: "height: 28px; width: 1px;" }&nbsp;
+            -# /footer
+

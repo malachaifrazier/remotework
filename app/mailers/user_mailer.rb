@@ -1,4 +1,6 @@
 class UserMailer < ApplicationMailer
+  layout "transactional_email"
+  
   def password_reset(user_id)
     @user = User.find(user_id)
     @token = @user.password_reset_token

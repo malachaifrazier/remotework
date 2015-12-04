@@ -17,9 +17,12 @@ class Job < ActiveRecord::Base
   scope :featured, ->() { where(type: 'Job::RemotelyAwesome') }
   scope :not_featured, ->() { where("type <> 'Job::RemotelyAwesome'") }
   scope :not_ours, ->() { where("type <> 'Job::RemotelyAwesome'") }
+  scope :ours, ->() { where("type = 'Job::RemotelyAwesome'") }
   scope :today, ->() { where("posted_at >= NOW() - '1 day'::INTERVAL") }
   scope :before_today, ->() { where("posted_at < NOW() - '1 day'::INTERVAL") }
   scope :this_week, ->() { where("posted_at < NOW() - '1 week'::INTERVAL") }
+  scope :should_be_expired, ->() { where("expires_at < NOW()") }
+  scope :expires_tomorrow, ->() { where("expires_at > NOW() AND expires_at < NOW() + '1 day'::INTERVAL") }
   scope :for_tags, ->(tags) {
     return where('1=1') if tags.blank?
     tags_pg = "{#{tags.join(',')}}"
@@ -138,5 +141,9 @@ class Job < ActiveRecord::Base
 
   def reviewed!
     touch(:reviewed_at)
+  end
+
+  def ours?
+    source == 'Remotely Awesome Jobs'
   end
 end

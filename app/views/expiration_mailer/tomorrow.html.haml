@@ -1,0 +1,16 @@
+= content_for :pre_content do
+  Heads up: Your job post will be expiring tomorrow.
+
+%h2 Your job post will expire tomorrow
+%p
+  Hey there - heads up! We wanted to let you know that your
+  job post for "#{link_to @job.title, job_url(@job)}" is
+  scheduled to expire tomorrow. That means it will no longer
+  be featured on our site.
+%p
+  If you want to re-post it, then #{link_to "Sign into", new_session_url}
+  your account before it disappears.
+%p
+  Cheers,
+  %br
+  Mike at Remotely Awesome Jobs
