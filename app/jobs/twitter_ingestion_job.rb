@@ -37,7 +37,7 @@ class TwitterIngestionJob < ActiveJob::Base
 
   def fetch_description(url)
     begin
-      source = open(url, allow_redirections: :safe).read
+      source = open(url, allow_redirections: :all).read
       result = Readability::Document.new(source, blacklist: %w[img], tags: %w[div p ul li strong h2]).content
     rescue => e
       Rails.logger.error "Failed to process job description for #{url} : #{e.message}"
