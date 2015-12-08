@@ -52,6 +52,6 @@ class RssIngestionJob < ActiveJob::Base
   end
 
   def normalize_url(url)
-    ActiveSupport::Inflector.transliterate(url)
+    ActiveSupport::Inflector.transliterate(url.gsub('https','http'))    
   end
 end
