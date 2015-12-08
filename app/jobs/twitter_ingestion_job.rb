@@ -50,7 +50,7 @@ class TwitterIngestionJob < ActiveJob::Base
       # We have a shortened twitter link. Try to tease out a canonical URL from the Job posting.
       source = open(url, allow_redirections: :safe).read
       begin
-        url = Nokogiri::HTML(open(url, allow_redirections: :safe)).css('link[rel=canonical]').attribute('href').value()
+        url = Nokogiri::HTML(open(url, allow_redirections: :all)).css('link[rel=canonical]').attribute('href').value()
       rescue
         Rails.logger.info "Unable to get the canonical URL for the job post."
       end
