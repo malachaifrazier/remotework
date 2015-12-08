@@ -45,7 +45,7 @@ class TwitterIngestionJob < ActiveJob::Base
   end
 
   def normalize_url(url)
-    url = ActiveSupport::Inflector.transliterate(url)
+    url = ActiveSupport::Inflector.transliterate(url.gsub('https','http'))
     if /\/t\.co\//.match(url)
       # We have a shortened twitter link. Try to tease out a canonical URL from the Job posting.
       source = open(url, allow_redirections: :safe).read
