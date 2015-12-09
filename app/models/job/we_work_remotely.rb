@@ -15,10 +15,6 @@ class Job::WeWorkRemotely < Job
       URLS.keys
     end
 
-    def skip_description_scrape?
-      true
-    end
-
     def factory(entry, feed, opts={})
       entry_title = entry.title.split(':')
       company = entry_title.shift
@@ -43,4 +39,8 @@ class Job::WeWorkRemotely < Job
       URLS[feed.feed_url]
     end
   end
+  
+  def fetch_description!(url)
+    # Just use what RSS gave us.
+  end  
 end

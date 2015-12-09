@@ -1,4 +1,4 @@
-- if @jobs.empty?
+- if @jobs.empty? && @today.empty?
   .text-center
     .sad
       = fa_icon 'frown-o'
@@ -15,7 +15,8 @@
       %ul
         - @today.each do |today|
           %li= render partial: 'summary', locals: { job: today }
-      %h4 Earlier        
+    - if @jobs.present?
+      %h4 Earlier 
   %ul
     - @jobs.each do |job|
       %li= render partial: 'summary', locals: { job: job }

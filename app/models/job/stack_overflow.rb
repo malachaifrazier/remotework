@@ -23,8 +23,4 @@ class Job::StackOverflow < Job
   def rebuild_tags!(category, other)
     self.tags = TagBuilder.new(category, self.title, self.description, other).tags[:all]
   end
-
-#  def skip_description_scrape?
-#    true
-#  end
 end

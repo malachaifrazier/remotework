@@ -15,10 +15,7 @@ class Job::Authentic < Job
       CATEGORIES.keys.map { |cat| "http://www.authenticjobs.com/rss/custom.php?terms=&type=1,2,3,4,5,6,7&cats=#{cat}&onlyremote=1&location=" }
     end
 
-    def skip_description_scrape?
-      true
-    end
-
+  
     def factory(entry, feed, opts={})
       company, title = entry.title.split(': ')
       location = entry.summary.match(/.*?<strong>\((.*?)\)<\/strong>/)[1]
@@ -39,4 +36,8 @@ class Job::Authentic < Job
       CATEGORIES[feed.feed_url.match(/.*?cats=([0-9]).*/)[1]]
     end
   end
+
+  def fetch_description!(url)
+    # Just use what RSS gave us.
+  end  
 end

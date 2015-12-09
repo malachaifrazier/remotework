@@ -22,7 +22,7 @@ class RssIngestionJob < ActiveJob::Base
               if job
                 unless klazz.probable_duplicate(job).exists?
                   unless klazz.skip_description_scrape?
-                    job.description = fetch_description(job.original_post_url) 
+                    job.fetch_description!(job.original_post_url) 
                     category = Job.guess_category_from_title(entry.title)
                     job.rebuild_tags!(category, entry.categories.join(' '))
                   end
@@ -41,15 +41,15 @@ class RssIngestionJob < ActiveJob::Base
     end
   end
 
-  def fetch_description(url)
-    url = normalize_url(url)
-    begin
-      source = open(url, allow_redirections: :all).read
-      Readability::Document.new(source, blacklist: %w[img], tags: %w[div p ul li strong h2]).content
-    rescue => e
-      Rails.logger.error "Failed to process job description for #{url} : #{e.message}"
-    end
-  end
+  # def fetch_description(url)
+  #   url = normalize_url(url)
+  #   begin
+  #     source = open(url, allow_redirections: :all).read
+  #     Readability::Document.new(source, blacklist: %w[img], tags: %w[div p ul li strong h2]).content
+  #   rescue => e
+  #     Rails.logger.error "Failed to process job description for #{url} : #{e.message}"
+  #   end
+  # end
 
   def normalize_url(url)
     ActiveSupport::Inflector.transliterate(url.gsub('https','http'))    

@@ -16,10 +16,6 @@ class Job::WfhIo < Job
       URLS.keys
     end
 
-    def skip_description_scrape?
-      true
-    end
-
     def factory(entry, feed, opts={})
       title_paramed = entry.title.parameterize
       # Crazy way to extract the company name from the slug.
@@ -43,4 +39,8 @@ class Job::WfhIo < Job
       URLS[feed.feed_url]
     end
   end
+
+  def fetch_description!(url)
+    # Just use what RSS gave us.
+  end    
 end

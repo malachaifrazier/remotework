@@ -4,10 +4,6 @@ class Job::OffsiteCareers < Job
       ["http://offsite.careers/feeds/jobs"]
     end
 
-    def skip_description_scrape?
-      true
-    end
-
     def factory(entry, feed, opts={})
       match_data = entry.title.match(/(.*?) at (.*?)\((.*?)\).*?$/)
       if match_data
@@ -29,4 +25,8 @@ class Job::OffsiteCareers < Job
       URLS[feed.feed_url]
     end
   end
+
+  def fetch_description!(url)
+    # Just use what RSS gave us.
+  end    
 end

@@ -50,14 +50,6 @@ class Job < ActiveRecord::Base
     where(sql, other_job.title, other_job.company, at, at, at, at)
   end
 
-  def self.skip_description_scrape?
-    false
-  end
-
-  def name_for_slug
-    "#{self.company} #{self.title}"
-  end
-
   aasm column: 'status' do
     state :pending, initial: true
     state :paused
@@ -90,6 +82,10 @@ class Job < ActiveRecord::Base
       end
       transitions from: [:pending, :posted], to: :expired
     end
+  end
+
+  def name_for_slug
+    "#{self.company} #{self.title}"
   end
 
   def rebuild_tags!(category, other=nil)
@@ -145,5 +141,23 @@ class Job < ActiveRecord::Base
 
   def ours?
     source == 'Remotely Awesome Jobs'
+  end
+
+  def self.skip_description_scrape?
+    false
+  end
+
+  def fetch_description!(url)
+    url = normalize_url(url)
+    begin
+      source = open(url, allow_redirections: :all).read
+      job.description = Readability::Document.new(source, blacklist: %w[img], tags: %w[div p ul li strong h2]).content
+    rescue => e
+      Rails.logger.error "Failed to process job description for #{url} : #{e.message}"
+    end
+  end
+
+  def normalize_url(url)
+    ActiveSupport::Inflector.transliterate(url.gsub('https','http'))    
   end
 end
