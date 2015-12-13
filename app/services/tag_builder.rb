@@ -4,14 +4,14 @@
 class TagBuilder
   CATEGORY_TAGS = %w[development design management other]
 
-  LANGUAGE_TAGS = %w[java javascript coffeescript ecmascript c# ruby python golang php c++ typescript actionscript objective-c swift css sass
-                   scss less sql groovy haskell c clojure scala erlang vb lisp r fortran pascal delphi kotlin ceylon html bash f# ocaml perl
+  LANGUAGE_TAGS = %w[java javascript coffeescript ecmascript c ruby python golang php c-plus-plus typescript actionscript objective-c swift css sass
+                   scss less sql groovy haskell clojure scala erlang vb lisp r fortran pascal delphi kotlin ceylon html bash f ocaml perl
                    xml json elixir lua assembly-language matlab cobol d ada dart rust smalltalk tcl]
 
   LIBRARY_TAGS = %w[ruby-on-rails sinatra grape cake drupal joomla symfony zend wordpress magneto laravel flask django node angular backbone
-                  ember spring cocoa ios iphone lift android titanium
-                  xamarin hibernate jpa jee extjs mfc appkit react flux gwt opengl entity-framework activesync instagram
-                  bootstrap cordova sequel dojo rabbitmq sensu jquery ionic lucene d3 play-framework tapestry canjs asp]
+                  ember spring cocoa ios iphone lift android titanium xamarin hibernate jpa jee extjs mfc appkit react flux gwt opengl
+                  entity-framework activesync instagram bootstrap cordova sequel dojo rabbitmq sensu jquery ionic lucene d3 play-framework
+                  tapestry canjs asp]
 
   TOOL_TAGS = %w[puppet chef linux mysql postgresql openstack azure svn maven npm git visual-studio syslog tcp-ip apache lamp unix ansible
                salt ubuntu oracle sybase sql-server ghc vagrant rackspace aws ec2 redis mongodb neo4j heroku solr elasticsearch etl
@@ -32,7 +32,10 @@ class TagBuilder
 
   SYNONYMS = {
     'c-sharp' => 'c#',
-    'c-plus-plus' => 'c++',
+    'c++' => 'c-plus-plus',
+    'c99' => 'c',
+    'c-99' => 'c',
+    'c/c++' => 'c c-plus-plus',
     'objc' => 'objective-c',
     'obj-c' => 'objective-c',
     'pl/sql' => 'sql',
@@ -83,7 +86,6 @@ class TagBuilder
   end
 
   def tags
-    # Priority = Top of the list... other + title + description, top 5, 5, 3, 3
     library =   ((@other & LIBRARY_TAGS) + (@title & LIBRARY_TAGS) + (@description & LIBRARY_TAGS)).uniq
     language =  ((@other & LANGUAGE_TAGS) + (@title & LANGUAGE_TAGS) + (@description & LANGUAGE_TAGS)).uniq
     tools =     ((@other & TOOL_TAGS) + (@title & TOOL_TAGS) + (@description & TOOL_TAGS)).uniq
