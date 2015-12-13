@@ -44,4 +44,13 @@ describe Job do
       expect(job.expired_at).not_to be_nil
     end    
   end
+
+  describe "review!" do
+    let (:job) { FactoryGirl.create(:job, title: 'Guitar Man', company: "Jack's") }
+    it "should update posted_at" do
+      job.reviewed!
+      job.reload
+      expect(job.reviewed_at).not_to be_nil
+    end    
+  end
 end
