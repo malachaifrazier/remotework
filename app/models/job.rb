@@ -88,6 +88,14 @@ class Job < ActiveRecord::Base
     "#{self.company} #{self.title}"
   end
 
+  def fetch_description!(url)
+    begin
+      job.description = BasicDescriptionScraper.scrape(url)
+    rescue => e
+      Rails.logger.error "Failed to process job description for #{url} : #{e.message}"
+    end
+  end
+
   def rebuild_tags!(category, other=nil)
     tags = TagBuilder.new(category, self.title, self.description).tags
     self.tags = tags[:all]
@@ -109,28 +117,6 @@ class Job < ActiveRecord::Base
     tags && TagBuilder.const_get("#{type.upcase}_TAGS")
   end
   
-  def self.guess_category_from_title(title)
-    # Some boards don't have any type of category on their job postings (yuck!). We've gotta
-    # make a guess based on keywords the job title (yuck).  Order in the array is important
-    # here - you want "Software Engineer Manager" to end up in management, not development.
-    # Likewise you *probably* want "Public Relations Management" to be in other, not
-    # management.
-    all_keywords = [
-      [ ['devops','sales','payroll','counsel','public relations','accountant','controller','tax','system administrator','writer','database'], 'other' ],
-      [ ['manager','director','scrum','vp'], 'management' ],
-      [ ['engineer','engineers','developer','developers','architect','programmer','programmers','dev'], 'development' ],
-      [ ['designer','ux','ui','creative'], 'design' ]
-    ]
-
-    all_keywords.each do |keyword_map|
-      keywords = keyword_map.first
-      category = keyword_map.last
-      clean_title_words = title.downcase.gsub(/[^a-z\s\-]/, '').gsub('-',' ').split(' ')
-      return category if ! (clean_title_words & keywords).empty?
-    end
-    'other'
-  end
-
   def reviewed?
     reviewed_at.present?
   end
@@ -145,19 +131,5 @@ class Job < ActiveRecord::Base
 
   def self.skip_description_scrape?
     false
-  end
-
-  def fetch_description!(url)
-    url = normalize_url(url)
-    begin
-      source = open(url, allow_redirections: :all).read
-      job.description = Readability::Document.new(source, blacklist: %w[img], tags: %w[div p ul li strong h2]).content
-    rescue => e
-      Rails.logger.error "Failed to process job description for #{url} : #{e.message}"
-    end
-  end
-
-  def normalize_url(url)
-    ActiveSupport::Inflector.transliterate(url.gsub('https','http'))    
   end
 end

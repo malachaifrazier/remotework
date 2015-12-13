@@ -41,7 +41,7 @@ class Job::Github < Job
                      company_url: '',
                      original_post_url: link,
                      source: "Github Jobs")
-      category = self.guess_category_from_title(title)
+      category = CategoryGuesser.guess_category_from_title(title)
       job.rebuild_tags!(category)
       return job
     end

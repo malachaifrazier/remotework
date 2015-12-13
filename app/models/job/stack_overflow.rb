@@ -14,7 +14,7 @@ class Job::StackOverflow < Job
                      company_url: '',
                      original_post_url: entry.entry_id,
                      source: "Stack Overflow Careers")
-      category = self.guess_category_from_title(match_data[1].strip)
+      category = CategoryGuesser.guess_category_from_title(match_data[1].strip)
       job.rebuild_tags!(category, entry.categories.join(' '))
       return job
     end

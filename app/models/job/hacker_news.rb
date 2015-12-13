@@ -16,7 +16,7 @@ class Job::HackerNews < Job
                        company_url: '',
                        original_post_url: entry.links[0],
                        source: "Hacker News")
-        category = self.guess_category_from_title(cleaned_entry_title)
+        category = CategoryGuesser.guess_category_from_title(cleaned_entry_title)
         return job
       end
     end

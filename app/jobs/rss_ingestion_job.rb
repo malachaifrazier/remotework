@@ -23,7 +23,7 @@ class RssIngestionJob < ActiveJob::Base
                 unless klazz.probable_duplicate(job).exists?
                   unless klazz.skip_description_scrape?
                     job.fetch_description!(job.original_post_url) 
-                    category = Job.guess_category_from_title(entry.title)
+                    category = CategoryGuesser.guess_category_from_title(entry.title)
                     job.rebuild_tags!(category, entry.categories.join(' '))
                   end
                   job.save! 
