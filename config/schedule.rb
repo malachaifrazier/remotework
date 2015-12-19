@@ -45,6 +45,10 @@ every :hour, at: 30 do
   rake "periodic:fetch_rss_jobs[Job::Github]" 
 end
 
+every :hour, at: 35 do
+  rake "periodic:fetch_angellist_jobs" 
+end
+
 every :hour, at: 40 do
   rake "periodic:fetch_rss_jobs[Job::Dribbble]" 
 end

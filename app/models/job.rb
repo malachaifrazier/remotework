@@ -20,7 +20,7 @@ class Job < ActiveRecord::Base
   scope :ours, ->() { where("type = 'Job::RemotelyAwesome'") }
   scope :today, ->() { where("posted_at >= NOW() - '1 day'::INTERVAL") }
   scope :before_today, ->() { where("posted_at < NOW() - '1 day'::INTERVAL") }
-  scope :this_week, ->() { where("posted_at < NOW() - '1 week'::INTERVAL") }
+  scope :this_week, ->() { where("posted_at > NOW() - '1 week'::INTERVAL") }
   scope :should_be_expired, ->() { where("expires_at < NOW()") }
   scope :expires_tomorrow, ->() { where("expires_at > NOW() AND expires_at < NOW() + '1 day'::INTERVAL") }
   scope :for_tags, ->(tags) {
@@ -90,14 +90,14 @@ class Job < ActiveRecord::Base
 
   def fetch_description!(url)
     begin
-      job.description = BasicDescriptionScraper.scrape(url)
+      self.description = BasicDescriptionScraper.scrape(url)
     rescue => e
       Rails.logger.error "Failed to process job description for #{url} : #{e.message}"
     end
   end
 
   def rebuild_tags!(category, other=nil)
-    tags = TagBuilder.new(category, self.title, self.description).tags
+    tags = TagBuilder.new(category, self.title, self.description, other).tags
     self.tags = tags[:all]
   end
 

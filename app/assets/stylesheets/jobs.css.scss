@@ -169,6 +169,10 @@ body.jobs.show, body.jobs.new, body.jobs.create, body.jobs.edit, body.jobs.previ
   input[type=submit].preview {
     margin-top: 35px;
   }
+  hr {
+    border-bottom:1px solid $beige;
+    margin: 0;
+  }
   .sidebar {
     margin-top: 20px;
     .buttons {

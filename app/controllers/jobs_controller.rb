@@ -18,6 +18,7 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.friendly.find(params[:id])
+    render_404 and return unless @job.posted?
   end
 
   def new

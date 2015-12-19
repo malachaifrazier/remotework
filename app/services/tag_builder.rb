@@ -81,7 +81,7 @@ class TagBuilder
   def initialize(category, title, description, other='')
     @title = replace_synonyms(title.downcase).split(/[\s,\/]+/)
     @description = replace_synonyms(clean_input(description)).split(/[\s,\/]+/)
-    @other = replace_synonyms(other.downcase).split(/[\s,\/]+/)
+    @other = replace_synonyms(clean_input(other).downcase).split(/[\s,\/]+/)
     @category = category
   end
 
@@ -124,6 +124,7 @@ class TagBuilder
   end
 
   def clean_input(s)
+    return '' if s.nil?
     sanitizer = Rails::Html::FullSanitizer.new
     CGI::unescapeHTML(sanitizer.sanitize(s.downcase)).gsub(/[\(\)]/,'')
   end
