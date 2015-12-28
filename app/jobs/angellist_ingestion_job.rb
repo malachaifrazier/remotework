@@ -13,11 +13,13 @@ class AngellistIngestionJob < ActiveJob::Base
       doc = Nokogiri::HTML(open("https://angel.co/job-collections/remote"))
       entries = doc.css('.job-list-item')
       entries.each do |entry|
-        job = Job::Angellist.factory(entry)
-        if job && !Job.probable_duplicate(job).exists?
-          job.fetch_description!(job.original_post_url)
-          job.save!
-          job.post!
+        entry.css('.listing-row').each do |listing|
+          job = Job::Angellist.factory(listing, parent: entry)
+          if job && !Job.probable_duplicate(job).exists?
+            job.fetch_description!(job.original_post_url)
+            job.save!
+            job.post!
+          end
         end
       end
     end
