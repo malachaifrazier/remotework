@@ -38,6 +38,8 @@ class Job::Authentic < Job
   end
 
   def fetch_description!(url)
-    # Just use what RSS gave us.
+    rss_description = self.description
+    parsed = rss_description.match(/<p>(.*?)<\/p>.*?<strong>\((.*?)\)<\/strong>.*/)
+    self.description.gsub!(/.*?<strong>\((.*?)\)<\/strong>.*/, "<p>Job Type: <b>#{parsed[1]}</b><br/>Location: <b>#{parsed[2]}</b></p>")
   end  
 end

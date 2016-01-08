@@ -15,7 +15,7 @@ class Job::Dribbble < Job
                        posted_at: entry.published,
                        company: company.strip,
                        location: location.strip,
-                       description: '',
+                       description: entry.title,
                        company_url: '',
                        original_post_url: link,
                        source: "Dribbble")

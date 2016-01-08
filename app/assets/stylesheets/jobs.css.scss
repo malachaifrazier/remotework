@@ -82,10 +82,13 @@ body.job-listings {
       h3 {
         color: $charcoal;
         font-size: 14px;
-        margin: -5px 0 0;
+        margin: -5px 0;
       }
       p.when-posted {
         margin: -5px 0 0;
+      }
+      .source {
+        margin-top: 3px;
       }
       .category {
         a {
@@ -129,6 +132,7 @@ body.jobs.show, body.jobs.new, body.jobs.create, body.jobs.edit, body.jobs.previ
       margin-bottom: 5px;
     }
     h2.job-company {
+      margin-left: -2px;
       margin-top: 5px;
     }
     h3.company-description, h3.how-to-apply {
@@ -148,10 +152,19 @@ body.jobs.show, body.jobs.new, body.jobs.create, body.jobs.edit, body.jobs.previ
       border-bottom:1px solid $beige;
       margin-bottom: 15px;
       padding-bottom: 5px;
+      .source {
+        color: $beige;
+        font-size: 14px;
+        font-style: italic;
+        margin: -8px 0 4px 2px;
+      }
     }
     .job-description {
       font-size: 16px;
       line-height: 24px;
+      img {
+        display: none;
+      }
     }
     .apply {
       margin-top: 40px;

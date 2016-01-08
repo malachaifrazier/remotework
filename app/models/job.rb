@@ -88,11 +88,12 @@ class Job < ActiveRecord::Base
     "#{self.company} #{self.title}"
   end
 
-  def fetch_description!(url)
+  def fetch_description!(url, tags=%w[div p ul li strong h2], strip=%w[img])
     begin
-      self.description = BasicDescriptionScraper.scrape(url)
+      self.description = BasicDescriptionScraper.scrape(url,tags,strip)
     rescue => e
       Rails.logger.error "Failed to process job description for #{url} : #{e.message}"
+      Rails.logger.error e.backtrace.join("\n ")
     end
   end
 

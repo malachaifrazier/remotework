@@ -23,4 +23,8 @@ class Job::StackOverflow < Job
   def rebuild_tags!(category, other)
     self.tags = TagBuilder.new(category, self.title, self.description, other).tags[:all]
   end
+
+  def fetch_description!(url)
+    super(url, %w[div p ul li strong h2], %w['a.learn-more', 'ul.joeltest', 'div.benefits-list'])
+  end
 end

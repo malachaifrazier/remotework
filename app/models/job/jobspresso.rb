@@ -1,38 +1,43 @@
 class Job::Jobspresso < Job
+  URLS = {
+    "https://jobspresso.co/?feed=job_feed&job_types=designer&search_location&job_categories&search_keywords" => 'design',
+    "https://jobspresso.co/?feed=job_feed&job_types=developer&search_location&job_categories&search_keywords" => 'development',
+    "https://jobspresso.co/?feed=job_feed&job_types=project-mgmt&search_location&job_categories&search_keywords" => 'management',
+    "https://jobspresso.co/?feed=job_feed&job_types=marketing%2Csales%2Csupport%2Csys-admin%2Ctester&search_location&job_categories&search_keywords" => 'other'
+  }
+  
   class << self
-    def twitter_handles
-      ['jobspresso']
+    def feed_urls
+      URLS.keys
     end
 
-    def factory(tweet, opts={})
-      text = tweet.full_text
-      fields = text.split("\n")
-      Rails.logger.info "PARSING #{text}"
-      if fields.length == 4 && /\[(.*?)\]/.match(fields[0])
-        Rails.logger.info "OK, passes... fields are #{fields.inspect}"
-        location = /\[(.*?)\]/.match(fields[0])[1]
-        job_line = fields[1]
-        company = /(.*?)is hiring a.*?/.match(job_line)[1].gsub(/@.*?\s/,'').strip
-        title = /.*?is hiring a (.*?)$/.match(job_line)[1]
-        original_link = fields[3].split(' ').first
-        if location.present? && company.present? && title.present? && original_link.present?
-          job = self.new(title: title,
-                         posted_at: tweet.created_at,
-                         company: company,
-                         location: location,
-                         description: '',
-                         company_url: '',
-                         original_post_url: original_link,
-                         source: "Jobspresso")
-        end
-      end
+    def factory(entry, feed, opts={})
+      company = ''
+      location = 'Anywhere'
+      job = self.new(title: entry.title.strip,
+                     posted_at: entry.published,
+                     company: get_company_name(entry.url),
+                     location: location.strip,
+                     description: entry.content,
+                     company_url: '',
+                     original_post_url: entry.url,
+                     source: "Jobspresso")
+      category = determine_category(feed)
+      job.rebuild_tags!(category)
+      return job
     end
-  end
 
-  def update_original_url!
-    begin
-      self.original_url = Nokogiri::HTML(self.description).css('link[rel=canonical]').attribute('href').value()
-    rescue
+    def determine_category(feed)
+      URLS[feed.feed_url]
+    end
+    
+    def fetch_description!(url)
+      super(url, %w[div p ul li b br strong h2 h3])
+    end
+
+    def get_company_name(url)
+      doc = Nokogiri::HTML(open(url))
+      doc.search('.job-company a').text
     end
   end
 end

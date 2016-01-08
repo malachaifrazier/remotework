@@ -1,9 +1,9 @@
 .job-heading
-  %h1.job-title= job.title
+  %h1.job-title= job.title.html_safe
   %h2.job-company
-    = job.company
+    = job.company.html_safe
     &mdash;
-    = job.location
+    = job.location.html_safe
   .source
     via #{job.source}
   = render partial: 'shared/tags', locals: { job: job }
