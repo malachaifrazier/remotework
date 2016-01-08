@@ -53,6 +53,10 @@ every :hour, at: 40 do
   rake "periodic:fetch_rss_jobs[Job::Dribbble]" 
 end
 
+every :hour, at: 40 do
+  rake "periodic:fetch_rss_jobs[Job::GolangProjects]" 
+end
+
 every :hour, at: 50 do
   rake "periodic:fetch_twitter_jobs[Job::Jobspresso]" 
 end
