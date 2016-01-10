@@ -34,7 +34,7 @@ class Job < ActiveRecord::Base
     Job.for_tags([category, language]).where('id != ?', job.id).limit(number)
   }
   
-  pg_search_scope :search, :against => [:title, :company, :description]
+  pg_search_scope :search, against: [:title, :company, :description], using: { tsearch: { tsvector_column: "tsv" } }
 
   # pseudo-scope. Using a class method instead because we need to override this in a child class.
   def self.probable_duplicate(other_job)

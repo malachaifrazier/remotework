@@ -166,7 +166,8 @@ CREATE TABLE jobs (
     expires_at timestamp without time zone,
     status character varying,
     reviewed_at timestamp without time zone,
-    expired_at timestamp without time zone
+    expired_at timestamp without time zone,
+    tsv tsvector
 );
 
 
@@ -392,6 +393,13 @@ CREATE INDEX index_jobs_on_tags ON jobs USING btree (sort_array(tags));
 
 
 --
+-- Name: index_jobs_on_tsv; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_jobs_on_tsv ON jobs USING gin (tsv);
+
+
+--
 -- Name: index_jobs_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -403,6 +411,13 @@ CREATE INDEX index_jobs_on_user_id ON jobs USING btree (user_id);
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON jobs FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger('tsv', 'pg_catalog.english', 'title', 'company', 'description');
 
 
 --
@@ -510,4 +525,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151202140140');
 INSERT INTO schema_migrations (version) VALUES ('20151202144247');
 
 INSERT INTO schema_migrations (version) VALUES ('20151202145935');
+
+INSERT INTO schema_migrations (version) VALUES ('20160110234018');
 
