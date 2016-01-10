@@ -73,6 +73,10 @@ every :tuesday, at: '12:10pm' do
   rake "periodic:weekly_alerts"
 end
 
+every 1.day, at: '7:00am' do
+  rake "sitemap:refresh"
+end
+
 every 6.hours do
   rake "periodic:find_404"
 end

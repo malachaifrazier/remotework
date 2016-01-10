@@ -78,6 +78,7 @@ gem 'bcrypt'                                        # for has_secure_password
 gem 'has_secure_token'                              # Generates validation tokens.
 gem 'sinatra'                                       # Needed for the Sidekiq web console.
 gem 'aasm'                                          # state machine in the job model.
+gem 'sitemap_generator'                             # for sitemaps.
 
 # Capistrano stuff
 group :development do
