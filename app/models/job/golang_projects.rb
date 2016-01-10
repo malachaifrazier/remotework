@@ -1,4 +1,6 @@
 class Job::GolangProjects < Job
+  before_create :check_for_duplicates
+  
   class << self
     def feed_urls
       ["http://golangprojects.com/remoterss.xml"]
@@ -29,5 +31,11 @@ class Job::GolangProjects < Job
     self.posted_at = Date.parse(post_date[1])
     text = self.description.match /.*?\(Posted .*?\)(.*)/m
     self.description = text[1]
+  end
+
+  # Need to run this here becauase we actually set the post date in
+  # fetch description on these oddballs. :-/
+  def check_for_duplicates
+    return false if GolangProjects.probable_duplicate(self).exists?
   end
 end
