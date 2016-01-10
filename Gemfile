@@ -79,6 +79,7 @@ gem 'has_secure_token'                              # Generates validation token
 gem 'sinatra'                                       # Needed for the Sidekiq web console.
 gem 'aasm'                                          # state machine in the job model.
 gem 'sitemap_generator'                             # for sitemaps.
+gem 'fog-aws'                                       # to upload sitemaps to s3
 
 # Capistrano stuff
 group :development do
