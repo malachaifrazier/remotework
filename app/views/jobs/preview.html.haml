@@ -11,5 +11,5 @@
           %p= link_to "#{fa_icon 'chevron-left'} Back to Jobs List".html_safe, :back, class: 'btn btn-default btn-sm'
       .row
         .col-xs-12
-          %p= link_to "Looks Great! Post this job!".html_safe, post_job_path(@job), method: :post, class: "btn btn-primary btn-lg", data: { 'disable-with': 'Posting...' }
+          %p= link_to "Looks Great! Post this job!".html_safe, post_job_path(@job), method: :post, class: "btn btn-primary btn-lg", data: { 'disable-with' => 'Posting...' }
 
