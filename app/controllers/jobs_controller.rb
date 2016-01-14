@@ -12,7 +12,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       format.html { render 'index', layout: 'listings' }
-      format.js 
+      format.js
     end
   end
 
@@ -31,7 +31,7 @@ class JobsController < ApplicationController
     @job = Job.friendly.find(params[:id])
   end
 
-  def create    
+  def create
     @job = Job::RemotelyAwesome.new(job_params)
     render :new and return unless handle_user(user_params)
     @job.user = @user
@@ -90,11 +90,10 @@ class JobsController < ApplicationController
 
   private
 
-
   def handle_user(user_params)
     if logged_in?
       @user = current_user
-      return true 
+      return true
     end
     if params[:account] == 'new'
       create_user(user_params)
@@ -108,7 +107,7 @@ class JobsController < ApplicationController
     if @user.save
       sign_in(@user)
     else
-      flash[:error] = "Invalid user information: #{@user.errors.full_messages.to_sentence}"       
+      flash[:error] = "Invalid user information: #{@user.errors.full_messages.to_sentence}"
       false
     end
   end

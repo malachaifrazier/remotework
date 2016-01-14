@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                   :uuid             not null, primary key
+#  created_at           :datetime
+#  updated_at           :datetime
+#  email                :string           not null
+#  password_digest      :string           not null
+#  password_reset_token :string
+#  validation_token     :string
+#  email_validated_at   :datetime
+#  admin                :boolean          default(FALSE)
+#
+
 class User < ActiveRecord::Base
   has_secure_password
   has_secure_token :password_reset_token
@@ -6,7 +21,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email, case_sensitive: false
   validates_presence_of :password
-  validates_length_of :password, :minimum => 6, :allow_blank => true, :message => 'is too short (minimum is 6 characters).'
+  validates_length_of :password, minimum: 6, allow_blank: true,
+   message: 'is too short (minimum is 6 characters).'
 
   has_many :jobs
 
@@ -38,7 +54,7 @@ class User < ActiveRecord::Base
     }
   end
 
-  
+
   private
 
   def send_notice

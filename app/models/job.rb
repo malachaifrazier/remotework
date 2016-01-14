@@ -1,3 +1,35 @@
+# == Schema Information
+#
+# Table name: jobs
+#
+#  id                    :integer          not null, primary key
+#  created_at            :datetime
+#  updated_at            :datetime
+#  category_id           :integer
+#  title                 :string           not null
+#  posted_at             :datetime
+#  company               :string           not null
+#  location              :string           not null
+#  description           :text             not null
+#  company_url           :string
+#  original_post_url     :string
+#  source                :string
+#  slug                  :string
+#  type                  :string
+#  sent_daily_alerts_at  :datetime
+#  sent_weekly_alerts_at :datetime
+#  last_tweeted_at       :datetime
+#  tags                  :text             default([]), is an Array
+#  company_description   :text
+#  how_to_apply          :text
+#  user_id               :uuid
+#  expires_at            :datetime
+#  status                :string
+#  reviewed_at           :datetime
+#  expired_at            :datetime
+#  tsv                   :tsvector
+#
+
 class Job < ActiveRecord::Base
   include FriendlyId
   include PgSearch
@@ -33,7 +65,7 @@ class Job < ActiveRecord::Base
     language = job.tags_that_are('language').first
     Job.for_tags([category, language]).where('id != ?', job.id).limit(number)
   }
-  
+
   pg_search_scope :search, against: [:title, :company, :description], using: { tsearch: { tsvector_column: "tsv" } }
 
   # pseudo-scope. Using a class method instead because we need to override this in a child class.
@@ -117,7 +149,7 @@ class Job < ActiveRecord::Base
   def tags_that_are(type)
     tags && TagBuilder.const_get("#{type.upcase}_TAGS")
   end
-  
+
   def reviewed?
     reviewed_at.present?
   end

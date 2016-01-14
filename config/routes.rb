@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   # For the load balancer
   get 'health_check'                      => 'health_check#index', :as => :health_check
-  
+
   resources :jobs do
     member do
       get   :preview

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: alerts
+#
+#  id               :uuid             not null, primary key
+#  created_at       :datetime
+#  updated_at       :datetime
+#  email_address_id :uuid             not null
+#  tags             :text             default([]), is an Array
+#  last_sent_at     :datetime
+#  active           :boolean          default(TRUE), not null
+#  frequency        :string           not null
+#  search_query     :string
+#
+
 class Alert < ActiveRecord::Base
   belongs_to :email_address
   validates_presence_of :email_address

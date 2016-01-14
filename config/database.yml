@@ -11,8 +11,8 @@ development:
   <<: *default
   host: localhost
   database: remotework_development
-  username: remotework
-  password: remotework
+  # username: remotework
+  # password: remotework
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -21,8 +21,8 @@ test:
   <<: *default
   host: localhost
   database: remotework_test
-  username: remotework
-  password: remotework
+  # username: remotework
+  # password: remotework
 
 production:
   <<: *default
