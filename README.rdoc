@@ -1,4 +1,9 @@
 == README
+{<img src="https://codeclimate.com/github/malachaifrazier/remotework/badges/gpa.svg" />}[https://codeclimate.com/github/malachaifrazier/remotework]
+
+{<img src="https://codeclimate.com/github/malachaifrazier/remotework/badges/coverage.svg" />}[https://codeclimate.com/github/malachaifrazier/remotework/coverage]
+
+{<img src="https://codeclimate.com/github/malachaifrazier/remotework/badges/issue_count.svg" />}[https://codeclimate.com/github/malachaifrazier/remotework]
 
 Source code for http://www.remotelyawesomejobs.com
 

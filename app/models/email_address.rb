@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: email_addresses
+#
+#  id               :uuid             not null, primary key
+#  created_at       :datetime
+#  updated_at       :datetime
+#  email            :string           not null
+#  validated_at     :datetime
+#  unsubscribed_at  :datetime
+#  validation_token :text
+#  login_token      :text
+#
+
 class EmailAddress < ActiveRecord::Base
   has_many :alerts
   validates_presence_of :email

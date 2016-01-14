@@ -62,7 +62,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'remotelyawesomejobs.com' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { 
+  config.action_mailer.smtp_settings = {
     :address        => "smtp.mandrillapp.com",
     :port           => "587",
     :authentication => :plain,
@@ -72,7 +72,6 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
   config.action_mailer.asset_host = "http://remotelyawesomejobs.com"
-
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -94,4 +93,4 @@ Rails.application.configure do
   config.raj_host = "www.remotelyawesomejobs.com"
 end
 
-Rails.logger = Le.new('2524aa02-495f-4314-8f2d-6ac151754f92', :debug => true, :local => true)
+Rails.logger = Le.new('2524aa02-495f-4314-8f2d-6ac151754f92', debug: true, local: true)

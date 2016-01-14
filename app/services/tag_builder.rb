@@ -1,4 +1,4 @@
-# A lot of this *could* be moved into the database to make it more 
+# A lot of this *could* be moved into the database to make it more
 # configurable, but that's probably overkill for now.
 #
 class TagBuilder
