@@ -190,7 +190,7 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
-    multi_json (1.11.2)
+    multi_json (1.13.1)
     multipart-post (2.0.0)
     naught (1.1.0)
     net-scp (1.2.1)
@@ -217,7 +217,7 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (2.15.3)
-    rack (1.6.4)
+    rack (1.6.11)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -314,7 +314,7 @@ GEM
       builder
     slop (3.6.0)
     spring (1.6.2)
-    sprockets (2.12.4)
+    sprockets (2.12.5)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
