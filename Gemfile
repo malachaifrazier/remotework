@@ -71,7 +71,7 @@ end
 
 group :development, :test do
   # gem 'faker',                   '~> 1.5'
-  gem 'pry-rails',               '~> 0.3.4'
+  gem 'pry-rails',               '~> 0.3.9'
   gem 'binding_of_caller',       '~> 0.7.2'
   gem 'better_errors',           '~> 2.1.1'
 end
