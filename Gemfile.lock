@@ -200,7 +200,7 @@ GEM
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     open_uri_redirections (0.2.1)
-    pg (0.18.4)
+    pg (1.2.3)
     pg_search (1.0.5)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
