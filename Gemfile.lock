@@ -197,6 +197,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.0.2)
     newrelic_rpm (3.14.1.311)
+    nio4r (2.5.7)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     open_uri_redirections (0.2.1)
@@ -216,7 +217,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    puma (2.15.3)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
